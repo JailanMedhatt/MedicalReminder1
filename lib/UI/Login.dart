@@ -37,7 +37,7 @@ class LoginPage extends StatelessWidget {
                         padding: EdgeInsets.only(top: 60.h),
                         child: ElevatedButton(
                           onPressed: () {
-                            Navigator.pushReplacementNamed(context, "HomeScreen");
+                            Navigator.pushReplacementNamed(context, "SlideMenu");
                           },
                           child: Text(
                             "Login",
