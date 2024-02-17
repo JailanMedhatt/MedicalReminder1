@@ -22,8 +22,8 @@
 //   }
 //
 // }
-import 'package:finalproject1/UI/homePage.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:finalproject1/UI/MissedMedicines.dart';
+import 'package:finalproject1/UI/Profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 
@@ -149,19 +149,19 @@ class _SlideMenuState extends State<SlideMenu> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Scahduale",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 22),
-                          ),
+                            "Schedule",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 22),
+                      ),
                           Text(
-                            "scaduale to your reminders ",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.w400,
-                                fontSize: 16),
-                          ),
+                            "schedule to your reminders ",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 16),
+                      ),
                         ],
                       )
                     ],
@@ -194,12 +194,12 @@ class _SlideMenuState extends State<SlideMenu> {
                               fontSize: 22),
                         ),
                         Text(
-                          "scaduale to your reminders",
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.w400,
-                              fontSize: 16),
-                        ),
+                          "schedule to your reminders",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 16),
+                    ),
                       ],
                     )
                   ],
@@ -231,12 +231,12 @@ class _SlideMenuState extends State<SlideMenu> {
                               fontSize: 22),
                         ),
                         Text(
-                          "scaduale to your reminders",
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.w400,
-                              fontSize: 16),
-                        ),
+                          "schedule to your reminders",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 16),
+                    ),
                       ],
                     )
                   ],
@@ -272,12 +272,12 @@ class _SlideMenuState extends State<SlideMenu> {
                                 fontSize: 22),
                           ),
                           Text(
-                            "scaduale to your reminders",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.w400,
-                                fontSize: 16),
-                          ),
+                            "schedule to your reminders",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 16),
+                      ),
                         ],
                       )
                     ],
@@ -382,7 +382,7 @@ class _SlideMenuState extends State<SlideMenu> {
                 Container(
                   color: Colors.white12,
                   child: ListTile(
-                    onTap: () {},
+                    onTap: () {Navigator.pushNamed(context,Profile.routeName);},
                     leading: Icon(Icons.person,size: 37),
                     title: Text('Profile'),
                   ),
@@ -431,8 +431,10 @@ class _SlideMenuState extends State<SlideMenu> {
                   color: Colors.white12,
 
                   child: ListTile(
-                    onTap: () {},
-                    leading: Icon(Icons.medical_information,size: 37),
+                    onTap: () {
+                      Navigator.pushNamed(context, MissedMedicines.routeName);
+                    },
+                    leading: Icon(Icons.medical_information, size: 37),
                     title: Text('Missed Medicines'),
                   ),
                 ),
