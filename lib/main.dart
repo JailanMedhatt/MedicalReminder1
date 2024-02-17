@@ -1,4 +1,5 @@
 import 'package:finalproject1/UI/Login.dart';
+import 'package:finalproject1/UI/Profile.dart';
 import 'package:finalproject1/UI/Register.dart';
 import 'package:finalproject1/UI/Scedhule.dart';
 import 'package:finalproject1/UI/SlideMenu.dart';
@@ -22,12 +23,13 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         initialRoute: LoginPage.routeName,
         routes: {
-          'HomeScreen' :(context) => HomePage(),
+          // 'HomeScreen' :(context) => HomePage(),
           'Schedule' : (context) => SchadualePgae(),
           'Tips' : (context) => TipsPage(),
           'SlideMenu' :(context) => SlideMenu(),
           LoginPage.routeName :(context)=>LoginPage(),
-          Register.routeName:(context)=>Register()
+          Register.routeName:(context)=>Register(),
+          Profile.routeName:(context)=>Profile()
 
         },
         debugShowCheckedModeBanner: false,
@@ -36,7 +38,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: HomePage(),
+        // home: HomePage(),
       ),
     );
   }
