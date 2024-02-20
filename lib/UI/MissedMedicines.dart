@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'Edit Medicine.dart';
+
 class MissedMedicines extends StatelessWidget {
   static final String routeName = "missed-meds";
 
@@ -28,7 +30,7 @@ class MissedMedicines extends StatelessWidget {
           itemBuilder: (context, index) => Column(
             children: [
               SizedBox(
-                height: 50,
+                height: 60,
                 width: MediaQuery.of(context).size.width * 0.97,
               ),
               Stack(
@@ -52,15 +54,21 @@ class MissedMedicines extends StatelessWidget {
                                 Icon(
                                   Icons.error_outline,
                                 ),
-                                Text(
-                                  " Calcitas-D       2 pills",
-                                  style: TextStyle(
-                                      fontSize: 23,
-                                      fontWeight: FontWeight.bold),
+                                InkWell(
+                                  onTap: () {
+                                    Navigator.pushNamed(
+                                        context, EditMedicine.routeName);
+                                  },
+                                  child: Text(
+                                    " Calcitas-D       2 pills",
+                                    style: TextStyle(
+                                        fontSize: 23,
+                                        fontWeight: FontWeight.bold),
+                                  ),
                                 ),
                               ],
                             ),
-                            itemCount: 2,
+                            itemCount: 3,
                           )),
                     ),
                   ),
