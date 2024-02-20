@@ -1,9 +1,11 @@
+import 'package:finalproject1/UI/Edit%20Medicine.dart';
 import 'package:finalproject1/UI/Login.dart';
+import 'package:finalproject1/UI/MissedMedicines.dart';
+import 'package:finalproject1/UI/Profile.dart';
 import 'package:finalproject1/UI/Register.dart';
 import 'package:finalproject1/UI/Scedhule.dart';
 import 'package:finalproject1/UI/SlideMenu.dart';
 import 'package:finalproject1/UI/TipsPage.dart';
-import 'package:finalproject1/UI/homePage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -22,13 +24,15 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         initialRoute: LoginPage.routeName,
         routes: {
-          'HomeScreen' :(context) => HomePage(),
-          'Schedule' : (context) => SchadualePgae(),
-          'Tips' : (context) => TipsPage(),
-          'SlideMenu' :(context) => SlideMenu(),
-          LoginPage.routeName :(context)=>LoginPage(),
-          Register.routeName:(context)=>Register()
-
+          // 'HomeScreen' :(context) => HomePage(),
+          'Schedule': (context) => SchadualePgae(),
+          'Tips': (context) => TipsPage(),
+          'SlideMenu': (context) => SlideMenu(),
+          LoginPage.routeName: (context) => LoginPage(),
+          Register.routeName: (context) => Register(),
+          EditMedicine.routeName: (context) => EditMedicine(),
+          MissedMedicines.routeName: (context) => MissedMedicines(),
+          Profile.routeName: (context) => Profile()
         },
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
@@ -36,7 +40,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: HomePage(),
+        home: EditMedicine(),
       ),
     );
   }

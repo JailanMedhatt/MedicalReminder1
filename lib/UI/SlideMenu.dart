@@ -22,10 +22,10 @@
 //   }
 //
 // }
-import 'package:finalproject1/UI/homePage.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
+
+import 'Profile.dart';
 
 class SlideMenu extends StatefulWidget {
   @override
@@ -382,8 +382,10 @@ class _SlideMenuState extends State<SlideMenu> {
                 Container(
                   color: Colors.white12,
                   child: ListTile(
-                    onTap: () {},
-                    leading: Icon(Icons.person,size: 37),
+                    onTap: () {
+                      Navigator.pushNamed(context, Profile.routeName);
+                    },
+                    leading: Icon(Icons.person, size: 37),
                     title: Text('Profile'),
                   ),
                 ),
@@ -431,8 +433,10 @@ class _SlideMenuState extends State<SlideMenu> {
                   color: Colors.white12,
 
                   child: ListTile(
-                    onTap: () {},
-                    leading: Icon(Icons.medical_information,size: 37),
+                    onTap: () {
+                      Navigator.pushNamed(context, "missed-meds");
+                    },
+                    leading: Icon(Icons.medical_information, size: 37),
                     title: Text('Missed Medicines'),
                   ),
                 ),
