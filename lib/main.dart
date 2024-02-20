@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         initialRoute: LoginPage.routeName,
         routes: {
-          'HomeScreen' :(context) => HomePage(),
+          // 'HomeScreen' :(context) => HomePage(),
           'Schedule' : (context) => SchadualePgae(),
           'Tips' : (context) => TipsPage(),
           'SlideMenu' :(context) => SlideMenu(),
@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: HomePage(),
+
       ),
     );
   }
