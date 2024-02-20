@@ -1,6 +1,7 @@
 import 'package:finalproject1/CustomWidgets/CustomTextFF.dart';
 import 'package:finalproject1/DialogUtills.dart';
 import 'package:finalproject1/UI/Register.dart';
+import 'package:finalproject1/UI/SlideMenu.dart';
 import 'package:finalproject1/ViewModels/LoginViewModel/LoginState.dart';
 import 'package:finalproject1/ViewModels/LoginViewModel/LoginViewModel.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +29,7 @@ class LoginPage extends StatelessWidget {
         }
         if(state is SuccessLoginState){
           DialogUtills.hideLoading(context);
-          DialogUtills.showMessage(state.succesMessage, context, actionName: "ok");
+          DialogUtills.showMessage(state.succesMessage, context, actionName: "ok",action:(){ Navigator.pushReplacementNamed(context, "SlideMenu");});
 
         }
       },
@@ -63,7 +64,7 @@ class LoginPage extends StatelessWidget {
                           padding: EdgeInsets.only(top: 60.h),
                           child: ElevatedButton(
                             onPressed: () {
-                              Navigator.pushReplacementNamed(context, "SlideMenu");
+                              viewModel.login();
                             },
                             child: Text(
                               "Login",
@@ -78,6 +79,7 @@ class LoginPage extends StatelessWidget {
                       Padding(padding: EdgeInsets.only(top: 35.h, left: 45.w)
                       ,child: InkWell(
                           onTap: (){
+
                             Navigator.pushReplacementNamed(context, Register.routeName);
                           },
                           child: Row(children: [
