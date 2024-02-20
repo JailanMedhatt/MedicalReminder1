@@ -5,7 +5,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomTextFF extends StatelessWidget {
   String hint;
-  CustomTextFF( {required this.hint});
+  TextEditingController controller ;
+  String? Function (String? text) validator;
+  CustomTextFF( {required this.hint,required this.controller, required this.validator});
 
 
   @override
@@ -35,7 +37,9 @@ class CustomTextFF extends StatelessWidget {
             hintText: hint,
             hintStyle: TextStyle(
                 fontWeight: FontWeight.w800, color: Colors.grey,
-                fontSize: 18)),
+                fontSize: 16)),
+        controller: controller,
+        validator: validator,
 
 
 
