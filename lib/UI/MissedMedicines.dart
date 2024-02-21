@@ -21,7 +21,8 @@ class MissedMedicines extends StatelessWidget {
             scrolledUnderElevation: 0,
             elevation: 0.0,
             backgroundColor: Colors.transparent,
-            leading: Icon(Icons.arrow_back, size: 32),
+            leading: IconButton(onPressed: (){Navigator.pop(context);
+             }, icon:Icon(Icons.arrow_back, size: 32)),
             title: Text(
               'Missed Medicines',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 27),
