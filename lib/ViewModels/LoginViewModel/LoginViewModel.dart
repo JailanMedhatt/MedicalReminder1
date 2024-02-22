@@ -1,5 +1,6 @@
 
 
+import 'package:finalproject1/SharedPref.dart';
 import 'package:finalproject1/ViewModels/LoginViewModel/LoginState.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -44,11 +45,13 @@ class LoginViewModel extends Cubit<LoginStates> {
             email: email.text,
             password: pass.text
         );
-        emit(SuccessLoginState(succesMessage: "${credential.additionalUserInfo?.username??""},You have successfully logged in"));
+        if(credential.user?.uid!=null){
+        await SharedPref.addId(credential.user!.uid!);}
+        emit(SuccessLoginState(succesMessage: credential.user?.email??""));
       } on FirebaseAuthException catch (e) {
         if (e.code == 'invalid-credential') {
           print(e.code.toString());
-          emit(FailedLoginState(errorMessage: e.code.toString()));
+          emit(FailedLoginState(errorMessage: "Invalid Credential"));
 
         }
         print(e.code.toString());

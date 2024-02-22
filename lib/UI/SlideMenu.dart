@@ -22,7 +22,10 @@
 //   }
 //
 // }
+import 'package:finalproject1/SharedPref.dart';
+import 'package:finalproject1/UI/Login.dart';
 import 'package:finalproject1/UI/MissedMedicines.dart';
+import 'package:finalproject1/UI/Profile.dart';
 import 'package:finalproject1/UI/homePage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -115,7 +118,12 @@ class _SlideMenuState extends State<SlideMenu> {
                       Column(
                         children: [
                           IconButton(
-                              onPressed: () {},
+                              onPressed: () async
+                              {
+                               SharedPref.removeId();
+
+                                Navigator.pushReplacementNamed(context, LoginPage.routeName);
+                              },
                               icon: Icon(
                                 Icons.logout_outlined,
                                 size: 25,
@@ -383,7 +391,9 @@ class _SlideMenuState extends State<SlideMenu> {
                 Container(
                   color: Colors.white12,
                   child: ListTile(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushNamed(context, Profile.routeName);
+                    },
                     leading: Icon(Icons.person,size: 37),
                     title: Text('Profile'),
                   ),

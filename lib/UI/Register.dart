@@ -89,7 +89,16 @@ class Register extends StatelessWidget {
                           ),
                         ),
                         Padding(
-                            padding: EdgeInsets.only(top: 50.h),
+                          padding: EdgeInsets.only(top: 30.h),
+                          child: CustomTextFF(
+                            hint: "Enter your  Phone Number",
+                            controller: viewModel.phoneNum,
+                            validator: viewModel.phoneNumValidator,
+                          ),
+                        ),
+
+                        Padding(
+                            padding: EdgeInsets.only(top: 35.h),
                             child: ElevatedButton(
                               onPressed: () {
                                 viewModel.register();

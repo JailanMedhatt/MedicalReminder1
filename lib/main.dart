@@ -1,3 +1,4 @@
+import 'package:finalproject1/SharedPref.dart';
 import 'package:finalproject1/UI/Edit%20Medicine.dart';
 import 'package:finalproject1/UI/Login.dart';
 import 'package:finalproject1/UI/MissedMedicines.dart';
@@ -13,6 +14,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
+  await SharedPref.init();
   await Firebase.initializeApp();
   runApp(const MyApp());
 }
@@ -26,7 +28,7 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       designSize: const Size(375,812),
       child: MaterialApp(
-        initialRoute: LoginPage.routeName,
+        initialRoute: SharedPref.getId()!=null?"SlideMenu": LoginPage.routeName,
         routes: {
           // 'HomeScreen' :(context) => HomePage(),
 
