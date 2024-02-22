@@ -48,7 +48,7 @@ class LoginViewModel extends Cubit<LoginStates> {
       } on FirebaseAuthException catch (e) {
         if (e.code == 'invalid-credential') {
           print(e.code.toString());
-          emit(FailedLoginState(errorMessage: e.code.toString()));
+          emit(FailedLoginState(errorMessage: "Invalid Credential"));
 
         }
         print(e.code.toString());

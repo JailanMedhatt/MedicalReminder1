@@ -23,6 +23,7 @@
 //
 // }
 import 'package:finalproject1/UI/MissedMedicines.dart';
+import 'package:finalproject1/UI/Profile.dart';
 import 'package:finalproject1/UI/homePage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -383,7 +384,9 @@ class _SlideMenuState extends State<SlideMenu> {
                 Container(
                   color: Colors.white12,
                   child: ListTile(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushNamed(context, Profile.routeName);
+                    },
                     leading: Icon(Icons.person,size: 37),
                     title: Text('Profile'),
                   ),

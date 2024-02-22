@@ -76,7 +76,7 @@ class RegisterViewModel extends Cubit<RegisterStates>{
           print('The password provided is too weak.');
           emit(FailedRegisterState(errorMessage: "The password provided is too weak"));
         } else if (e.code == 'email-already-in-use') {
-          emit(FailedRegisterState(errorMessage: "email-already-in-use"));
+          emit(FailedRegisterState(errorMessage: "Email already in use"));
           print('The account already exists for that email.');
         }
       } catch (e) {

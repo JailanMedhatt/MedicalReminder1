@@ -1,4 +1,5 @@
 import 'package:finalproject1/CustomWidgets/InfoContainer.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -9,18 +10,21 @@ class Profile extends StatelessWidget {
   final formKey= GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        body: Container(
-          width: 375.w,
-          decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage("assets/images/Opening.png"),
-                  fit: BoxFit.cover)),
-          child: Column(
+    return Stack(
+      children:[ Container(   decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("assets/images/Opening.png"),
+          fit: BoxFit.cover,
+        ),
+      )),
+        SafeArea(
+        child: Scaffold(
+          backgroundColor: Colors.transparent,
+          appBar: AppBar(backgroundColor: Colors.transparent,elevation: 0,),
+          resizeToAvoidBottomInset: false,
+          body: Column(
             children: [
-              Container( margin: EdgeInsets.only(top: 50.h, bottom: 15.h),
+              Container( margin: EdgeInsets.only(top: 10.h, bottom: 15.h),
                 decoration: BoxDecoration(
                   color: Color(0xd45d65b0),
                   borderRadius: BorderRadius.circular(20),
@@ -57,6 +61,6 @@ class Profile extends StatelessWidget {
           ),
         ),
       ),
-    );
+    ]);
   }
 }

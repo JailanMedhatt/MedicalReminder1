@@ -89,7 +89,7 @@ class Register extends StatelessWidget {
                           ),
                         ),
                         Padding(
-                            padding: EdgeInsets.only(top: 50.h),
+                            padding: EdgeInsets.only(top: 35.h),
                             child: ElevatedButton(
                               onPressed: () {
                                 viewModel.register();
