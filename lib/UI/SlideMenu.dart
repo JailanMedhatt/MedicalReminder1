@@ -22,6 +22,8 @@
 //   }
 //
 // }
+import 'package:finalproject1/SharedPref.dart';
+import 'package:finalproject1/UI/Login.dart';
 import 'package:finalproject1/UI/MissedMedicines.dart';
 import 'package:finalproject1/UI/Profile.dart';
 import 'package:finalproject1/UI/homePage.dart';
@@ -116,7 +118,12 @@ class _SlideMenuState extends State<SlideMenu> {
                       Column(
                         children: [
                           IconButton(
-                              onPressed: () {},
+                              onPressed: () async
+                              {
+                               SharedPref.removeId();
+
+                                Navigator.pushReplacementNamed(context, LoginPage.routeName);
+                              },
                               icon: Icon(
                                 Icons.logout_outlined,
                                 size: 25,
