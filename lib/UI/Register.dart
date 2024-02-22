@@ -23,12 +23,12 @@ class Register extends StatelessWidget {
         }
         if(state is FailedRegisterState){
           DialogUtills.hideLoading(context);
-          DialogUtills.showMessage(state.errorMessage, context, actionName: "ok");
+          DialogUtills.showMessage(state.errorMessage, context, actionName: "ok",mytitle: "Error");
 
         }
         if(state is SuccessRegisterState){
           DialogUtills.hideLoading(context);
-          DialogUtills.showMessage(state.succesMessage, context, actionName: "ok");
+          DialogUtills.showMessage(state.succesMessage, context, actionName: "ok",mytitle: "WELCOME💜");
 
         }
       },
@@ -100,12 +100,14 @@ class Register extends StatelessWidget {
                                     color: Colors.white, fontSize: 30),
                               ),
                               style: ElevatedButton.styleFrom(
+                               shadowColor: Color(0xff5D65B0),
+                                  elevation: 25,
                                   backgroundColor: Color(0xff5D65B0),
                                   padding: EdgeInsets.symmetric(
                                       horizontal: 70.w, vertical: 5.h),
                                   shape: RoundedRectangleBorder(
                                       borderRadius:
-                                          BorderRadius.circular(12.r))),
+                                          BorderRadius.circular(25.r))),
                             )),
                         Padding(
                           padding: EdgeInsets.only(

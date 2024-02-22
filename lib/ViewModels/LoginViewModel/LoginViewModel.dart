@@ -44,7 +44,7 @@ class LoginViewModel extends Cubit<LoginStates> {
             email: email.text,
             password: pass.text
         );
-        emit(SuccessLoginState(succesMessage: credential.user?.email??""));
+        emit(SuccessLoginState(succesMessage: "${credential.additionalUserInfo?.username??""},You have successfully logged in"));
       } on FirebaseAuthException catch (e) {
         if (e.code == 'invalid-credential') {
           print(e.code.toString());

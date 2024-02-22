@@ -14,13 +14,13 @@ class CustomTextFF extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       elevation: 8,
-      borderRadius: BorderRadius.circular(35.r),
+      borderRadius: BorderRadius.circular(30.r),
 
       child: TextFormField(
 
         decoration: InputDecoration(
             enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(40.r),
+              borderRadius: BorderRadius.circular(35.r),
               borderSide:
               BorderSide(color: Color(0xffafaaaa), width: 1),
 

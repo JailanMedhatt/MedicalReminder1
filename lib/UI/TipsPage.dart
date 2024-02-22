@@ -19,14 +19,16 @@ class TipsPage extends StatelessWidget{
             title: Text("Health Tips", style: TextStyle(fontWeight: FontWeight.bold,fontSize: 23)),
           ),
           body:
-            Padding(
-              padding: const EdgeInsets.all(18.0),
-              child: Container(
-                decoration: BoxDecoration(color:Colors.grey.withOpacity(0.3),borderRadius: BorderRadius.circular(15)),
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Text("Ultra-processed foods (UPFs) are foods containing ingredients that are significantly modified from their original form. They often contain additives like added sugar, highly refined oil, salt, preservatives, artificial sweeteners, colors, and flavors as well ",
-                      style:TextStyle(fontSize: 19,fontWeight: FontWeight.w400) ),
+            ListView.builder(
+              itemBuilder: (context, index) => Padding(
+                padding: const EdgeInsets.all(18.0),
+                child: Container(
+                  decoration: BoxDecoration(color:Colors.grey.withOpacity(0.5),borderRadius: BorderRadius.circular(15)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Text("Ultra-processed foods (UPFs) are foods containing ingredients that are significantly modified from their original form. They often contain additives like added sugar, highly refined oil, salt, preservatives, artificial sweeteners, colors, and flavors as well ",
+                        style:TextStyle(fontSize: 19,fontWeight: FontWeight.w500) ),
+                  ),
                 ),
               ),
             )
