@@ -2,6 +2,7 @@ import 'package:finalproject1/SharedPref.dart';
 import 'package:finalproject1/UI/Edit%20Medicine.dart';
 import 'package:finalproject1/UI/Login.dart';
 import 'package:finalproject1/UI/MissedMedicines.dart';
+import 'package:finalproject1/UI/PatientHistory.dart';
 import 'package:finalproject1/UI/Profile.dart';
 import 'package:finalproject1/UI/Register.dart';
 import 'package:finalproject1/UI/Scedhule.dart';
@@ -39,7 +40,9 @@ class MyApp extends StatelessWidget {
           Register.routeName: (context) => Register(),
           EditMedicine.routeName: (context) => EditMedicine(),
           MissedMedicines.routeName: (context) => MissedMedicines(),
-          Profile.routeName: (context) => Profile()
+          Profile.routeName: (context) => Profile(),
+          PatientHistory.routeName: (context) => PatientHistory()
+
 
 
         },

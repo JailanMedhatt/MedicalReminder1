@@ -25,6 +25,7 @@
 import 'package:finalproject1/SharedPref.dart';
 import 'package:finalproject1/UI/Login.dart';
 import 'package:finalproject1/UI/MissedMedicines.dart';
+import 'package:finalproject1/UI/PatientHistory.dart';
 import 'package:finalproject1/UI/Profile.dart';
 import 'package:finalproject1/UI/homePage.dart';
 import 'package:flutter/cupertino.dart';
@@ -412,7 +413,10 @@ class _SlideMenuState extends State<SlideMenu> {
                   color: Colors.white12,
 
                   child: ListTile(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushNamed(context, PatientHistory.routeName);
+
+                    },
                     leading: Icon(Icons.history,size: 37),
                     title: Text('Patient History'),
                   ),

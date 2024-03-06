@@ -45,6 +45,8 @@ dependencies:
   cloud_firestore: ^4.15.5
   shared_preferences: ^2.2.2
   http: ^1.2.0
+  standard_searchbar: ^2.0.0
+
 
 
 
