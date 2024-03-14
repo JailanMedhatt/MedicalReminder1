@@ -1,7 +1,11 @@
 import 'package:finalproject1/SharedPref.dart';
+import 'package:finalproject1/UI/Appointemnt.dart';
 import 'package:finalproject1/UI/Edit%20Medicine.dart';
+import 'package:finalproject1/UI/HelpPage.dart';
 import 'package:finalproject1/UI/Login.dart';
+import 'package:finalproject1/UI/MapPage.dart';
 import 'package:finalproject1/UI/MissedMedicines.dart';
+import 'package:finalproject1/UI/NotePage.dart';
 import 'package:finalproject1/UI/PatientHistory.dart';
 import 'package:finalproject1/UI/Profile.dart';
 import 'package:finalproject1/UI/Register.dart';
@@ -33,15 +37,21 @@ class MyApp extends StatelessWidget {
         routes: {
           // 'HomeScreen' :(context) => HomePage(),
 
-          'Schedule': (context) => SchadualePgae(),
+          'Schedule': (context) => DropdownMenuBottom(),
           'Tips': (context) => TipsPage(),
           'SlideMenu': (context) => SlideMenu(),
+          'Note': (context) => NotePage(),
           LoginPage.routeName: (context) => LoginPage(),
           Register.routeName: (context) => Register(),
           EditMedicine.routeName: (context) => EditMedicine(),
           MissedMedicines.routeName: (context) => MissedMedicines(),
           Profile.routeName: (context) => Profile(),
-          PatientHistory.routeName: (context) => PatientHistory()
+          PatientHistory.routeName: (context) => PatientHistory(),
+          HelpScreen.routeName: (context) => HelpScreen(),
+          TaskListTab.routeName: (context) => TaskListTab(),
+          MapPage.routeName: (context) => MapPage(),
+
+
 
 
 

@@ -23,7 +23,10 @@
 //
 // }
 import 'package:finalproject1/SharedPref.dart';
+import 'package:finalproject1/UI/Appointemnt.dart';
+import 'package:finalproject1/UI/HelpPage.dart';
 import 'package:finalproject1/UI/Login.dart';
+import 'package:finalproject1/UI/MapPage.dart';
 import 'package:finalproject1/UI/MissedMedicines.dart';
 import 'package:finalproject1/UI/PatientHistory.dart';
 import 'package:finalproject1/UI/Profile.dart';
@@ -230,24 +233,29 @@ class _SlideMenuState extends State<SlideMenu> {
                     SizedBox.square(
                       dimension: 25,
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Help",
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 22),
-                        ),
-                        Text(
-                          "scaduale to your reminders",
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.w400,
-                              fontSize: 16),
-                        ),
-                      ],
+                    InkWell(
+                      onTap: (){
+                        Navigator.pushNamed(context, HelpScreen.routeName);
+                      },
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Help",
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 22),
+                          ),
+                          Text(
+                            "scaduale to your reminders",
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.w400,
+                                fontSize: 16),
+                          ),
+                        ],
+                      ),
                     )
                   ],
                 ),
@@ -426,7 +434,9 @@ class _SlideMenuState extends State<SlideMenu> {
                   color: Colors.white12,
 
                   child: ListTile(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushNamed(context, TaskListTab.routeName);
+                    },
                     leading: Icon(Icons.timelapse,size: 37),
                     title: Text('Appointment'),
                   ),
@@ -436,7 +446,9 @@ class _SlideMenuState extends State<SlideMenu> {
                   color: Colors.white12,
 
                   child: ListTile(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushNamed(context, MapPage.routeName);
+                    },
                     leading: Icon(Icons.local_hospital,size: 37),
                     title: Text('Nearby Hospitals'),
                   ),

@@ -1,7 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
-import '../HealthApi.dart';
-import '../api.dart';
+import '../ViewModels/ApiOfHealth.dart';
+
+class ApiManager {
+  final String apiUrl;
+
+  ApiManager({required this.apiUrl});
+
+  Future<List<Glossary>> fetchHealthResources() async {
+    final response = await http.get(Uri.parse(apiUrl));
+
+    if (response.statusCode == 200) {
+      final jsonBody = json.decode(response.body);
+      final apiOfHealth = ApiOfHealth.fromJson(jsonBody);
+      return apiOfHealth.glossary ?? [];
+    } else {
+      throw Exception('Failed to fetch health resources');
+    }
+  }
+}
 
 class TipsPage extends StatefulWidget {
   @override
@@ -11,9 +30,9 @@ class TipsPage extends StatefulWidget {
 class _TipsPageState extends State<TipsPage> {
   final apiManager = ApiManager(
       apiUrl:
-      'https://health.gov/myhealthfinder/api/v3/myhealthfinder.json?age=10&sex=male');
+      'https://www.healthcare.gov/api/glossary.json');
 
-  late Future<List<Resource>> resources;
+  late Future<List<Glossary>> resources;
 
   @override
   void initState() {
@@ -38,7 +57,7 @@ class _TipsPageState extends State<TipsPage> {
             title: Text("Health Tips",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 23)),
           ),
-          body: FutureBuilder<List<Resource>>(
+          body: FutureBuilder<List<Glossary>>(
             future: resources,
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
@@ -54,33 +73,33 @@ class _TipsPageState extends State<TipsPage> {
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: const EdgeInsets.all(18.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: Colors.grey.withOpacity(0.5),
-                            borderRadius: BorderRadius.circular(15)),
-                        child: Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                resources[index].title ?? "",
-                                style: TextStyle(
-                                    fontSize: 22, fontWeight: FontWeight.w600),
-                              ),
-                              SizedBox(height: 10),
-                              Container(
-                                child: Image.network(resources[index].imageUrl!),
-                              ),
-                              Text("${resources.length}"),
-                              Text(
-                                resources[index].myHFDescription ?? "",
-                                style: TextStyle(
-                                    fontSize: 16, fontWeight: FontWeight.normal),
-                              ),
-                              SizedBox(height: 10),
-                              // Add more information as needed
-                            ],
+                      child: Material(
+                        color: Colors.transparent,
+                        elevation: 20.0,
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: Colors.white.withOpacity(0.85),
+                              borderRadius: BorderRadius.circular(15)),
+                          child: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  resources[index].title ?? "",
+                                  style: TextStyle(
+                                      fontSize: 22, fontWeight: FontWeight.w600),
+                                ),
+                                SizedBox(height: 10),
+                                Text(
+                                  resources[index].content ?? "",
+                                  style: TextStyle(
+                                      fontSize: 16, fontWeight: FontWeight.normal),
+                                ),
+                                SizedBox(height: 10),
+                                // Add more information as needed
+                              ],
+                            ),
                           ),
                         ),
                       ),
