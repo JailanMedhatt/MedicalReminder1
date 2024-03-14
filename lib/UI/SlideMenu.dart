@@ -34,6 +34,9 @@ import 'package:finalproject1/UI/homePage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/list_provider.dart';
 
 class SlideMenu extends StatefulWidget {
   @override
@@ -45,6 +48,7 @@ class _SlideMenuState extends State<SlideMenu> {
 
   @override
   Widget build(BuildContext context) {
+    var listProvider = Provider.of<ListProvider>(context);
     return AdvancedDrawer(
       backdrop: Container(
         width: double.infinity,
@@ -53,7 +57,17 @@ class _SlideMenuState extends State<SlideMenu> {
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-             colors: [Color(0xff535a9e), Color(0xff5a5e7e).withOpacity(0.65)],
+            colors: [
+              Theme
+                  .of(context)
+                  .colorScheme
+                  .primary,
+              Theme
+                  .of(context)
+                  .colorScheme
+                  .secondary,
+
+            ],
             //colors: [Color(0xff5D65B0), Colors.white12.withOpacity(0.65)],
 
           ),
@@ -411,9 +425,12 @@ class _SlideMenuState extends State<SlideMenu> {
                 Container(
                   color: Colors.white12,
                   child: ListTile(
-                    onTap: () {},
+                    onTap: () {
+                      listProvider.changeTheme(ThemeMode.light);
+                    },
                     leading: Icon(Icons.brightness_6,size: 37),
-                    title: Text('Light'),
+                    title: Text(listProvider.isDarkMode() ?
+                    'Dark' : 'Light',),
                   ),
                 ),
                 SizedBox(height: 10),

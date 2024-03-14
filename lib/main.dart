@@ -12,16 +12,21 @@ import 'package:finalproject1/UI/Register.dart';
 import 'package:finalproject1/UI/Scedhule.dart';
 import 'package:finalproject1/UI/SlideMenu.dart';
 import 'package:finalproject1/UI/TipsPage.dart';
+import 'package:finalproject1/providers/list_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
-
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'myTheme.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await SharedPref.init();
   await Firebase.initializeApp();
-  runApp(const MyApp());
+  runApp( ChangeNotifierProvider (
+      create: (contex) => ListProvider()
+      ,child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -30,6 +35,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    var listProvider = Provider.of<ListProvider>(context);
     return ScreenUtilInit(
       designSize: const Size(375,812),
       child: MaterialApp(
@@ -62,6 +68,8 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
+        themeMode: listProvider.appTheme ,
+        darkTheme: MyTheme.darkTheme,
 
         home: EditMedicine(),
 
