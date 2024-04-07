@@ -39,6 +39,7 @@ class _NotePageState extends State<NotePage> {
             Padding(
               padding: EdgeInsets.all(16),
               child: TextField(
+
                 controller: _contentController,
                 decoration: InputDecoration(labelText: 'Content',labelStyle: TextStyle(color: Colors.white),
                     border: OutlineInputBorder(borderRadius:BorderRadius.circular(27),

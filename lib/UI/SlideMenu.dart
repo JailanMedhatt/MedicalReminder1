@@ -58,14 +58,9 @@ class _SlideMenuState extends State<SlideMenu> {
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
-              Theme
-                  .of(context)
-                  .colorScheme
-                  .primary,
-              Theme
-                  .of(context)
-                  .colorScheme
-                  .secondary,
+              Theme.of(context).colorScheme.primary,
+              Theme.of(context).colorScheme.secondary.withOpacity(0.80),
+
 
             ],
             //colors: [Color(0xff5D65B0), Colors.white12.withOpacity(0.65)],
@@ -95,12 +90,14 @@ class _SlideMenuState extends State<SlideMenu> {
         borderRadius: const BorderRadius.all(Radius.circular(16)),
       ),
       child:  Scaffold(
-          body: Container(
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage("assets/images/bk.png"),
-                fit: BoxFit.cover,
-              ),
+          body:
+          Container(
+            decoration:BoxDecoration(
+              image:listProvider.getBackgroundImage(),
+              // image: DecorationImage(
+              //   image: AssetImage("assets/images/bk.png"),
+              //   fit: BoxFit.cover,
+              // ),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -177,10 +174,7 @@ class _SlideMenuState extends State<SlideMenu> {
                         children: [
                           Text(
                             "Scahduale",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 22),
+                            style:Theme.of(context).textTheme.titleMedium,
                           ),
                           Text(
                             "scaduale to your reminders ",
@@ -215,10 +209,7 @@ class _SlideMenuState extends State<SlideMenu> {
                       children: [
                         Text(
                           "Reminder",
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 22),
+                          style:Theme.of(context).textTheme.titleMedium,
                         ),
                         Text(
                           "scaduale to your reminders",
@@ -256,10 +247,7 @@ class _SlideMenuState extends State<SlideMenu> {
                         children: [
                           Text(
                             "Help",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 22),
+                            style:Theme.of(context).textTheme.titleMedium,
                           ),
                           Text(
                             "scaduale to your reminders",
@@ -298,10 +286,7 @@ class _SlideMenuState extends State<SlideMenu> {
                         children: [
                           Text(
                             "Health Tips",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 22),
+                            style: Theme.of(context).textTheme.titleMedium,
                           ),
                           Text(
                             "scaduale to your reminders",
@@ -315,10 +300,17 @@ class _SlideMenuState extends State<SlideMenu> {
                     ],
                   ),
                 ),
-                Expanded(child: Image(image: AssetImage("assets/images/pic.jpg")))
+                Expanded(child:listProvider.isDarkMode()
+                 ? Image(image: AssetImage("assets/images/Hdarkpic.png"))
+                  :
+                  Image(image: AssetImage("assets/images/pic.jpg"))
+
+      )
               ],
             ),
+
           )
+
 
         // Stack(
         //   children: [
@@ -426,7 +418,8 @@ class _SlideMenuState extends State<SlideMenu> {
                   color: Colors.white12,
                   child: ListTile(
                     onTap: () {
-                      listProvider.changeTheme(ThemeMode.light);
+
+                      listProvider.changeTheme(ThemeMode.dark);
                     },
                     leading: Icon(Icons.brightness_6,size: 37),
                     title: Text(listProvider.isDarkMode() ?

@@ -33,4 +33,8 @@ class MyLocationManager {
 
     return myLocation.getLocation();
   }
+
+  Stream<LocationData> UpdateLocation(){
+    return myLocation.onLocationChanged;
+  }
 }

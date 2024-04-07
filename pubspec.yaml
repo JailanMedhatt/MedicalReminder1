@@ -51,6 +51,8 @@ dependencies:
   calendar_timeline: ^1.1.0
   location: ^5.0.3
   provider: ^6.1.2
+  google_maps_flutter: ^2.6.0
+
 
 
 
