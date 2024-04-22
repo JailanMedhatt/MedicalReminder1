@@ -30,8 +30,6 @@ import 'package:finalproject1/UI/MapPage.dart';
 import 'package:finalproject1/UI/MissedMedicines.dart';
 import 'package:finalproject1/UI/PatientHistory.dart';
 import 'package:finalproject1/UI/Profile.dart';
-import 'package:finalproject1/UI/homePage.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:provider/provider.dart';
@@ -172,18 +170,18 @@ class _SlideMenuState extends State<SlideMenu> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            "Scahduale",
-                            style:Theme.of(context).textTheme.titleMedium,
-                          ),
-                          Text(
-                            "scaduale to your reminders ",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.w400,
-                                fontSize: 16),
-                          ),
-                        ],
+                      Text(
+                        "Schedule",
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      Text(
+                        "Schedule to your reminders ",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 16),
+                      ),
+                    ],
                       )
                     ],
                   ),
@@ -207,18 +205,18 @@ class _SlideMenuState extends State<SlideMenu> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          "Reminder",
-                          style:Theme.of(context).textTheme.titleMedium,
-                        ),
-                        Text(
-                          "scaduale to your reminders",
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.w400,
-                              fontSize: 16),
-                        ),
-                      ],
+                    Text(
+                      "Reminder",
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                    Text(
+                      "Schedule to your reminders",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 16),
+                    ),
+                  ],
                     )
                   ],
                 ),
@@ -245,18 +243,18 @@ class _SlideMenuState extends State<SlideMenu> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            "Help",
-                            style:Theme.of(context).textTheme.titleMedium,
-                          ),
-                          Text(
-                            "scaduale to your reminders",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.w400,
-                                fontSize: 16),
-                          ),
-                        ],
+                      Text(
+                        "Help",
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      Text(
+                        "Schedule to your reminders",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 16),
+                      ),
+                    ],
                       ),
                     )
                   ],
@@ -284,18 +282,18 @@ class _SlideMenuState extends State<SlideMenu> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            "Health Tips",
-                            style: Theme.of(context).textTheme.titleMedium,
-                          ),
-                          Text(
-                            "scaduale to your reminders",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.w400,
-                                fontSize: 16),
-                          ),
-                        ],
+                      Text(
+                        "Health Tips",
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      Text(
+                        "Schedule to your reminders",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 16),
+                      ),
+                    ],
                       )
                     ],
                   ),
