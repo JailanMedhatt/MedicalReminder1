@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finalproject1/FireBase/Models/MyUser.dart';
-import 'package:finalproject1/FireBase/UserAppointment.dart';
+import 'package:finalproject1/FireBase/Models/UserAppointment.dart';
 
 class FireBaseUtills {
   static CollectionReference<MyUser> getUserCollectionRef() {
@@ -21,8 +21,8 @@ class FireBaseUtills {
 class FireBaseUtillsAppointment{
   static CollectionReference<Appointment> getAppointmentCollection(
       ){
-   return FirebaseFirestore.instance.collection('Appointment').
-    withConverter<Appointment>(
+   return FirebaseFirestore.instance.collection('Appointment').withConverter<Appointment>(
+
         fromFirestore: (snapshot,option)=>  Appointment.fromFireStore(snapshot.data()!),
         toFirestore: (Appointment,option)=>Appointment.toFireSstore()
     );
@@ -32,9 +32,10 @@ class FireBaseUtillsAppointment{
     DocumentReference<Appointment> docRef = taskCollection.doc();
     appointment.id=docRef.id;
     return docRef.set(appointment);
-
-
-
-
   }
+
+  static Future<void> deleteAppointment(Appointment appointment){
+    return getAppointmentCollection().doc(appointment.id).delete();
+  }
+
 }
