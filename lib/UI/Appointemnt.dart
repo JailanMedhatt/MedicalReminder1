@@ -1,10 +1,7 @@
 import 'package:calendar_timeline/calendar_timeline.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:finalproject1/FireBase/FirebaseUtills.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../CustomWidgets/BottomSheetAppointment.dart';
-import '../FireBase/Models/UserAppointment.dart';
 import '../providers/list_provider.dart';
 import 'DoctorWidget.dart';
 
