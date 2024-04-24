@@ -43,6 +43,9 @@ dependencies:
   firebase_auth: ^4.16.0
   flutter_bloc: ^8.1.3
   cloud_firestore: ^4.15.5
+  firebase_storage: ^11.0.11
+  file_picker: ^5.2.5
+  easy_pdf_viewer: ^1.0.6
   shared_preferences: ^2.2.2
   http: ^1.2.0
   standard_searchbar: ^2.0.0
