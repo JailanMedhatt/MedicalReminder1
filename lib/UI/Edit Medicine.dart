@@ -87,16 +87,8 @@ class _EditMedicineState extends State<EditMedicine> {
                 height: 2,
               ),
               CheckMedType(
-                type: ' Syrup',
-                IMG: "assets/images/Syrup.png",
-              ),
-              CheckMedType(
-                type: ' Pills',
-                IMG: "assets/images/Pills.png",
-              ),
-              CheckMedType(
-                type: ' Syringe',
-                IMG: "assets/images/Syringe.png",
+                type: ' ',
+                IMG: "",
               ),
               Padding(
                 padding: const EdgeInsets.all(19.0),

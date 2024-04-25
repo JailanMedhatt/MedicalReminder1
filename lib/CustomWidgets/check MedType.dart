@@ -12,43 +12,60 @@ class CheckMedType extends StatefulWidget {
 }
 
 class _CheckMedTypeState extends State<CheckMedType> {
+  int _oneValue = -1;
+  List medTYPE = [
+    {
+      'label': 'Syrup',
+      'IMG': 'assets/images/Syrup.png',
+      'value': 1,
+    },
+    {'label': 'Pills', 'IMG': 'assets/images/Pills.png', 'value': 2},
+    {'label': 'Syringe', 'IMG': 'assets/images/Syringe.png', 'value': 3}
+  ];
+
   @override
   Widget build(BuildContext context) {
-    return Flexible(
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Icon(
-          // Icons.check_circle,
-          // size: 24.0,color:Color(0xff5D65B0) ,
-          // ),
-          IconButton(
-            icon: Icon(
-              widget.iconIsPressed == true
-                  ? Icons.check_circle
-                  : Icons.circle_outlined,
-              size: 24.0,
-              color: Color(0xff5D65B0),
-            ),
-            tooltip: 'Choose Medicine Type',
-            onPressed: () {
-              setState(() {
-                widget.iconIsPressed = true;
-              });
-            },
-          ),
-          Text(
-            widget.type,
-            style: TextStyle(
-                fontSize: 22,
-                color: Color(0xff5D65B0),
-                fontWeight: FontWeight.w600),
-          ),
-          Image.asset(
-            widget.IMG,
-            width: 38,
-            height: 37,
-          )
+    return Expanded(
+      child: Column(
+        children: <Widget>[
+          for (var item in medTYPE)
+            Expanded(
+              child: Row(children: [
+                Radio(
+                    activeColor: Color(0xff5D65B0),
+                    value: item['value'],
+                    groupValue: _oneValue,
+                    onChanged: (value) {
+                      setState(() {
+                        _oneValue = value!;
+                        print(_oneValue);
+                      });
+                    }),
+                Text(
+                  item['label'],
+                  style: TextStyle(
+                      fontSize: 22,
+                      color: Color(0xff5D65B0),
+                      fontWeight: FontWeight.w600),
+                ),
+                Image.asset(
+                  item['IMG'],
+                  width: 38,
+                  height: 33,
+                )
+
+                // Radio(
+                //     activeColor:  Color(0xff5D65B0),
+                //     value:item['value'],
+                //     groupValue: _oneValue,
+                //     onChanged: (value) {
+                //       setState(() {
+                //         _oneValue = value!;
+                //         print(_oneValue);
+                //       });
+                //     }),
+              ]),
+            )
         ],
       ),
     );

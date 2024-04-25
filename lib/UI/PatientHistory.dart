@@ -6,7 +6,6 @@ import 'package:finalproject1/FireBase/FirebaseUtills.dart';
 import 'package:finalproject1/UI/PDFviewer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:standard_searchbar/new/standard_search_anchor.dart';
 import 'package:standard_searchbar/new/standard_search_bar.dart';
 import 'package:standard_searchbar/new/standard_suggestion.dart';
@@ -104,8 +103,57 @@ class _PatientHistoryState extends State<PatientHistory> {
                       ),
                     )),
               ),
+              Padding(
+                padding: EdgeInsets.only(left: 15.0, top: 20, right: 15.0),
+                child: Material(
+                  color: Colors.transparent,
+                  elevation: 20.0,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: Color(0xffEDF2F3),
+                    ),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.pushNamed(context, "Note");
+                      },
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(
+                                left: 16.0, top: 16, bottom: 16, right: 16),
+                            child: Image(
+                                image: AssetImage("assets/images/image 9.png")),
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Personal notes",
+                                style: TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                'Type what you want to remember',
+                                style: TextStyle(fontSize: 15),
+                              ),
+                            ],
+                          ),
+                          Spacer(),
+                          Icon(
+                            Icons.edit_note,
+                            size: 40,
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
               Expanded(
-                child: ListView.builder(
+                child: GridView.builder(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2),
                     shrinkWrap: true,
                     scrollDirection: Axis.vertical,
                     itemCount: pdfData.length,
@@ -126,9 +174,8 @@ class _PatientHistoryState extends State<PatientHistory> {
                                 Navigator.of(context).push(MaterialPageRoute(
                                     builder: (context) => PdfViewerScreen(
                                         pdfUrl: pdfData[index]['url'])));
-                                //
                               },
-                              child: Row(
+                              child: Column(
                                 children: [
                                   Padding(
                                     padding: EdgeInsets.only(
@@ -140,28 +187,11 @@ class _PatientHistoryState extends State<PatientHistory> {
                                         image: AssetImage(
                                             "assets/images/image 9.png")),
                                   ),
-                                  Column(
-                                    // crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        pdfData[index]['name'],
-                                        style: TextStyle(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Text(
-                                        'Type what you want to remember',
-                                        style: TextStyle(fontSize: 15),
-                                      ),
-                                      InkWell(
-                                          onTap: () {
-                                            Navigator.pushNamed(context, "Note");
-                                          },
-                                          child: Icon(
-                                            Icons.edit_note,
-                                            size: 40,
-                                          ))
-                                    ],
+                                  Text(
+                                    pdfData[index]['name'],
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold),
                                   ),
                                 ],
                               ),
@@ -173,30 +203,9 @@ class _PatientHistoryState extends State<PatientHistory> {
               ),
             ],
           ),
-          // Column(
-          //  children: [
-          //    SizedBox(height: 50),
-          //    Padding(
-          //      padding:  EdgeInsets.only(left: 15),
-          //      child: SizedBox(
-          //          width: 360,
-          //          child: StandardSearchAnchor(
-          //            searchBar: StandardSearchBar(
-          //              bgColor: Colors.white,
-          //            ),
-          //            suggestions: StandardSuggestions(
-          //              suggestions: [
-          //                StandardSuggestion(text: 'Suggestion 1'),
-          //                StandardSuggestion(text: 'Suggestion 2'),
-          //                StandardSuggestion(text: 'Suggestion 3'),
-          //              ],
-          //            ),
-          //          )),
-          //    ),
         ),
 
         ///Floating button
-        //Spacer(),
 
         Padding(
           padding: const EdgeInsets.only(left: 300, top: 670),
