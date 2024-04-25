@@ -1,9 +1,9 @@
 import 'package:finalproject1/CustomWidgets/check%20MedType.dart';
-import 'package:finalproject1/CustomWidgets/custom%20EditDateRow.dart';
 import 'package:finalproject1/CustomWidgets/edit%20TxtF.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../CustomWidgets/DateEditRow.dart';
 
 class EditMedicine extends StatefulWidget {
   static final String routeName = "edit med";

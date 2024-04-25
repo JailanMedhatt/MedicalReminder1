@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-
 class DateEditRow extends StatefulWidget {
-  String title;
-  String date;
+  final String title;
+  final String date;
 
   DateEditRow({required this.title, required this.date});
 
@@ -13,7 +12,13 @@ class DateEditRow extends StatefulWidget {
 }
 
 class _DateEditRowState extends State<DateEditRow> {
-  String selectedDate = DateFormat("dd-MM-yyyy").format(DateTime.now());
+  late DateTime selectedDate;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedDate = DateFormat("dd-MM-yyyy").parse(widget.date);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,14 +56,14 @@ class _DateEditRowState extends State<DateEditRow> {
                   ),
                 ],
               ),
-              //Type TextField
               width: 130,
               height: 40,
-              child: Text(
-                textAlign: TextAlign.center,
-                '${widget.date}', // pass the hint text parameter here
-                style: TextStyle(
-                    color: Color(0x887E7E).withOpacity(0.99), fontSize: 21),
+              child: Center(
+                child: Text(
+                  DateFormat("dd-MM-yyyy").format(selectedDate),
+                  style: TextStyle(
+                      color: Color(0x887E7E).withOpacity(0.99), fontSize: 21),
+                ),
               ),
             ),
           ),
@@ -67,16 +72,17 @@ class _DateEditRowState extends State<DateEditRow> {
     );
   }
 
-  void showCalendar() {
-    var chosenDate = showDatePicker(
-        context: context,
-        barrierDismissible: false,
-        initialDate: DateTime.now(),
-        firstDate: DateTime.now(),
-        lastDate: DateTime.now().add(Duration(days: 365)));
+  Future<void> showCalendar() async {
+    final DateTime? chosenDate = await showDatePicker(
+      context: context,
+      initialDate: selectedDate,
+      firstDate: DateTime.now(),
+      lastDate: DateTime.now().add(Duration(days: 365)),
+    );
     if (chosenDate != null) {
-      selectedDate = chosenDate as String;
-      setState(() {});
+      setState(() {
+        selectedDate = chosenDate;
+      });
     }
   }
 }
