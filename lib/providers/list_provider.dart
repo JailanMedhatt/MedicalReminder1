@@ -7,13 +7,28 @@ import '../FireBase/Models/UserAppointment.dart';
 
 class ListProvider extends ChangeNotifier{
   List<Appointment> appointmentList = [];
+  DateTime selectDate = DateTime.now();
   void getAppointmentsFromFireStore()async{
     QuerySnapshot<Appointment> querySnapshot= await FireBaseUtillsAppointment.getAppointmentCollection().get();
     appointmentList = querySnapshot.docs.map((doc) {
       return doc.data();
 
     }).toList();
+
+    appointmentList = appointmentList.where((element) {
+      if(selectDate.day==element.dateTime?.day &&
+      selectDate.month == element.dateTime?.month &&
+          selectDate.year == element.dateTime?.year
+      ){
+        return true;}
+      return false;
+    }).toList();
+
    notifyListeners();
+  }
+  changeSelectDate(DateTime newSelectDate){
+    selectDate = newSelectDate;
+    getAppointmentsFromFireStore();
   }
 
   ThemeMode appTheme = ThemeMode.light;
