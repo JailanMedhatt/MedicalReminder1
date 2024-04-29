@@ -55,11 +55,11 @@ class _TaskListTabState extends State<TaskListTab> {
               ),
               SizedBox(height: 50),
               CalendarTimeline(
-                initialDate: DateTime.now().subtract(Duration(days: 365)),
+                initialDate: listProvider.selectDate,
                 firstDate: DateTime.now().subtract(Duration(days: 365)),
                 lastDate: DateTime.now().add(Duration(days: 365)),
                 onDateSelected: (date) {
-                  print('Selected date: $date');
+                  listProvider.changeSelectDate(date);
                 },
                 leftMargin: 20,
                 monthColor: Colors.black,

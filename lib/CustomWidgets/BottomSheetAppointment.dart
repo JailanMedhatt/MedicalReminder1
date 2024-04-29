@@ -1,6 +1,7 @@
 import 'package:date_field/date_field.dart';
 import 'package:finalproject1/FireBase/FirebaseUtills.dart';
 import 'package:finalproject1/FireBase/Models/UserAppointment.dart';
+import 'package:finalproject1/myTheme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -264,7 +265,9 @@ class _BottomSheetAppointmentState extends State<BottomSheetAppointment> {
         onTimeout: (){
           print("doooooooooooooooone");
           ScaffoldMessenger.of(context)
-              .showSnackBar(SnackBar(content: Text('The Appointment Added Successfully')));
+              .showSnackBar(SnackBar(
+                 backgroundColor: Colors.purple,
+                content: Text('The Appointment Added Successfully')));
           listProvider.getAppointmentsFromFireStore();
           Navigator.pop(context);
         }
