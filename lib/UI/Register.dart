@@ -23,12 +23,12 @@ class Register extends StatelessWidget {
         }
         if(state is FailedRegisterState){
           DialogUtills.hideLoading(context);
-          DialogUtills.showMessage(state.errorMessage, context, actionName: "ok",mytitle: "Error");
+          DialogUtills.showMessage(state.errorMessage, context, posActionName: "ok",mytitle: "Error");
 
         }
         if(state is SuccessRegisterState){
           DialogUtills.hideLoading(context);
-          DialogUtills.showMessage(state.succesMessage, context, actionName: "ok",mytitle: "WELCOME💜");
+          DialogUtills.showMessage(state.succesMessage, context, posActionName: "ok",mytitle: "WELCOME💜");
 
         }
       },

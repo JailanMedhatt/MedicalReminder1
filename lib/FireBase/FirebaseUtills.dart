@@ -2,11 +2,13 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finalproject1/FireBase/Models/MyUser.dart';
+import 'package:finalproject1/SharedPref.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
 import 'Models/UserAppointment.dart';
 
 class FireBaseUtills {
+  static String? id =SharedPref.getId();
   static CollectionReference<MyUser> getUserCollectionRef() {
     return FirebaseFirestore.instance.collection("users").withConverter<MyUser>(
         fromFirestore: (snapchot, option) =>
@@ -21,6 +23,9 @@ class FireBaseUtills {
   static Future<MyUser?> getUserFromFireStore(String id) async{
     var docSnapchot= await getUserCollectionRef().doc(id).get();
     return docSnapchot.data();
+  }
+  static  editUserDetails({required String partnerE,required String phone, required String name}){
+    getUserCollectionRef().doc(id).update({"phoneNumber":phone,"partnerEmail":partnerE,"name":name});
   }
 }
 ///Appointment
@@ -57,4 +62,5 @@ class UploadPdfs {
     final downloadLink = await reference.getDownloadURL();
     return downloadLink;
   }
+
 }
