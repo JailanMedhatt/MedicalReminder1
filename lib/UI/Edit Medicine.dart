@@ -41,78 +41,73 @@ class _EditMedicineState extends State<EditMedicine> {
               'Edit Medicine',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 27),
             )),
-        body: Form(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              SizedBox(
-                height: 18,
-              ),
-              EditTxtF(title: 'Medicine Name', hintTxt: 'Name'),
-              EditTxtF(
-                title: 'Time',
-                hintTxt: '00-00',
-                iconTitle: Icons.timer_outlined,
-                keyBoard: TextInputType.numberWithOptions(),
-              ),
-              EditTxtF(
-                title: 'Dosage Of Medicine ',
-                hintTxt: '2',
-                iconTitle: Icons.medication_liquid_sharp,
-                keyBoard: TextInputType.number,
-              ),
-              Row(
-                children: [
-                  DateEditRow(
-                    title: 'Start Date',
-                    date: '${selectedDate}',
-                  ),
-                  DateEditRow(
-                    title: 'End Date',
-                    date: '${selectedDate}',
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 8,
-              ),
-              Text(
-                '   Medicine Type',
-                style: TextStyle(
-                    fontSize: 22,
-                    color: Color(0xff5D65B0),
-                    fontWeight: FontWeight.w600),
-              ),
-              SizedBox(
-                height: 2,
-              ),
-              CheckMedType(
-                type: ' ',
-                IMG: "",
-              ),
-              Padding(
-                padding: const EdgeInsets.all(19.0),
-                child: ElevatedButton(
-                  onPressed: () {},
-                  style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all(Color(0xff5D65B0)),
-                      foregroundColor: MaterialStateProperty.all(Colors.white),
-                      shadowColor: MaterialStateProperty.all(Colors.black),
-                      elevation: MaterialStateProperty.all(9),
-                      padding: MaterialStateProperty.all(EdgeInsets.all(10)),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12.0),
-                      ))),
-                  child: Text(
-                    'SAVE',
-                    style: TextStyle(fontSize: 22),
-                  ),
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            SizedBox(
+              height: 2,
+            ),
+            EditTxtF(title: 'Medicine Name', hintTxt: 'Name'),
+            EditTxtF(
+              title: 'Time',
+              hintTxt: '00-00',
+              iconTitle: Icons.timer_outlined,
+              keyBoard: TextInputType.numberWithOptions(),
+            ),
+            EditTxtF(
+              title: 'Dosage Of Medicine ',
+              hintTxt: '2',
+              iconTitle: Icons.medication_liquid_sharp,
+              keyBoard: TextInputType.number,
+            ),
+            Row(
+              children: [
+                DateEditRow(
+                  title: 'Start Date',
+                  date: '${selectedDate}',
                 ),
-              )
-            ],
-          ),
+                DateEditRow(
+                  title: 'End Date',
+                  date: '${selectedDate}',
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 12,
+            ),
+            Text(
+              ' Medicine Type',
+              style: TextStyle(
+                  fontSize: 22,
+                  color: Color(0xff5D65B0),
+                  fontWeight: FontWeight.w600),
+            ),
+            CheckMedType(
+              type: ' ',
+              IMG: "",
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 19, right: 19, bottom: 28),
+              child: ElevatedButton(
+                onPressed: () {},
+                style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all(Color(0xff5D65B0)),
+                    foregroundColor: MaterialStateProperty.all(Colors.white),
+                    shadowColor: MaterialStateProperty.all(Colors.black),
+                    elevation: MaterialStateProperty.all(9),
+                    padding: MaterialStateProperty.all(EdgeInsets.all(10)),
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12.0),
+                    ))),
+                child: Text(
+                  'SAVE',
+                  style: TextStyle(fontSize: 22),
+                ),
+              ),
+            )
+          ],
         ),
       ),
     ]);
