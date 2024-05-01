@@ -29,7 +29,7 @@ import 'package:finalproject1/UI/Login.dart';
 import 'package:finalproject1/UI/MapPage.dart';
 import 'package:finalproject1/UI/MissedMedicines.dart';
 import 'package:finalproject1/UI/PatientHistory.dart';
-import 'package:finalproject1/UI/Profile.dart';
+import 'package:finalproject1/UI/profile/Profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:provider/provider.dart';

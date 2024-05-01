@@ -14,8 +14,8 @@ class SharedPref{
     init();
      sharedPreferences.remove("id");
   }
-  static String? getId() {
+  static getId() {
     init();
-    return sharedPreferences.getString("id");
+    return  sharedPreferences.getString("id");
   }
 }
