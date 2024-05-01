@@ -29,8 +29,8 @@ class _EditMedicineState extends State<EditMedicine> {
       Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
-            scrolledUnderElevation: 0,
-            elevation: 0.0,
+            // scrolledUnderElevation: 0,
+            // elevation: 0.0,
             backgroundColor: Colors.transparent,
             leading: InkWell(
                 onTap: () {
@@ -44,9 +44,6 @@ class _EditMedicineState extends State<EditMedicine> {
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            SizedBox(
-              height: 2,
-            ),
             EditTxtF(title: 'Medicine Name', hintTxt: 'Name'),
             EditTxtF(
               title: 'Time',
@@ -73,7 +70,7 @@ class _EditMedicineState extends State<EditMedicine> {
               ],
             ),
             SizedBox(
-              height: 12,
+              height: 10,
             ),
             Text(
               ' Medicine Type',
@@ -87,7 +84,7 @@ class _EditMedicineState extends State<EditMedicine> {
               IMG: "",
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 19, right: 19, bottom: 28),
+              padding: const EdgeInsets.only(left: 29, right: 29, bottom: 12),
               child: ElevatedButton(
                 onPressed: () {},
                 style: ButtonStyle(
@@ -96,7 +93,7 @@ class _EditMedicineState extends State<EditMedicine> {
                     foregroundColor: MaterialStateProperty.all(Colors.white),
                     shadowColor: MaterialStateProperty.all(Colors.black),
                     elevation: MaterialStateProperty.all(9),
-                    padding: MaterialStateProperty.all(EdgeInsets.all(10)),
+                    padding: MaterialStateProperty.all(EdgeInsets.all(3)),
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12.0),

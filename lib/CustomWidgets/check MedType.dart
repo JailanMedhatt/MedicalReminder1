@@ -25,7 +25,8 @@ class _CheckMedTypeState extends State<CheckMedType> {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return Flexible(
+      fit: FlexFit.tight,
       child: Column(
         children: <Widget>[
           for (var item in medTYPE)
@@ -51,7 +52,7 @@ class _CheckMedTypeState extends State<CheckMedType> {
                 Image.asset(
                   item['IMG'],
                   width: 38,
-                  height: 33,
+                  height: 28,
                 )
 
                 // Radio(

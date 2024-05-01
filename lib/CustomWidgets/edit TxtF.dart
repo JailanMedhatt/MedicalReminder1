@@ -50,7 +50,7 @@ class EditTxtF extends StatelessWidget {
           ),
           //Type TextField
           width: width ?? 340,
-          height: 50,
+          height: 42,
           child: TextField(
             controller: TextEditingController(),
             keyboardType: keyBoard,
@@ -69,7 +69,7 @@ class EditTxtF extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: 19,
+          height: 7,
         )
       ],
     );
