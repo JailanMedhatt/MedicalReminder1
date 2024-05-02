@@ -44,5 +44,17 @@ class Appointment{
     };
 
   }
+  DateTime get combinedDateTime {
+    if (dateTime != null && time != null) {
+      return DateTime(
+        dateTime!.year,
+        dateTime!.month,
+        dateTime!.day,
+        time!.hour,
+        time!.minute,
+      );
+    }
+    return DateTime.now(); // Return current time if either date or time is not set
+  }
 
 }

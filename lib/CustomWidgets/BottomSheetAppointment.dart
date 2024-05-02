@@ -5,6 +5,7 @@ import 'package:finalproject1/myTheme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../NotificationService.dart';
 import '../providers/list_provider.dart';
 
 
@@ -63,7 +64,7 @@ class _BottomSheetAppointmentState extends State<BottomSheetAppointment> {
 
   @override
   Widget build(BuildContext context) {
-     listProvider = Provider.of<ListProvider>(context);
+    listProvider = Provider.of<ListProvider>(context);
     return Container(
       padding: EdgeInsets.all(16.0),
       decoration: BoxDecoration(
@@ -260,24 +261,41 @@ class _BottomSheetAppointmentState extends State<BottomSheetAppointment> {
 
 
       FireBaseUtillsAppointment.addAppointmentToFireStore(appointment).timeout(
-        Duration(milliseconds: 500),
+          Duration(milliseconds: 500),
+
 // sh8len b time out msh b dot then 3shan hena sh8len offline msh online
-        onTimeout: (){
-          print("doooooooooooooooone");
-          ScaffoldMessenger.of(context)
-              .showSnackBar(SnackBar(
-                 backgroundColor: Colors.purple,
+          onTimeout: (){
+            var date = appointment.combinedDateTime;
+            debugPrint('Notification Scheduled for ${appointment.time}');
+            NotificationService().scheduleNotification(
+                title: 'Scheduled Notification',
+                body: '${appointment.time}',
+                scheduledNotificationDateTime: date,
+
+
+            //date: appointment.dateTime!
+            );
+            print("doooooooooooooooone");
+            ScaffoldMessenger.of(context)
+                .showSnackBar(SnackBar(
+                backgroundColor: Colors.purple,
                 content: Text('The Appointment Added Successfully')));
-          listProvider.getAppointmentsFromFireStore();
-          Navigator.pop(context);
-        }
+            listProvider.getAppointmentsFromFireStore();
+            Navigator.pop(context);
+
+
+          }
       );
-      
+
     }
+
     //formKey.currentState!.save();
     // Process the form data
     // e.g., save to a database or send to an API
     //Navigator.of(context).pop();
   }
+
+
+
 }
 // fe time w selected date msh time bs aw date bs 5libalk

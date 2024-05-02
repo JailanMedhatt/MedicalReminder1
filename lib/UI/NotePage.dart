@@ -6,9 +6,9 @@ class NotePage extends StatefulWidget {
 }
 
 class _NotePageState extends State<NotePage> {
-  final _notesList = <Note>[];
-  final _titleController = TextEditingController();
-  final _contentController = TextEditingController();
+  final notesList = <Note>[];
+  final titleController = TextEditingController();
+  final contentController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class _NotePageState extends State<NotePage> {
             Padding(
               padding: EdgeInsets.all(16),
               child: TextField(
-                controller: _titleController,
+                controller: titleController,
                 decoration: InputDecoration(labelText: 'Title',labelStyle: TextStyle(color: Colors.white),
                     border: OutlineInputBorder(borderRadius:BorderRadius.circular(27),
                         borderSide: BorderSide(color: Colors.white)),
@@ -40,7 +40,7 @@ class _NotePageState extends State<NotePage> {
               padding: EdgeInsets.all(16),
               child: TextField(
 
-                controller: _contentController,
+                controller: contentController,
                 decoration: InputDecoration(labelText: 'Content',labelStyle: TextStyle(color: Colors.white),
                     border: OutlineInputBorder(borderRadius:BorderRadius.circular(27),
                         borderSide: BorderSide(color: Colors.white)),
@@ -58,12 +58,12 @@ class _NotePageState extends State<NotePage> {
               child: ElevatedButton(
                 onPressed: () {
                   setState(() {
-                    _notesList.add(Note(
-                      title: _titleController.text,
-                      content: _contentController.text,
+                    notesList.add(Note(
+                      title: titleController.text,
+                      content: contentController.text,
                     ));
-                    _titleController.clear();
-                    _contentController.clear();
+                    // titleController.clear();
+                    // contentController.clear();
                   });
                 },
                 child: Text('Add Note',style: TextStyle(fontSize: 19,color: Colors.black),),
@@ -71,12 +71,12 @@ class _NotePageState extends State<NotePage> {
             ),
             Expanded(
               child: ListView.builder(
-                itemCount: _notesList.length,
+                itemCount: notesList.length,
                 itemBuilder: (context, index) {
-                  final note = _notesList[index];
+                  final note = notesList[index];
                   return Card(
                     elevation: 4,
-                    margin: EdgeInsets.all(8),
+                    margin: EdgeInsets.all(10),
                     child: ListTile(
                       title: Text(note.title),
                       subtitle: Text(note.content),

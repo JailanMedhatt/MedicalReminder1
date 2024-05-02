@@ -2,6 +2,7 @@ import 'package:calendar_timeline/calendar_timeline.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../CustomWidgets/BottomSheetAppointment.dart';
+import '../NotificationService.dart';
 import '../providers/list_provider.dart';
 import 'DoctorWidget.dart';
 
@@ -49,7 +50,8 @@ class _TaskListTabState extends State<TaskListTab> {
                       fontWeight: FontWeight.w900,
                     ),
                   ),
-                  SizedBox(width: 90),
+                  //SizedBox(width: 90),
+                  Spacer(),
                   Icon(Icons.add_alert, color: Colors.deepPurple, size: 35),
                 ],
               ),
@@ -102,4 +104,6 @@ class _TaskListTabState extends State<TaskListTab> {
   }
 
 
+
 }
+
