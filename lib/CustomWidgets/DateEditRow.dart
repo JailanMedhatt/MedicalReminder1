@@ -22,7 +22,7 @@ class _DateEditRowState extends State<DateEditRow> {
 
   @override
   Widget build(BuildContext context) {
-    return Flexible(
+    return Expanded(
       child: Column(
         children: [
           Row(
@@ -57,7 +57,7 @@ class _DateEditRowState extends State<DateEditRow> {
                 ],
               ),
               width: 130,
-              height: 40,
+              height: 33,
               child: Center(
                 child: Text(
                   DateFormat("dd-MM-yyyy").format(selectedDate),

@@ -27,16 +27,29 @@ class DialogUtills {
   }
 
   static void showMessage(String message, BuildContext context,
-  {String? actionName, VoidCallback? action,String mytitle =''}) {
+  {String? posActionName, VoidCallback? posAction,String mytitle ='',String? negActionName, VoidCallback? negAction}) {
     List<Widget> actions = [];
-    if (actionName != null) {
+    if (posActionName != null) {
       actions.add(TextButton(
           onPressed: () {
             Navigator.pop(context);
-            action?.call();
+            posAction?.call();
+
           },
           child: Text(
-            actionName,
+            posActionName,
+            style: TextStyle(fontSize: 18),
+          )));
+    }
+    if (negActionName != null) {
+      actions.add(TextButton(
+          onPressed: () {
+            Navigator.pop(context);
+            negAction?.call();
+
+          },
+          child: Text(
+            negActionName,
             style: TextStyle(fontSize: 18),
           )));
     }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'Edit Medicine.dart';
 
@@ -42,15 +43,16 @@ class MissedMedicines extends StatelessWidget {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(15),
                       child: Container(
+                        padding: EdgeInsets.only(bottom: 10),
                           color: Color(0xffEDF2F3),
                           width: 310,
                           height: 130,
                           child: ListView.builder(
-                            padding: EdgeInsets.only(top: 39),
+                            padding: EdgeInsets.only(top: 20.h,bottom: 10),
                             itemBuilder: (context, index) => Row(
                               children: [
                                 SizedBox(
-                                  width: 17,
+                                  width: 17.w,
                                 ),
                                 Icon(
                                   Icons.error_outline,
@@ -74,7 +76,7 @@ class MissedMedicines extends StatelessWidget {
                     ),
                   ),
                   Positioned(
-                    top: -34,
+                    top: -45.h,
                     child: CircleAvatar(
                       backgroundColor: Color(0xff5D65B0).withOpacity(0.54),
                       maxRadius: 33,

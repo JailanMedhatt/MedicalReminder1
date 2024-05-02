@@ -1,7 +1,6 @@
 import 'package:finalproject1/CustomWidgets/CustomTextFF.dart';
 import 'package:finalproject1/DialogUtills.dart';
 import 'package:finalproject1/UI/Register.dart';
-import 'package:finalproject1/UI/SlideMenu.dart';
 import 'package:finalproject1/ViewModels/LoginViewModel/LoginState.dart';
 import 'package:finalproject1/ViewModels/LoginViewModel/LoginViewModel.dart';
 import 'package:flutter/material.dart';
@@ -24,13 +23,13 @@ class LoginPage extends StatelessWidget {
         }
         if(state is FailedLoginState){
           DialogUtills.hideLoading(context);
-          DialogUtills.showMessage(state.errorMessage, context, actionName: "ok",mytitle: "Error");
+          DialogUtills.showMessage(state.errorMessage, context, posActionName: "ok",mytitle: "Error");
 
         }
         if(state is SuccessLoginState){
           DialogUtills.hideLoading(context);
-          DialogUtills.showMessage(state.succesMessage, context, actionName: "ok",mytitle: "WELCOME💜",
-              action:(){ Navigator.pushReplacementNamed(context, "SlideMenu");});
+          DialogUtills.showMessage(state.succesMessage, context, posActionName: "ok",mytitle: "WELCOME💜",
+              posAction:(){ Navigator.pushReplacementNamed(context, "SlideMenu");});
 
         }
       },

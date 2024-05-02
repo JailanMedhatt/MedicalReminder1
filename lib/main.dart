@@ -7,7 +7,7 @@ import 'package:finalproject1/UI/MapPage.dart';
 import 'package:finalproject1/UI/MissedMedicines.dart';
 import 'package:finalproject1/UI/NotePage.dart';
 import 'package:finalproject1/UI/PatientHistory.dart';
-import 'package:finalproject1/UI/Profile.dart';
+import 'package:finalproject1/UI/profile/Profile.dart';
 import 'package:finalproject1/UI/Register.dart';
 import 'package:finalproject1/UI/Scedhule.dart';
 import 'package:finalproject1/UI/SlideMenu.dart';

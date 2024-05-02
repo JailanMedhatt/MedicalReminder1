@@ -48,11 +48,7 @@ class RegisterViewModel extends Cubit<RegisterStates> {
     }
   }
 
-  String? phoneValidator(String? text) {
-    if (text == null || text.trim().isEmpty) {
-      return "phone Number required";
-    }
-  }
+
 
   String? passValidator(String? text) {
     if (text == null || text.trim().isEmpty) {
