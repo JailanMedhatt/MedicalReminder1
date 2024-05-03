@@ -28,8 +28,14 @@ class _PdfViewerScreenState extends State<PdfViewerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+
+      ),
       body: document != null
-          ? PDFViewer(document: document!)
+          ? PDFViewer(
+              document: document!,
+              showNavigation: true,
+            )
           : Center(
               child: CircularProgressIndicator(),
             ),

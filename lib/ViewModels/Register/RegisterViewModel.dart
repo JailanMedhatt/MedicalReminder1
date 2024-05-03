@@ -1,10 +1,12 @@
+
 import 'package:finalproject1/FireBase/FirebaseUtills.dart';
 import 'package:finalproject1/FireBase/Models/MyUser.dart';
+import 'package:finalproject1/Security.dart';
 import 'package:finalproject1/ViewModels/Register/RegisterState.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
 
 class RegisterViewModel extends Cubit<RegisterStates> {
   RegisterViewModel() : super(InitialRegisterState());
@@ -76,20 +78,31 @@ class RegisterViewModel extends Cubit<RegisterStates> {
   }
 
   register() async {
+
     if (formKey.currentState?.validate() == true) {
       try {
+
+
+
+
         emit(loadingRegisterState());
         final credential =
             await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: email.text,
           password: pass.text,
         );
-        MyUser user = MyUser(
-            name: name.text,
+
+       String encName=  Security.encryptData(name.text);
+        String encEmail=  Security.encryptData(email.text);
+        String encPhone=  Security.encryptData(phoneNum.text);
+        String encPartnerE=  Security.encryptData(partnerEmail.text);
+
+         MyUser user = MyUser(
+             name: encName,
             id: credential.user?.uid ?? "",
-            email: email.text,
-            partnerEmail: partnerEmail.text,
-            phoneNumber: phoneNum.text);
+            email:  encEmail,
+            partnerEmail: encPartnerE,
+            phoneNumber: encPhone);
            await FireBaseUtills.addUsertoFireStore(user);
 
         emit(SuccessRegisterState(succesMessage: "${credential.user?.uid}"));
