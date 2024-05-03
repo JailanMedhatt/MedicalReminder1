@@ -60,7 +60,7 @@ class Profile extends StatelessWidget {
                               showModalBottomSheet( enableDrag: true,
                                   isScrollControlled: true,
                                   constraints:BoxConstraints.tight(Size(MediaQuery.sizeOf(context).width,600.h)) ,
-                                  context: context, builder:(context)=>PhoneModalSheet(phoneNum: state.user.phoneNumber??"" ,));
+                                  context: context, builder:(context)=>PhoneModalSheet(user: state.user ,));
 
                             }, icon: Icon(Icons.edit,color: Colors.white, size: 40,)),
                           ),

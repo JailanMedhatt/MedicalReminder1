@@ -1,6 +1,6 @@
 import 'package:finalproject1/CustomWidgets/ProfileTextFF.dart';
 import 'package:finalproject1/DialogUtills.dart';
-import 'package:finalproject1/UI/profile/Profile.dart';
+import 'package:finalproject1/FireBase/Models/MyUser.dart';
 import 'package:finalproject1/ViewModels/Profile/ProfileStates.dart';
 import 'package:finalproject1/ViewModels/Profile/ProfileViewModel.dart';
 import 'package:finalproject1/myTheme.dart';
@@ -11,8 +11,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PhoneModalSheet extends StatelessWidget {
-  String phoneNum;
-  PhoneModalSheet({required this.phoneNum});
+  MyUser user;
+  PhoneModalSheet({required this.user});
 
   @override
   ProfileViewModel viewModel = ProfileViewModel.getPorfileViewModel();
@@ -43,7 +43,8 @@ class PhoneModalSheet extends StatelessWidget {
               children: [
                 ProfileTextFF(
                   iconPath: "assets/images/call.png",
-                  controller: viewModel.numE,validator: viewModel.phoneNumValidator,
+                  controller: viewModel.numE,
+                  validator: viewModel.phoneNumValidator,
                 ),
                 ProfileTextFF(
                   iconPath: "assets/images/name.png",
@@ -54,25 +55,32 @@ class PhoneModalSheet extends StatelessWidget {
                   iconPath: "assets/images/email.png",
                   controller: viewModel.partnerE,
                   validator: viewModel.PartneremailValidator,
-
                 ),
                 Padding(
-                  padding:  EdgeInsets.symmetric(vertical: 40.h,horizontal: 60.w),
+                  padding:
+                      EdgeInsets.symmetric(vertical: 40.h, horizontal: 60.w),
                   child: ElevatedButton(
                     onPressed: () {
-
-
-                      DialogUtills.showMessage("Are you sure you want to edit your profile details?", context,
-                      posActionName: "yes", posAction:(){viewModel.EditDetails();
-                        Navigator.pop(context);},negActionName: "Cancel",negAction: (){Navigator.popUntil(context, (route) => route.settings.name==Profile.routeName);} );
-
+                      DialogUtills.showMessage(
+                          "Are you sure you want to edit your profile details?",
+                          context,
+                          posActionName: "yes",
+                          posAction: () {
+                            viewModel.EditDetails();
+                            // Navigator.pop(context);
+                          },
+                          negActionName: "Cancel",
+                          negAction: () {
+                            // Navigator.popUntil(context, (route) => route.settings.name==Profile.routeName);
+                          });
                     },
                     child: Text(
                       "Save",
                       style: TextStyle(fontSize: 22, color: Colors.white),
                     ),
                     style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xFF56279B),padding: EdgeInsets.symmetric(vertical: 15.h)),
+                        backgroundColor: Color(0xFF56279B),
+                        padding: EdgeInsets.symmetric(vertical: 15.h)),
                   ),
                 )
               ],
