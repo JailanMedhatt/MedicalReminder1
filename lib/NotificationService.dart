@@ -10,7 +10,7 @@ class NotificationService {
 
   Future<void> initNotification() async {
     AndroidInitializationSettings initializationSettingsAndroid =
-    const AndroidInitializationSettings('flutter_logo');
+    const AndroidInitializationSettings('elder');
 
     var initializationSettingsIOS = DarwinInitializationSettings(
         requestAlertPermission: true,

@@ -46,6 +46,8 @@ class _SlideMenuState extends State<SlideMenu> {
 
   @override
   Widget build(BuildContext context) {
+    var MyProvider = Provider.of<AppointmentProvider>(context);
+
     var listProvider = Provider.of<ListProvider>(context);
     return AdvancedDrawer(
       backdrop: Container(
@@ -134,7 +136,7 @@ class _SlideMenuState extends State<SlideMenu> {
                               onPressed: () async
                               {
                                SharedPref.removeId();
-
+                               MyProvider.appointmentList = [];
                                 Navigator.pushReplacementNamed(context, LoginPage.routeName);
                               },
                               icon: Icon(

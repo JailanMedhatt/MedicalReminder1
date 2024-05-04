@@ -6,7 +6,7 @@ import 'package:finalproject1/SharedPref.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
 import 'Models/UserAppointment.dart';
-
+// 7tet Id fe add w dekete appointment
 class FireBaseUtills {
   static String? id =SharedPref.getId();
   static CollectionReference<MyUser> getUserCollectionRef() {
@@ -27,31 +27,55 @@ class FireBaseUtills {
   static  editUserDetails({required String partnerE,required String phone, required String name}){
     getUserCollectionRef().doc(id).update({"phoneNumber":phone,"partnerEmail":partnerE,"name":name});
   }
-}
-///Appointment
-class FireBaseUtillsAppointment {
-  static CollectionReference<Appointment> getAppointmentCollection() {
-    return FirebaseFirestore.instance
+
+  /// aapointmennnnnnnnnnnt bs gwa class el utills el fe user kolo fe b3du
+  static CollectionReference<Appointment> getAppointmentCollection(String Id) {
+    return getUserCollectionRef().doc(Id)
         .collection('Appointment')
         .withConverter<Appointment>(
-            fromFirestore: (snapshot, option) =>
-                Appointment.fromFireStore(snapshot.data()!),
-            toFirestore: (Appointment, option) => Appointment.toFireSstore());
+        fromFirestore: (snapshot, option) =>
+            Appointment.fromFireStore(snapshot.data()!),
+        toFirestore: (Appointment, option) => Appointment.toFireSstore());
   }
 
-  static Future<void> addAppointmentToFireStore(Appointment appointment) {
-    var taskCollection = getAppointmentCollection();
+  static Future<void> addAppointmentToFireStore(Appointment appointment,String Id) {
+    var taskCollection = getAppointmentCollection(Id);
     DocumentReference<Appointment> docRef = taskCollection.doc();
     appointment.id = docRef.id;
     return docRef.set(appointment);
   }
 
 
-  static Future<void> deleteAppointment(Appointment appointment){
-    return getAppointmentCollection().doc(appointment.id).delete();
+  static Future<void> deleteAppointment(Appointment appointment,String Id){
+    return getAppointmentCollection(Id).doc(appointment.id).delete();
 
   }
 }
+///Appointment
+// class FireBaseUtillsAppointment {
+//   static CollectionReference<Appointment> getAppointmentCollection() {
+//
+//     return FirebaseFirestore.instance
+//         .collection('Appointment')
+//         .withConverter<Appointment>(
+//             fromFirestore: (snapshot, option) =>
+//                 Appointment.fromFireStore(snapshot.data()!),
+//             toFirestore: (Appointment, option) => Appointment.toFireSstore());
+//   }
+//
+//   static Future<void> addAppointmentToFireStore(Appointment appointment) {
+//     var taskCollection = getAppointmentCollection();
+//     DocumentReference<Appointment> docRef = taskCollection.doc();
+//     appointment.id = docRef.id;
+//     return docRef.set(appointment);
+//   }
+//
+//
+//   static Future<void> deleteAppointment(Appointment appointment){
+//     return getAppointmentCollection().doc(appointment.id).delete();
+//
+//   }
+// }
 
 class UploadPdfs {
   static Future<String> uploadPdf(String fileName, File file) async {
