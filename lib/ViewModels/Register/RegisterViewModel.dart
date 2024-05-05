@@ -2,6 +2,7 @@
 import 'package:finalproject1/FireBase/FirebaseUtills.dart';
 import 'package:finalproject1/FireBase/Models/MyUser.dart';
 import 'package:finalproject1/Security.dart';
+import 'package:finalproject1/SharedPref.dart';
 import 'package:finalproject1/ViewModels/Register/RegisterState.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -104,7 +105,8 @@ class RegisterViewModel extends Cubit<RegisterStates> {
             partnerEmail: encPartnerE,
             phoneNumber: encPhone);
            await FireBaseUtills.addUsertoFireStore(user);
-
+        if(credential.user?.uid!=null){
+          await SharedPref.addId(credential.user!.uid!);}
         emit(SuccessRegisterState(succesMessage: "${credential.user?.uid}"));
       } on FirebaseAuthException catch (e) {
         if (e.code == 'weak-password') {

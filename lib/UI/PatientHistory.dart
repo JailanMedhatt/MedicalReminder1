@@ -1,22 +1,16 @@
-import 'package:finalproject1/Security.dart';
-import 'package:finalproject1/UI/PDFviewer.dart';
-import 'package:finalproject1/ViewModels/Profile/ProfileStates.dart';
+import 'package:finalproject1/CustomWidgets/PdfGridView.dart';
 import 'package:finalproject1/ViewModels/patientHistory/PatientHistoryStates.dart';
 import 'package:finalproject1/ViewModels/patientHistory/PatientHistoryViewModel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:standard_searchbar/new/standard_search_anchor.dart';
-import 'package:standard_searchbar/new/standard_search_bar.dart';
-import 'package:standard_searchbar/new/standard_suggestion.dart';
-import 'package:standard_searchbar/new/standard_suggestions.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 class PatientHistory extends StatelessWidget {
   static final String routeName = "PatientHistory";
+  String query="";
 
   PatientHistoryViewModel viewModel = PatientHistoryViewModel();
-
   // @override
   @override
   Widget build(BuildContext context) {
@@ -51,21 +45,28 @@ class PatientHistory extends StatelessWidget {
                 body: Column(
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(left: 15, top: 125),
-                      child: SizedBox(
-                          width: 360,
-                          child: StandardSearchAnchor(
-                            searchBar: StandardSearchBar(
-                              bgColor: Colors.white,
-                            ),
-                            suggestions: StandardSuggestions(
-                              suggestions: [
-                                StandardSuggestion(text: 'Suggestion 1'),
-                                StandardSuggestion(text: 'Suggestion 2'),
-                                StandardSuggestion(text: 'Suggestion 3'),
-                              ],
-                            ),
-                          )),
+                      padding: EdgeInsets.only(left: 18.w, top: 100.h,right: 18.w),
+                      child: TextField(
+                          decoration: InputDecoration(
+                              prefixIcon: Icon(Icons.search), hintText: 'Search...',
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(25),
+                              borderSide: BorderSide(color: Colors.white)
+                            ),fillColor: Colors.white,
+                            filled: true,
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(25),
+                                  borderSide: BorderSide(color: Colors.white)
+                              )
+                          ),
+                          onChanged: (val) {
+
+                              query = val;
+                               viewModel.Search(query);
+
+                          }
+                      )
+
                     ),
                     Padding(
                       padding:
@@ -129,79 +130,10 @@ class PatientHistory extends StatelessWidget {
                                     if(state is LoadingHistory){
                                       return Center(child: CircularProgressIndicator());
                                     }
-                                    return GridView.builder(
-                                        gridDelegate:
-                                            SliverGridDelegateWithFixedCrossAxisCount(
-                                          crossAxisCount: 2,
-                                          crossAxisSpacing: 10,
-                                          // Adjust the spacing between columns
-                                          mainAxisSpacing:
-                                              10, // Adjust the spacing between rows
-                                        ),
-                                        padding: EdgeInsets.all(10),
-                                        // shrinkWrap: true,
-                                        scrollDirection: Axis.vertical,
-                                        itemCount: viewModel.pdfData?.length ?? 0,
-                                        itemBuilder: (context, index) {
-                                          return Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: InkWell(
-                                                onTap: () {
-                                                  Navigator.of(context).push(
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            PdfViewerScreen(
-                                                                pdfUrl: Security.decryptData(
-                                                                    viewModel.pdfData?[
-                                                                            index]
-                                                                        [
-                                                                        'url']))),
-                                                  );
-                                                },
-                                                child: Material(
-                                                  color: Colors.transparent,
-                                                  elevation: 20.0,
-                                                  child: Container(
-                                                      decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius.circular(
-                                                                20),
-                                                        color: Color(0xffEDF2F3),
-                                                      ),
-                                                      child: Column(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceEvenly,
-                                                        children: [
-                                                          Image.asset(
-                                                            "assets/images/download.png",
-                                                            height: 120,
-                                                            width: 100,
-                                                            alignment:
-                                                                Alignment.center,
-                                                          ),
-                                                          Expanded(
-                                                            child: Text(
-                                                              Security.decryptData(
-                                                                  viewModel.pdfData?[
-                                                                          index]
-                                                                      ['name']),
-                                                              textAlign: TextAlign
-                                                                  .center,
-                                                              style: TextStyle(
-                                                                  color: Colors
-                                                                      .black,
-                                                                  fontSize: 18,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold),
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      )),
-                                                )),
-                                          );
-                                        });
+                                    if(state is SearchHistory){
+                                    return PdfGridView(pdfData: state.searchedpdfData);
+                                    }
+                                    return PdfGridView(pdfData: viewModel.pdfData);
                                   }),
                          ),
 
@@ -209,7 +141,6 @@ class PatientHistory extends StatelessWidget {
                 ),
               ),
 
-              ///Floating button
 
               Padding(
                 padding: const EdgeInsets.only(left: 300, top: 670),

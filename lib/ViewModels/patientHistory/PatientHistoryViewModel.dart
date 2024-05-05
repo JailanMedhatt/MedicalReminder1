@@ -10,16 +10,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class PatientHistoryViewModel extends Cubit<PatientHistoryStates>{
   PatientHistoryViewModel():super(LoadingHistory());
   List <Map<String, dynamic>>? pdfData = [];
+  List <Map<String, dynamic>>? searchedpdfData = [];
 
   String id = SharedPref.getId();
 
+
   void pickFile() async {
-    emit(LoadingHistory());
+
     final pickedFile = await FilePicker.platform.pickFiles(
       type: FileType.custom,
       allowedExtensions: ['pdf'],
     );
-
+    emit(LoadingHistory());
     if (pickedFile != null) {
       String fileName = pickedFile.files[0].name;
       File file = File(pickedFile.files[0].path!);
@@ -48,5 +50,19 @@ class PatientHistoryViewModel extends Cubit<PatientHistoryStates>{
    if(pdfData!=null) {
    emit(ListLoadedHistory());
    }
+
+  }
+  void Search(String query){
+
+    searchedpdfData = [];
+     for(int i=0;i<pdfData!.length ;i++){
+       if(Security.decryptData(pdfData![i]['name']).toString().toLowerCase().startsWith(query)){
+         searchedpdfData?.add(pdfData![i]);
+       }
+     }
+    emit(SearchHistory(searchedpdfData: searchedpdfData));
+
+    print(query +searchedpdfData!.length.toString()??"");
+
   }
 }

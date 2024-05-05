@@ -1,6 +1,7 @@
 import 'package:finalproject1/CustomWidgets/CustomTextFF.dart';
 import 'package:finalproject1/DialogUtills.dart';
 import 'package:finalproject1/UI/Login.dart';
+import 'package:finalproject1/UI/SlideMenu.dart';
 import 'package:finalproject1/ViewModels/Register/RegisterState.dart';
 import 'package:finalproject1/ViewModels/Register/RegisterViewModel.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +29,7 @@ class Register extends StatelessWidget {
         }
         if(state is SuccessRegisterState){
           DialogUtills.hideLoading(context);
-          DialogUtills.showMessage(state.succesMessage, context, posActionName: "ok",mytitle: "WELCOME💜");
+          DialogUtills.showMessage(state.succesMessage, context, posActionName: "ok",mytitle: "WELCOME💜",posAction: (){Navigator.pushReplacementNamed(context, "SlideMenu");});
 
         }
       },
