@@ -28,6 +28,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+
   flutter:
     sdk: flutter
   intl: ^0.18.0
@@ -61,6 +62,9 @@ dependencies:
   appcheck: ^1.1.0
   flutter_local_notifications: ^17.1.0
   encrypt: ^5.0.3
+  syncfusion_flutter_datepicker: ^25.1.42
+  flutter_timeline_calendar: ^1.0.9
+
 
 
 

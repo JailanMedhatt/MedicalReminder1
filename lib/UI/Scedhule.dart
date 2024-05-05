@@ -1,76 +1,107 @@
+
+import 'package:finalproject1/CustomWidgets/Schedulewidget/Counter.dart';
+import 'package:finalproject1/CustomWidgets/Schedulewidget/Textfield.dart';
+import 'package:finalproject1/CustomWidgets/Schedulewidget/Date.dart';
+import 'package:finalproject1/CustomWidgets/Schedulewidget/RadioButton.dart';
+import 'package:finalproject1/CustomWidgets/Schedulewidget/Timee.dart';
+import 'package:finalproject1/CustomWidgets/Schedulewidget/colordropmenu.dart';
+import 'package:finalproject1/CustomWidgets/Schedulewidget/mydropmenu.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-/// Flutter code sample for [DropdownMenu].
-
-const List<String> list = <String>['Everyday', 'Twice a day', 'Third a day'];
-
-class DropdownMenuBottom extends StatefulWidget {
-  const DropdownMenuBottom({Key? key}) : super(key: key);
-
-  @override
-  State<DropdownMenuBottom> createState() => _DropdownMenuBottomState();
-}
-
-class _DropdownMenuBottomState extends State<DropdownMenuBottom> {
-  String dropdownValue = list.first;
+class SchadualePage extends StatelessWidget {
+  static final String routeName = "scheduale-page";
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Text(
-            'How Often is this dose taken ?',
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
-          ),
-          SizedBox(height: 100),
-          Material(
-            color: Colors.transparent,
-            elevation: 18,
-            child: Container(
-              decoration: BoxDecoration(
-                color: Color(0xffEDF2F3),
-                borderRadius: BorderRadius.all(Radius.circular(12)),
+    return Stack(
+      children: [
+        Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("assets/images/Opening.png"),
+                fit: BoxFit.cover,
               ),
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 11, vertical: 2),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: DropdownButtonHideUnderline(
-                        child: DropdownButton<String>(
-                          value: dropdownValue,
-                          icon: Icon(Icons.keyboard_arrow_down),
-                          iconSize: 24,
-                          elevation: 16,
-                          style: TextStyle(color: Colors.black, fontSize: 16),
-                          onChanged: (String? newValue) {
-                            setState(() {
-                              dropdownValue = newValue!;
-                            });
-                          },
-                          items: list.map<DropdownMenuItem<String>>((String value) {
-                            return DropdownMenuItem<String>(
-                              value: value,
-                              child: Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 12),
-                                child: Text(value),
-                              ),
-                            );
-                          }).toList(),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+            )),
+        Scaffold(
+            backgroundColor: Colors.transparent,
+            appBar: AppBar(
+              backgroundColor: Colors.transparent,
+              scrolledUnderElevation: 0,
+              elevation: 0.0,
+              leading: IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: Icon(
+                    Icons.arrow_back,
+                    size: 32,
+                  )),
+              title: Text(
+                'scheduale the dose',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 27),
               ),
             ),
-          ),
-        ],
-      ),
+            body: Center(
+              child: SingleChildScrollView(
+                child: Column(children: [
+                  Padding(
+                      padding: EdgeInsets.only(top: 30),
+                      child: SchadualePgae(
+                        hint: 'name',
+                        text: 'What is the medicine name ?',
+                      )),
+                  Padding(
+                      padding: EdgeInsets.only(top: 8),
+                      child: SchadualePgae(
+                        hint: 'Description',
+                        text: 'About medicine',
+                      )),
+                  Padding(
+                      padding: EdgeInsets.only(top: 8),
+                      child: DropdownMenuBottom()),
+                  Padding(
+                    padding: EdgeInsets.only(top: 8),
+                    child: Counter(),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 8),
+                    child: DateRangePickerControllerExample(),
+
+                  ),
+                  Padding(padding: EdgeInsets.only(top: 8),
+                    child: Time(),
+                  ),
+                  Padding(padding: EdgeInsets.only(top: 8),
+                    child: Check(),
+                  ),
+                  Padding(padding: EdgeInsets.only(top: 8),
+                    child: PillDropMenu(),
+                  ),
+                  Padding(padding: EdgeInsets.all(8),
+                      child: Container(
+                        width: 300,
+                        height: 50,
+                        child: ElevatedButton(onPressed: (){
+
+                        }, child: Text(
+                          'Save', textAlign: TextAlign.center,
+                          style: TextStyle(color: Colors.white, fontSize: 20),
+
+                        ),
+                          style: ButtonStyle(
+                              backgroundColor:MaterialStatePropertyAll<Color>(Color(0xff5D65B0))
+                          ),
+
+                        ),
+                      )
+                  ),
+
+
+                ]),
+              ),
+            )),
+      ],
     );
   }
 }

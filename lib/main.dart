@@ -8,6 +8,7 @@ import 'package:finalproject1/UI/MapPage.dart';
 import 'package:finalproject1/UI/MissedMedicines.dart';
 import 'package:finalproject1/UI/NotePage.dart';
 import 'package:finalproject1/UI/PatientHistory.dart';
+import 'package:finalproject1/UI/Reminder.dart';
 import 'package:finalproject1/UI/profile/Profile.dart';
 import 'package:finalproject1/UI/Register.dart';
 import 'package:finalproject1/UI/Scedhule.dart';
@@ -55,10 +56,11 @@ class MyApp extends StatelessWidget {
         routes: {
           // 'HomeScreen' :(context) => HomePage(),
 
-          'Schedule': (context) => DropdownMenuBottom(),
+          'Schedule': (context) =>  SchadualePage(),
           'Tips': (context) => TipsPage(),
           'SlideMenu': (context) => SlideMenu(),
           'Note': (context) => NotePage(),
+
           LoginPage.routeName: (context) => LoginPage(),
           Register.routeName: (context) => Register(),
           EditMedicine.routeName: (context) => EditMedicine(),
@@ -68,6 +70,8 @@ class MyApp extends StatelessWidget {
           HelpScreen.routeName: (context) => HelpScreen(),
           TaskListTab.routeName: (context) => TaskListTab(),
           MapPage.routeName: (context) => MapPage(),
+          Reminder.routeName:(context)=> Reminder(),
+
 
 
 
