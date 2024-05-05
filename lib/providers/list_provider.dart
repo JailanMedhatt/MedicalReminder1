@@ -4,32 +4,8 @@ import 'package:flutter/material.dart';
 
 import '../FireBase/FirebaseUtills.dart';
 import '../FireBase/Models/UserAppointment.dart';
-
 class ListProvider extends ChangeNotifier{
-  List<Appointment> appointmentList = [];
-  DateTime selectDate = DateTime.now();
-  void getAppointmentsFromFireStore()async{
-    QuerySnapshot<Appointment> querySnapshot= await FireBaseUtillsAppointment.getAppointmentCollection().get();
-    appointmentList = querySnapshot.docs.map((doc) {
-      return doc.data();
 
-    }).toList();
-
-    appointmentList = appointmentList.where((element) {
-      if(selectDate.day==element.dateTime?.day &&
-      selectDate.month == element.dateTime?.month &&
-          selectDate.year == element.dateTime?.year
-      ){
-        return true;}
-      return false;
-    }).toList();
-
-   notifyListeners();
-  }
-  changeSelectDate(DateTime newSelectDate){
-    selectDate = newSelectDate;
-    getAppointmentsFromFireStore();
-  }
 
   ThemeMode appTheme = ThemeMode.light;
 
@@ -63,5 +39,32 @@ class ListProvider extends ChangeNotifier{
         fit: BoxFit.cover,
       );
     }
+  }
+}
+
+class AppointmentProvider extends ChangeNotifier{
+  List<Appointment> appointmentList = [];
+  DateTime selectDate = DateTime.now();
+  void getAppointmentsFromFireStore(String Id)async{
+    QuerySnapshot<Appointment> querySnapshot= await FireBaseUtills.getAppointmentCollection(Id).get();
+    appointmentList = querySnapshot.docs.map((doc) {
+      return doc.data();
+
+    }).toList();
+
+    appointmentList = appointmentList.where((element) {
+      if(selectDate.day==element.dateTime?.day &&
+          selectDate.month == element.dateTime?.month &&
+          selectDate.year == element.dateTime?.year
+      ){
+        return true;}
+      return false;
+    }).toList();
+
+    notifyListeners();
+  }
+  changeSelectDate(DateTime newSelectDate, String Id){
+    selectDate = newSelectDate;
+    getAppointmentsFromFireStore(Id);
   }
 }

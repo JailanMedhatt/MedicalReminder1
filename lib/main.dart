@@ -1,3 +1,4 @@
+
 import 'package:finalproject1/SharedPref.dart';
 import 'package:finalproject1/UI/Appointemnt.dart';
 import 'package:finalproject1/UI/Edit%20Medicine.dart';
@@ -30,9 +31,14 @@ void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await SharedPref.init();
   await Firebase.initializeApp();
-  runApp( ChangeNotifierProvider (
-      create: (contex) => ListProvider()
-      ,child: MyApp()));
+  runApp( 
+      MultiProvider(providers: [
+        ChangeNotifierProvider(create: (context)=>ListProvider()),
+        ChangeNotifierProvider(create: (context)=>AppointmentProvider()),
+
+      ],child: MyApp()));
+
+
 }
 
 class MyApp extends StatelessWidget {

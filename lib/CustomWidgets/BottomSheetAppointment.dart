@@ -1,6 +1,8 @@
 import 'package:date_field/date_field.dart';
+import 'package:finalproject1/DialogUtills.dart';
 import 'package:finalproject1/FireBase/FirebaseUtills.dart';
 import 'package:finalproject1/FireBase/Models/UserAppointment.dart';
+import 'package:finalproject1/SharedPref.dart';
 import 'package:finalproject1/myTheme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -23,7 +25,7 @@ class _BottomSheetAppointmentState extends State<BottomSheetAppointment> {
   DateTime? time ;
   String? speciality;
   DateTime selectedDate = DateTime.now();
-  late ListProvider listProvider;
+  late AppointmentProvider listProvider;
 
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
@@ -64,7 +66,7 @@ class _BottomSheetAppointmentState extends State<BottomSheetAppointment> {
 
   @override
   Widget build(BuildContext context) {
-    listProvider = Provider.of<ListProvider>(context);
+    listProvider = Provider.of<AppointmentProvider>(context);
     return Container(
       padding: EdgeInsets.all(16.0),
       decoration: BoxDecoration(
@@ -259,28 +261,47 @@ class _BottomSheetAppointmentState extends State<BottomSheetAppointment> {
       Appointment appointment = Appointment(dateTime: selectedDate, DoctorName: doctorName,
           Speciality: speciality,time:selectedTime );
 
-
-      FireBaseUtillsAppointment.addAppointmentToFireStore(appointment).timeout(
-          Duration(milliseconds: 500),
+      String? user = SharedPref.getId();
+      DialogUtills.showLoading(context);
+      FireBaseUtills.addAppointmentToFireStore(appointment, user?? "000")
+          .then((value) {
+            DialogUtills.hideLoading(context);
+            // var date = appointment.combinedDateTime;
+            // debugPrint('Notification Scheduled for ${appointment.time}');
+            // NotificationService().scheduleNotification(
+            //   title: 'You have an appointment',
+            //   body: 'with ${appointment.DoctorName} at ${appointment.time}',
+            //   scheduledNotificationDateTime: date,
+            // );
+            // print("doooooooooooooooone");
+            // ScaffoldMessenger.of(context)
+            //     .showSnackBar(SnackBar(
+            //     backgroundColor: Colors.purple,
+            //     content: Text('The Appointment Added Successfully')));
+            // listProvider.getAppointmentsFromFireStore(user?? "00");
+            // Navigator.pop(context);
+      })
+          .timeout(
+          Duration(milliseconds: 200),
 
 // sh8len b time out msh b dot then 3shan hena sh8len offline msh online
           onTimeout: (){
             var date = appointment.combinedDateTime;
             debugPrint('Notification Scheduled for ${appointment.time}');
+
             NotificationService().scheduleNotification(
-                title: 'Scheduled Notification',
-                body: '${appointment.time}',
-                scheduledNotificationDateTime: date,
+              title: 'You have an appointment',
+              body: 'with ${appointment.DoctorName} at ${appointment.time}',
 
+              scheduledNotificationDateTime: date,
 
-            //date: appointment.dateTime!
             );
             print("doooooooooooooooone");
             ScaffoldMessenger.of(context)
                 .showSnackBar(SnackBar(
                 backgroundColor: Colors.purple,
                 content: Text('The Appointment Added Successfully')));
-            listProvider.getAppointmentsFromFireStore();
+            listProvider.getAppointmentsFromFireStore(user?? "00");
             Navigator.pop(context);
 
 
