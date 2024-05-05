@@ -38,32 +38,37 @@ class _CounterState extends State<Counter> {
                     child: Container(
                       height: 20,
                       width: 20,
-                      child: FloatingActionButton(
+                      child: RawMaterialButton(
                         onPressed: add,
+                        elevation: 2.0,
+                        fillColor: Color(0xff5D65B0),
+                        shape: CircleBorder(),
                         child: Icon(
                           Icons.add,
                           size: 20,
                           color: Colors.white,
                         ),
-                        backgroundColor: Color(0xff5D65B0),
                       ),
                     ),
                   ),
-                  Text('$n',
+                  Text(
+                    '$n',
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                   FittedBox(
                     child: Container(
                       height: 20,
                       width: 20,
-                      child: FloatingActionButton(
+                      child: RawMaterialButton(
                         onPressed: minus,
+                        elevation: 2.0,
+                        fillColor: Color(0xff5D65B0),
+                        shape: CircleBorder(),
                         child: Icon(
                           Icons.remove,
                           color: Colors.white,
                           size: 20,
                         ),
-                        backgroundColor: Color(0xff5D65B0),
                       ),
                     ),
                   ),

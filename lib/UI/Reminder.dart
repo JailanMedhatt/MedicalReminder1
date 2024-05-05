@@ -80,7 +80,7 @@ class Reminder extends StatelessWidget {
                     ),
               Expanded(child:
               ListView.builder(itemBuilder:(context , index){
-                return    List();
+                return    CustomList();
               },
                 itemCount: 3,    )
               ),
