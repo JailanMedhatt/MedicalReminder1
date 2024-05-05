@@ -285,17 +285,20 @@ class _BottomSheetAppointmentState extends State<BottomSheetAppointment> {
           Duration(milliseconds: 200),
 
 // sh8len b time out msh b dot then 3shan hena sh8len offline msh online
-          onTimeout: (){
+          onTimeout: () async {
             var date = appointment.combinedDateTime;
             debugPrint('Notification Scheduled for ${appointment.time}');
 
             NotificationService().scheduleNotification(
+
               title: 'You have an appointment',
+              payload: 'accept',
               body: 'with ${appointment.DoctorName} at ${appointment.time}',
-
               scheduledNotificationDateTime: date,
-
             );
+
+
+
             print("doooooooooooooooone");
             ScaffoldMessenger.of(context)
                 .showSnackBar(SnackBar(
