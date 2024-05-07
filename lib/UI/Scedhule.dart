@@ -25,6 +25,7 @@ class SchadualePage extends StatefulWidget {
 class _SchadualePageState extends State<SchadualePage> {
   String name = '';
   String description = '';
+  int n = 0;
   var formKey = GlobalKey<FormState>();
   late ReminderListProvider listProvider;
 
@@ -173,7 +174,11 @@ class _SchadualePageState extends State<SchadualePage> {
                   ),
                   Padding(
                     padding: EdgeInsets.only(top: 8),
-                    child: Counter(),
+                    child: Counter(n: n,onCountChanged: (newValue) {
+                      setState(() {
+                        n = newValue;
+                      });
+                    },),
                   ),
                   Padding(
                     padding: EdgeInsets.only(top: 8),
@@ -221,7 +226,7 @@ class _SchadualePageState extends State<SchadualePage> {
   void addMedicine() {
     if (formKey.currentState?.validate() == true) {
       Medicine medicine = Medicine(
-        NoOfPills: 0,
+        NoOfPills: n,
         MedicineName: name,
         Description: description,
         StartDate: null,
