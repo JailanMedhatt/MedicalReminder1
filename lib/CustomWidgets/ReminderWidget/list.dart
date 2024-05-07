@@ -78,14 +78,14 @@ class _CustomListState extends State<CustomList> {
                       height: 8.0,
                     ),
                     Text(
-                      widget.medicine.MedicineType ?? ''  ,
+                      widget.medicine.MedicineName ?? 'oo'  ,
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     Text(
-                      "2 pills(15mg)",
+                      widget.medicine.NoOfPills.toString() ?? "",
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,

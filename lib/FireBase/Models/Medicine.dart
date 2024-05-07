@@ -19,21 +19,26 @@ class Medicine{
     this.isDone=false,
     this.MedicineType='',
    this.PillColor='',
-   this.NoOfPills=0,
+    required this.NoOfPills ,
     required this.MedicineName,
     required this.Description,
   required this.time,
   });
-  Medicine.fromFireStore(Map<String,dynamic>data):this(
+  Medicine.fromFireStore(Map<String, dynamic> data)
+      : this(
     id: data['id'],
-    StartDate: DateTime.fromMillisecondsSinceEpoch(data['StartDate']),
-    EndDate: DateTime.fromMillisecondsSinceEpoch(data['EndDate']),
-   MedicineName: data['MedicineName'],
-   MedicineType: data['MedicineType'],
+    StartDate: data['StartDate'] != null
+        ? DateTime.fromMillisecondsSinceEpoch(data['StartDate'])
+        : null,
+    EndDate: data['EndDate'] != null
+        ? DateTime.fromMillisecondsSinceEpoch(data['EndDate'])
+        : null,
+    MedicineName: data['MedicineName'],
+    MedicineType: data['MedicineType'],
     PillColor: data['PillColor'],
     NoOfPills: data['NoOfPills'],
     Description: data['Description'],
-    isDone:data['isDone'],
+    isDone: data['isDone'],
     time: data['time'] != null
         ? data['time'] is int
         ? DateTime.fromMillisecondsSinceEpoch(data['time'])
@@ -44,21 +49,19 @@ class Medicine{
 
 
 
-  Map<String,dynamic>toFireSstore(){
-    return{
-      'id' :id,
-      'MedicineType' :MedicineType ,
-      'PillColor' :PillColor ,
-      'MedicineName' :MedicineName ,
-      'NoOfPills' :NoOfPills ,
-      'Description':Description,
-      'StartDate' : StartDate?.millisecondsSinceEpoch,
-      'EndDate' : EndDate?.millisecondsSinceEpoch,
-      'isDone' : isDone,
-      'time' : time?.millisecondsSinceEpoch
+  Map<String, dynamic> toFireSstore() {
+    return {
+      'id': id,
+      'MedicineType': MedicineType,
+      'PillColor': PillColor,
+      'MedicineName': MedicineName,
+      'NoOfPills': NoOfPills ,
+      'Description': Description,
+      'StartDate': StartDate != null ? StartDate!.millisecondsSinceEpoch : null,
+      'EndDate': EndDate != null ? EndDate!.millisecondsSinceEpoch : null,
+      'isDone': isDone,
+      'time': time != null ? time!.millisecondsSinceEpoch : null,
     };
-
   }
-
 
 }

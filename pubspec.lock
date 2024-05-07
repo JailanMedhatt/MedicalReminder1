@@ -440,6 +440,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "9.2.0"
+  git:
+    dependency: "direct dev"
+    description:
+      name: git
+      sha256: "1982737427ef1ef2bb69027ea0234469774495e86afe202de81ee46d37364e55"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.1"
   google_maps:
     dependency: transitive
     description:

@@ -76,7 +76,8 @@ class LoginPage extends StatelessWidget {
                                 elevation: 25,
                                 backgroundColor: Color(0xff5D65B0),
                                 padding: EdgeInsets.symmetric(
-                                    horizontal: 70.w, vertical: 5.h), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.r))),
+                                    horizontal: 70.w, vertical: 5.h),
+                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.r))),
 
                           )),
                       Padding(padding: EdgeInsets.only(top: 35.h, left: 45.w)

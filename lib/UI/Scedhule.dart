@@ -221,6 +221,7 @@ class _SchadualePageState extends State<SchadualePage> {
   void addMedicine() {
     if (formKey.currentState?.validate() == true) {
       Medicine medicine = Medicine(
+        NoOfPills: 0,
         MedicineName: name,
         Description: description,
         StartDate: null,

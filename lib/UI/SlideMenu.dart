@@ -22,6 +22,7 @@
 //   }
 //
 // }
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finalproject1/SharedPref.dart';
 import 'package:finalproject1/UI/Appointemnt.dart';
 import 'package:finalproject1/UI/HelpPage.dart';
@@ -247,6 +248,7 @@ class _SlideMenuState extends State<SlideMenu> {
                     InkWell(
                       onTap: (){
                         Navigator.pushNamed(context, HelpScreen.routeName);
+
                       },
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,

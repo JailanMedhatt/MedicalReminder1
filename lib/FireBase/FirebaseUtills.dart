@@ -51,6 +51,8 @@ class FireBaseUtills {
     return getAppointmentCollection(Id).doc(appointment.id).delete();
 
   }
+
+  //////////////////////////////////
   static CollectionReference<Medicine> getMedicineCollection() {
     return FirebaseFirestore.instance.collection("medicines").withConverter<Medicine>(
         fromFirestore: (snapchot, option) =>

@@ -175,7 +175,8 @@ class _DoctorWidgetState extends State<DoctorWidget> {
                                   setState(() {
                                     //AppointmentProvider.isDone = true;
                                     //someFunction();
-                                    //widget!.appointment!.isDone! = ! widget!.appointment!.isDone!;
+                                    widget!.appointment!.isDone = true;
+                                   // ! widget!.appointment!.isDone!;
                                   });
                                 },
                               ),
