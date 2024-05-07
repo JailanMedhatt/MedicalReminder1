@@ -1,13 +1,19 @@
+import 'package:finalproject1/FireBase/Models/Medicine.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CustomList extends StatefulWidget {
+
+  Medicine  medicine;
+ CustomList({required this.medicine});
+
   @override
   _CustomListState createState() => _CustomListState();
 }
 
 class _CustomListState extends State<CustomList> {
   bool? radioValue = false;
+//  _CustomListStateList({required this.medicine});
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +43,8 @@ class _CustomListState extends State<CustomList> {
                 width: 12.0,
               ),
               Text(
-                '8:00 am',
+
+                widget.medicine.time != null ? widget.medicine.time.toString() : '',
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
@@ -71,7 +78,7 @@ class _CustomListState extends State<CustomList> {
                       height: 8.0,
                     ),
                     Text(
-                      "Theraflu MaxGrip",
+                      widget.medicine.MedicineType ?? ''  ,
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,

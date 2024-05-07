@@ -1,14 +1,25 @@
+
 import 'package:finalproject1/CustomWidgets/ReminderWidget/Calender.dart';
 import 'package:finalproject1/CustomWidgets/ReminderWidget/list.dart';
+import 'package:finalproject1/providers/ReminderProvider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class Reminder extends StatelessWidget {
+class Reminder extends StatefulWidget {
   static final String routeName = "reminder-page";
 
+  @override
+  State<Reminder> createState() => _ReminderState();
+}
 
-
+class _ReminderState extends State<Reminder> {
   @override
   Widget build(BuildContext context) {
+    var listProvider = Provider.of<ReminderListProvider>(context);
+    //3lshan mdkholsh fe infinity loop
+    if(listProvider.MedicineList.isEmpty){
+     listProvider.getAllMedicinesFromFireStore();
+    }
     return Stack(
       children: [
         Container(
@@ -75,14 +86,16 @@ class Reminder extends StatelessWidget {
                         children: [
                           Text('Medicines',style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                           ),
+
                         ],
                       ),
                     ),
               Expanded(child:
               ListView.builder(itemBuilder:(context , index){
-                return    CustomList();
+                return  CustomList(medicine: listProvider.MedicineList[index]);
               },
-                itemCount: 3,    )
+                itemCount: listProvider.MedicineList.length,
+              )
               ),
 
 
@@ -99,4 +112,6 @@ class Reminder extends StatelessWidget {
       ],
     );
   }
+
+
 }

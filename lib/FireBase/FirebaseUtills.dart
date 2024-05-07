@@ -5,6 +5,7 @@ import 'package:finalproject1/FireBase/Models/MyUser.dart';
 import 'package:finalproject1/SharedPref.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
+import 'Models/Medicine.dart';
 import 'Models/UserAppointment.dart';
 // 7tet Id fe add w dekete appointment
 class FireBaseUtills {
@@ -50,6 +51,20 @@ class FireBaseUtills {
     return getAppointmentCollection(Id).doc(appointment.id).delete();
 
   }
+  static CollectionReference<Medicine> getMedicineCollection() {
+    return FirebaseFirestore.instance.collection("medicines").withConverter<Medicine>(
+        fromFirestore: (snapchot, option) =>
+            Medicine.fromFireStore(snapchot.data()!),
+        toFirestore: (medicine, option) => medicine.toFireSstore());
+  }
+
+
+  static Future<void> addmedicineToFireStore(Medicine medicine) {
+    var medicineCollection = getMedicineCollection();
+    DocumentReference<Medicine> docRef = medicineCollection.doc();
+    medicine.id = docRef.id;
+    return docRef.set(medicine);
+  }
   static  editUAppointmentDetails(bool isDone,String Id,String Appointmentid){
      getAppointmentCollection(Id).doc(Appointmentid).update({"isDone":isDone});
   }
@@ -94,3 +109,6 @@ class UploadPdfs {
   }
 
 }
+//
+//
+//
