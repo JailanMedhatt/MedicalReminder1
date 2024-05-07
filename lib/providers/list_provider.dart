@@ -45,6 +45,7 @@ class ListProvider extends ChangeNotifier{
 class AppointmentProvider extends ChangeNotifier{
   List<Appointment> appointmentList = [];
   DateTime selectDate = DateTime.now();
+   bool isDone = false;
   void getAppointmentsFromFireStore(String Id)async{
     QuerySnapshot<Appointment> querySnapshot= await FireBaseUtills.getAppointmentCollection(Id).get();
     appointmentList = querySnapshot.docs.map((doc) {

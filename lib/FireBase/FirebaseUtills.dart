@@ -50,6 +50,12 @@ class FireBaseUtills {
     return getAppointmentCollection(Id).doc(appointment.id).delete();
 
   }
+  static  editUAppointmentDetails(bool isDone,String Id,String Appointmentid){
+     getAppointmentCollection(Id).doc(Appointmentid).update({"isDone":isDone});
+  }
+  // static  editAppointmentDetails(Appointment appointment, String Id){
+  //   getUserCollectionRef().doc(id).update();
+  // }
 }
 ///Appointment
 // class FireBaseUtillsAppointment {

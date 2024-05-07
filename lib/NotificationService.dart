@@ -1,17 +1,27 @@
 import 'dart:developer';
 
+import 'package:finalproject1/FireBase/FirebaseUtills.dart';
+import 'package:finalproject1/providers/list_provider.dart';
 import 'package:finalproject1/utilsNotification.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 // custom_notification.dart
 
 import 'package:flutter/material.dart';
 
+import 'FireBase/Models/UserAppointment.dart';
+
 class NotificationService {
+   Appointment? appointment ;
+   String? UserId;
+   NotificationService({ this.appointment,this.UserId});
+
+
   final FlutterLocalNotificationsPlugin notificationsPlugin = FlutterLocalNotificationsPlugin();
 
   Future<void> initNotification() async {
@@ -49,7 +59,7 @@ class NotificationService {
         final String? actionId = response.actionId;
 
         // Handle notification response
-        onNotificationClick(payload, 'accept');
+         onNotificationClick(payload, actionId);
       },
     );
   }
@@ -61,6 +71,8 @@ class NotificationService {
     String? body,
     String? payload,
     required DateTime scheduledNotificationDateTime,
+    String? Appointmentid,
+    bool? isDone,
   }) async {
     // Define action buttons
     const androidActions = [
@@ -95,6 +107,7 @@ class NotificationService {
       id,
       title,
       body,
+
       tz.TZDateTime.from(scheduledNotificationDateTime, tz.local),
       notificationDetails,
       payload: payload,
@@ -104,17 +117,29 @@ class NotificationService {
   }
 
   // Method to handle notification click events
-
-  Future<void> onNotificationClick(String? payload, String? actionId) async {
+  // w2ft henaaaa w accept bytb3
+   //SharedPreferences sharedPreferences =
+  Future onNotificationClick(String? payload, String? actionId) async {
     if (actionId != null) {
       switch (actionId) {
         case 'accept':
           print('Accept button clicked');
+          //print("henaaaaaaaaaaaaaaaa");
+          //print(UserId?? ""  +  appointment?.id??  + "henaaaaaaaaaaaaaa");
+          //print("${UserId}++${appointment!.id}+ henaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+          FireBaseUtills.editUAppointmentDetails(true, UserId ?? "" ,appointment?.id ?? "" );
+          //print("${UserId}++${appointment!.id}+ henaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+           //appointment?.isDone = true;
+          bool giveTrue =  true;
+          print("${giveTrue}");
 
+          return giveTrue;
+          //print("${giveTrue}");
           // Perform the desired action for the 'accept' button
           break;
         case 'reject':
           print('Reject button clicked');
+
           // Perform the desired action for the 'reject' button
           break;
         default:
@@ -126,6 +151,33 @@ class NotificationService {
     if (payload != null) {
       print('Notification payload: $payload');
     }
+    return false;
+  }
+
+  // function btl3 bool mn onnotificationClick
+  Future<bool> useOnNotificationClick() async {
+    // Define the payload and actionId as needed
+    String? payload = 'payload'; // Replace with actual payload
+    String? actionId = 'accept'; // Replace with actual actionId ('accept', 'reject', etc.)
+
+    // Call the onNotificationClick function and await the result
+    bool result = await NotificationService().onNotificationClick(payload, actionId);
+
+    // Now the result is a boolean variable with the returned value from onNotificationClick
+    // You can use the result as needed
+    print('Result of onNotificationClick: $result');
+
+    // Use the result as needed in your application logic
+    if (result) {
+      print('The accept action was clicked.');
+      return result;
+      // Perform actions based on the true result
+    } else {
+      print('The action was not the accept button, or false was returned.');
+      // Perform actions based on the false result
+      return result;
+    }
+
   }
 }
 ////////////////////////////////////

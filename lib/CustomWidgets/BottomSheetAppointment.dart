@@ -289,8 +289,9 @@ class _BottomSheetAppointmentState extends State<BottomSheetAppointment> {
             var date = appointment.combinedDateTime;
             debugPrint('Notification Scheduled for ${appointment.time}');
 
-            NotificationService().scheduleNotification(
-
+            NotificationService(appointment: appointment,UserId: user).scheduleNotification(
+              // Appointmentid: appointment.id,
+              // isDone: appointment.isDone,
               title: 'You have an appointment',
               payload: 'accept',
               body: 'with ${appointment.DoctorName} at ${appointment.time}',

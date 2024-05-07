@@ -15,13 +15,40 @@ import '../SharedPref.dart';
 import '../ViewModels/Profile/ProfileViewModel.dart';
 import '../providers/list_provider.dart';
 
-class DoctorWidget extends StatelessWidget {
-
+class DoctorWidget extends StatefulWidget {
   Appointment appointment;
 
   DoctorWidget({
     required this.appointment
   });
+
+  @override
+  State<DoctorWidget> createState() => _DoctorWidgetState();
+}
+
+class _DoctorWidgetState extends State<DoctorWidget> {
+ // Future<bool> isChecked = NotificationService().useOnNotificationClick();
+  bool isChecked = false;
+
+
+   someFunction() async {
+    isChecked = await NotificationService().useOnNotificationClick();
+    // Use the isChecked value in your code
+    if (isChecked) {
+      Icons.check_circle ;
+      print("icon mfrod tat3ml");
+      return true;
+
+    } else {
+      Icons.circle_outlined;
+    }
+  }
+
+  Future<bool> getNotificationChecked() async {
+    bool isChecked = await NotificationService().useOnNotificationClick();
+    return isChecked;
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +67,7 @@ class DoctorWidget extends StatelessWidget {
                 key: const ValueKey(0),
                 onPressed: (context) {
                   //henaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                  FireBaseUtills.deleteAppointment(appointment,user??"")
+                  FireBaseUtills.deleteAppointment(widget.appointment,user??"")
                       .then((value) {
 
                   })
@@ -94,8 +121,8 @@ class DoctorWidget extends StatelessWidget {
                       child: Text(
                         //appointment.time != null ? appointment.time.toString() : '',
                         //appointment.time!.hour.toString(),
-                        "${appointment?.time?.hour.toString().padLeft(
-                            2, '0')}:${appointment.time?.minute.toString()
+                        "${widget.appointment?.time?.hour.toString().padLeft(
+                            2, '0')}:${widget.appointment.time?.minute.toString()
                             .padLeft(2, '0')}",
                         style: TextStyle(color: Colors.deepPurple),
                       ),
@@ -112,12 +139,12 @@ class DoctorWidget extends StatelessWidget {
                         children: [
                           SizedBox(height: 8),
                           Text(
-                            appointment.DoctorName ?? "",
+                            widget.appointment.DoctorName ?? "",
                             style: TextStyle(
                                 fontSize: 16, fontWeight: FontWeight.bold),
                           ),
                           Text(
-                            appointment.Speciality ?? "",
+                            widget.appointment.Speciality ?? "",
                             style: TextStyle(color: Colors.grey, fontSize: 15),
                           ),
                         ],
@@ -125,7 +152,41 @@ class DoctorWidget extends StatelessWidget {
                       Spacer(),
                       Padding(
                         padding: const EdgeInsets.only(right: 12.0),
-                        child: CircleButtonWithText(),
+                        child: Row(
+                          children: [
+                            CircleAvatar(
+                              radius: 25,
+                              backgroundColor: Colors.grey[350],
+                              child:
+                              IconButton(
+                                icon:
+                                Icon(
+                                  //if(){}
+                                  //NotificationService().onNotificationClick == true
+
+                                  widget!.appointment!.isDone! ? Icons.check_circle : Icons.circle_outlined,
+                                  //await isChecked ? Icons.check_circle : Icons.circle_outlined,
+
+                                  color: Colors.deepPurple,
+                                  size: 30,
+                                ),
+                                onPressed: () {
+
+                                  setState(() {
+                                    //AppointmentProvider.isDone = true;
+                                    //someFunction();
+                                    //widget!.appointment!.isDone! = ! widget!.appointment!.isDone!;
+                                  });
+                                },
+                              ),
+                            ),
+                            SizedBox(width: 5),
+                            Text(
+                              widget!.appointment!.isDone! ? 'Done' : 'Confirm',
+                              style: TextStyle(color: Colors.deepPurple),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
@@ -137,7 +198,72 @@ class DoctorWidget extends StatelessWidget {
       );
     }
 
-  }
+//Future<bool> isChecked = NotificationService().useOnNotificationClick();
+  // Future<bool> getNotificationChecked() async {
+  //   bool isChecked = await NotificationService().useOnNotificationClick();
+  //   return isChecked;
+  // }
+}
+
+
+// class CircleButtonWithText extends StatefulWidget {
+//   @override
+//   _CircleButtonWithTextState createState() => _CircleButtonWithTextState();
+// }
+//
+// class _CircleButtonWithTextState extends State<CircleButtonWithText> {
+//   bool isChecked = false;
+//
+//   Future<void> initializeCheckedState() async {
+//     // Call the NotificationService's onNotificationClick and await its result
+//     // If the method signature or behavior of NotificationService has changed, please review it
+//     final bool? rees = (await NotificationService().useOnNotificationClick()) as bool?;
+//
+//     // Update isChecked based on the result from onNotificationClick, making sure the result is boolean
+//     if (rees != null) {
+//       setState(() {
+//         isChecked = rees;
+//       });
+//     } else {
+//       // Handle the case where the result is null or invalid
+//       setState(() {
+//         isChecked = false;
+//       });
+//     }
+//   }
+//
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Row(
+//       children: [
+//         CircleAvatar(
+//           radius: 25,
+//           backgroundColor: Colors.grey[350],
+//           child: IconButton(
+//             icon: Icon(
+//               isChecked ? Icons.check_circle : Icons.circle_outlined,
+//               color: Colors.deepPurple,
+//               size: 30,
+//             ),
+//             onPressed: () {
+//               setState(() {
+//                 isChecked = !isChecked;
+//               });
+//             },
+//           ),
+//         ),
+//         SizedBox(width: 5),
+//         Text(
+//           isChecked ? 'Done' : 'Confirm',
+//           style: TextStyle(color: Colors.deepPurple),
+//         ),
+//       ],
+//     );
+//   }
+// }
+
+
 
 
 class CircleButtonWithText extends StatefulWidget {
@@ -157,12 +283,15 @@ class _CircleButtonWithTextState extends State<CircleButtonWithText> {
           backgroundColor: Colors.grey[350],
           child: IconButton(
             icon: Icon(
-              isChecked ? Icons.check_circle : Icons.circle_outlined,
+              //if(){}
+              //NotificationService().onNotificationClick == true
+              isChecked? Icons.check_circle : Icons.circle_outlined,
               color: Colors.deepPurple,
               size: 30,
             ),
             onPressed: () {
               setState(() {
+                //AppointmentProvider.isDone = true;
                 isChecked = !isChecked;
               });
             },
