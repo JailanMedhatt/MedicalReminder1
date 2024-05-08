@@ -1,6 +1,22 @@
 import 'package:flutter/material.dart';
 
-const List<String> list = <String>['Red', 'Blue', 'Orange','Yellow','Greeen','White','Violet','Brown'];
+class ColorItem {
+  final Color color;
+  final String name;
+
+  ColorItem(this.color, this.name);
+}
+
+ List<ColorItem> colorList = [
+  ColorItem(Colors.red, "Red"),
+  ColorItem(Colors.blue, "Blue"),
+  ColorItem(Colors.orange, "Orange"),
+  ColorItem(Colors.yellow, "Yellow"),
+  ColorItem(Colors.green, "Green"),
+  ColorItem(Colors.white, "White"),
+  ColorItem(Colors.purple, "Purple"),
+  ColorItem(Colors.brown, "Brown"),
+];
 
 class PillDropMenu extends StatefulWidget {
   const PillDropMenu({Key? key}) : super(key: key);
@@ -10,7 +26,7 @@ class PillDropMenu extends StatefulWidget {
 }
 
 class _PillDropMenuState extends State<PillDropMenu> {
-  String dropdownValue = list.first;
+  ColorItem selectedColor = colorList.first;
 
   @override
   Widget build(BuildContext context) {
@@ -30,19 +46,41 @@ class _PillDropMenuState extends State<PillDropMenu> {
                 color: Color(0xffEDF2F3),
                 borderRadius: BorderRadius.circular(12),
               ),
+              // width: MediaQuery.of(context).size.width - 24.0,
               padding: EdgeInsets.symmetric(horizontal: 8),
-              child: DropdownButton<String>(
-                value: dropdownValue,
+              child: DropdownButton<ColorItem>(
+                value: selectedColor,
                 elevation: 16,
-                onChanged: (String? newValue) {
+                onChanged: (ColorItem? newValue) {
                   setState(() {
-                    dropdownValue = newValue!;
+                    selectedColor = newValue!;
                   });
                 },
-                items: list.map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
+                items: colorList.map<DropdownMenuItem<ColorItem>>((ColorItem value) {
+                  return DropdownMenuItem<ColorItem>(
                     value: value,
-                    child: Text(value),
+                    child: Container(
+                      constraints: BoxConstraints(maxWidth: 200), // Set the maximum width here
+                      child: Row(
+                        children: [
+                          Container(
+                            width: 20,
+                            height: 20,
+                            margin: EdgeInsets.only(right: 4),
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: value.color,
+                            ),
+                          ),
+                          Flexible(
+                            child: Text(
+                              value.name,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   );
                 }).toList(),
               ),

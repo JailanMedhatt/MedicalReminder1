@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 class DateRangePickerControllerExample extends StatefulWidget {
   @override
@@ -10,29 +9,88 @@ class DateRangePickerControllerExample extends StatefulWidget {
 
 class _DateRangePickerControllerExampleState
     extends State<DateRangePickerControllerExample> {
-  late String _startDate;
-  late String _endDate;
-  final DateRangePickerController _controller = DateRangePickerController();
+  late String _startDateTab1;
+  late String _endDateTab1;
+  late DateTime _selectedStartDateTab1;
+  late DateTime _selectedEndDateTab1;
+
+  late String _startDateTab2;
+  late String _endDateTab2;
+  late DateTime _selectedStartDateTab2;
+  late DateTime _selectedEndDateTab2;
 
   @override
   void initState() {
     final DateTime today = DateTime.now();
-    _startDate = DateFormat('dd, MMMM yyyy').format(today).toString();
-    _endDate = DateFormat('dd, MMMM yyyy')
-        .format(today.add(Duration(days: 3)))
-        .toString();
-    _controller.selectedRange = PickerDateRange(today, today.add(Duration(days: 3)));
+    _selectedStartDateTab1 = today;
+    _selectedEndDateTab1 = today.add(Duration(days: 3));
+    _startDateTab1 =
+        DateFormat('dd, MMMM yyyy').format(_selectedStartDateTab1).toString();
+    _endDateTab1 =
+        DateFormat('dd, MMMM yyyy').format(_selectedEndDateTab1).toString();
+
+    _selectedStartDateTab2 = today;
+    _selectedEndDateTab2 = today.add(Duration(days: 3));
+    _startDateTab2 =
+        DateFormat('dd, MMMM yyyy').format(_selectedStartDateTab2).toString();
+    _endDateTab2 =
+        DateFormat('dd, MMMM yyyy').format(_selectedEndDateTab2).toString();
+
     super.initState();
   }
 
-  void selectionChanged(DateRangePickerSelectionChangedArgs args) {
+  void selectionChangedTab1(DateTime? startDate, DateTime? endDate) {
     setState(() {
-      _startDate =
-          DateFormat('dd, MMMM yyyy').format(args.value.startDate).toString();
-      _endDate = DateFormat('dd, MMMM yyyy')
-          .format(args.value.endDate ?? args.value.startDate)
-          .toString();
+      _selectedStartDateTab1 = startDate ?? DateTime.now();
+      _selectedEndDateTab1 = endDate ?? _selectedStartDateTab1;
+      _startDateTab1 =
+          DateFormat('dd, MMMM yyyy').format(_selectedStartDateTab1).toString();
+      _endDateTab1 =
+          DateFormat('dd, MMMM yyyy').format(_selectedEndDateTab1).toString();
     });
+  }
+
+  void selectionChangedTab2(DateTime? startDate, DateTime? endDate) {
+    setState(() {
+      _selectedStartDateTab2 = startDate ?? DateTime.now();
+      _selectedEndDateTab2 = endDate ?? _selectedStartDateTab2;
+      _startDateTab2 =
+          DateFormat('dd, MMMM yyyy').format(_selectedStartDateTab2).toString();
+      _endDateTab2 =
+          DateFormat('dd, MMMM yyyy').format(_selectedEndDateTab2).toString();
+    });
+  }
+
+  Future<void> _openDatePicker(BuildContext context,
+      Function(DateTime?, DateTime?)
+      selectionChanged) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: selectionChanged == selectionChangedTab1
+          ? _selectedStartDateTab1
+          : _selectedStartDateTab2,
+      firstDate: DateTime.now(),
+      lastDate: DateTime(2100),
+    );
+
+    if (picked != null) {
+      final DateTime? endDate = await showDatePicker(
+        context: context,
+        initialDate: picked,
+        firstDate: picked,
+        lastDate: DateTime(2100),
+      );
+
+      setState(() {
+        if (endDate != null) {
+          if (selectionChanged == selectionChangedTab1) {
+            selectionChanged(picked, endDate);
+          } else {
+            selectionChangedTab2(picked, endDate);
+          }
+        }
+      });
+    }
   }
 
   @override
@@ -53,13 +111,12 @@ class _DateRangePickerControllerExampleState
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      _startDate,
-                    ),
+                    Text(_startDateTab1),
                     GestureDetector(
-                      child: Icon(Icons.calendar_today, color: Color(0xff5D65B0)),
+                      child: Icon(
+                          Icons.calendar_today, color: Color(0xff5D65B0)),
                       onTap: () {
-                        _openDatePicker(context);
+                        _openDatePicker(context, selectionChangedTab1);
                       },
                     ),
                   ],
@@ -80,13 +137,12 @@ class _DateRangePickerControllerExampleState
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      _endDate,
-                    ),
+                    Text(_endDateTab2),
                     GestureDetector(
-                      child: Icon(Icons.calendar_today, color: Color(0xff5D65B0)),
+                      child: Icon(
+                          Icons.calendar_today, color: Color(0xff5D65B0)),
                       onTap: () {
-                        _openDatePicker(context);
+                        _openDatePicker(context, selectionChangedTab2);
                       },
                     ),
                   ],
@@ -96,23 +152,6 @@ class _DateRangePickerControllerExampleState
           ),
         ],
       ),
-    );
-  }
-
-  void _openDatePicker(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          content: Container(
-            width: 300,
-            child: SfDateRangePicker(
-              controller: _controller,
-              onSelectionChanged: selectionChanged,
-            ),
-          ),
-        );
-      },
     );
   }
 }

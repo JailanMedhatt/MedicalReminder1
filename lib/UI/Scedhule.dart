@@ -229,20 +229,18 @@ class _SchadualePageState extends State<SchadualePage> {
         NoOfPills: n,
         MedicineName: name,
         Description: description,
-        StartDate: null,
-        EndDate: null,
-        time: null,
+        StartDate: DateTime.now(),
+        EndDate: DateTime.now(),
+        time: DateTime.now(),
       );
 
       FireBaseUtills.addmedicineToFireStore(medicine).timeout(
-          Duration(milliseconds: 500),
-          onTimeout: (){
-            print('added done');
-            listProvider.getAllMedicinesFromFireStore();
-            Navigator.pop(context);
-          }
+        Duration(milliseconds: 500),
+        onTimeout: () {
+          print('added done');
+          listProvider.getAllMedicinesFromFireStore();
+          Navigator.pop(context);
+        },
       );
-
     }
-  }
-}
+  }}

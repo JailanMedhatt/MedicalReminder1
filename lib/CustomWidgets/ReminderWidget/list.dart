@@ -44,7 +44,9 @@ class _CustomListState extends State<CustomList> {
               ),
               Text(
 
-                widget.medicine.time != null ? widget.medicine.time.toString() : '',
+              "${widget.medicine?.time?.hour.toString().padLeft(
+    2, '0')}:${widget.medicine.time?.minute.toString()
+        .padLeft(2, '0')}",
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
@@ -85,7 +87,7 @@ class _CustomListState extends State<CustomList> {
                       ),
                     ),
                     Text(
-                      widget.medicine.NoOfPills.toString() ?? "",
+                      '${widget.medicine.NoOfPills.toString()} Pills',
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
