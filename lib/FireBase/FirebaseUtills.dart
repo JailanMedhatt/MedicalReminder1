@@ -61,6 +61,8 @@ class FireBaseUtills {
   }
 
 
+
+
   static Future<void> addmedicineToFireStore(Medicine medicine) {
     var medicineCollection = getMedicineCollection();
     DocumentReference<Medicine> docRef = medicineCollection.doc();

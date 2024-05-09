@@ -1,4 +1,5 @@
 
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:finalproject1/SharedPref.dart';
 import 'package:finalproject1/UI/Appointemnt.dart';
 import 'package:finalproject1/UI/Edit%20Medicine.dart';
@@ -28,12 +29,13 @@ import 'myTheme.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  NotificationService().initNotification();
+
   tz.initializeTimeZones();
   WidgetsFlutterBinding.ensureInitialized();
   await SharedPref.init();
   await Firebase.initializeApp();
-  runApp( 
+  NotificationService().initNotification();
+  runApp(
       MultiProvider(providers: [
         ChangeNotifierProvider(create: (context)=>ListProvider()),
         ChangeNotifierProvider(create: (context)=>AppointmentProvider()),

@@ -18,9 +18,11 @@ import 'package:flutter/material.dart';
 import 'FireBase/Models/UserAppointment.dart';
 
 class NotificationService {
-   Appointment? appointment ;
-   String? UserId;
-   NotificationService({ this.appointment,this.UserId});
+  Appointment? appointment;
+
+  String? UserId;
+
+  NotificationService({ this.appointment, this.UserId});
 
 
   final FlutterLocalNotificationsPlugin notificationsPlugin = FlutterLocalNotificationsPlugin();
@@ -30,21 +32,20 @@ class NotificationService {
     tz.initializeTimeZones();
 
     // Initialization settings for Android
-    final AndroidInitializationSettings initializationSettingsAndroid = AndroidInitializationSettings('elder');
+    final AndroidInitializationSettings initializationSettingsAndroid = AndroidInitializationSettings(
+        'elder');
 
     // Initialization settings for iOS
     final DarwinInitializationSettings initializationSettingsIOS = DarwinInitializationSettings(
       requestAlertPermission: true,
       requestBadgePermission: true,
       requestSoundPermission: true,
-      onDidReceiveLocalNotification: (
-          int id,
+      onDidReceiveLocalNotification: (int id,
           String? title,
           String? body,
-          String? payload,
-          ) async {
+          String? payload,) async {
         // Handle iOS notification click
-        onNotificationClick(payload,'accept');
+        onNotificationClick(payload, 'accept');
       },
     );
 
@@ -60,7 +61,7 @@ class NotificationService {
         final String? actionId = response.actionId;
 
         // Handle notification response
-         onNotificationClick(payload, actionId);
+        onNotificationClick(payload, actionId);
       },
     );
   }
@@ -78,10 +79,10 @@ class NotificationService {
     // Define action buttons
     const androidActions = [
       AndroidNotificationAction(
-        'accept', // actionId
-        'Accept', // button title
-        allowGeneratedReplies: true,
-        showsUserInterface: true
+          'accept', // actionId
+          'Accept', // button title
+          allowGeneratedReplies: true,
+          showsUserInterface: true
       ),
       AndroidNotificationAction(
         'reject', // actionId
@@ -113,13 +114,14 @@ class NotificationService {
       notificationDetails,
       payload: payload,
       androidAllowWhileIdle: true,
-      uiLocalNotificationDateInterpretation: UILocalNotificationDateInterpretation.absoluteTime,
+      uiLocalNotificationDateInterpretation: UILocalNotificationDateInterpretation
+          .absoluteTime,
     );
   }
 
   // Method to handle notification click events
   // w2ft henaaaa w accept bytb3
-   //SharedPreferences sharedPreferences =
+  //SharedPreferences sharedPreferences =
   Future onNotificationClick(String? payload, String? actionId) async {
     if (actionId != null) {
       switch (actionId) {
@@ -129,12 +131,13 @@ class NotificationService {
           //print(UserId?? ""  +  appointment?.id??  + "henaaaaaaaaaaaaaa");
           //print("${UserId}++${appointment!.id}+ henaaaaaaaaaaaaaaaaaaaaaaaaaaa");
           /////////////////////////////////
-          FireBaseUtills.editUAppointmentDetails(true, UserId ?? "" ,appointment?.id ?? "" );
+          FireBaseUtills.editUAppointmentDetails(
+              true, UserId ?? "", appointment?.id ?? "");
           //////////////////
           //Navigator.pushNamed(context, TaskListTab.routeName);
           //print("${UserId}++${appointment!.id}+ henaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-           //appointment?.isDone = true;
-          bool giveTrue =  true;
+          //appointment?.isDone = true;
+          bool giveTrue = true;
           print("${giveTrue}");
 
           return giveTrue;
@@ -165,7 +168,8 @@ class NotificationService {
     String? actionId = 'accept'; // Replace with actual actionId ('accept', 'reject', etc.)
 
     // Call the onNotificationClick function and await the result
-    bool result = await NotificationService().onNotificationClick(payload, actionId);
+    bool result = await NotificationService().onNotificationClick(
+        payload, actionId);
 
     // Now the result is a boolean variable with the returned value from onNotificationClick
     // You can use the result as needed
@@ -181,9 +185,117 @@ class NotificationService {
       // Perform actions based on the false result
       return result;
     }
-
   }
+  Future<void> scheduleMedicineNotification({
+    int id = 0,
+    String? title,
+    String? body,
+    required DateTime scheduledNotificationDateTime,
+    String? medicineId, // Change parameter name
+    bool? isDone,
+  }) async {
+    // Define notification details for Android
+    final androidNotificationDetails = AndroidNotificationDetails(
+      'channelId',
+      'channelName',
+      importance: Importance.max,
+      priority: Priority.max,
+      // Set other notification details as needed
+    );
+    final notificationDetails = NotificationDetails(
+      android: androidNotificationDetails,
+    );
+
+    // Schedule the notification
+    await notificationsPlugin.zonedSchedule(
+      id,
+      title,
+      body,
+      tz.TZDateTime.from(scheduledNotificationDateTime, tz.local),
+      notificationDetails,
+      payload: medicineId, // Use medicine ID as payload
+      androidAllowWhileIdle: true,
+      uiLocalNotificationDateInterpretation: UILocalNotificationDateInterpretation.absoluteTime,
+    );
+  }
+  Future<void> scheduleEndDateNotification(DateTime endDate) async {
+    final now = DateTime.now();
+    final difference = endDate.difference(now);
+    final daysUntilEndDate = difference.inDays;
+
+    if (daysUntilEndDate > 0) {
+      // Schedule notification one day before the end date
+      final triggerDate = endDate.subtract(Duration(days: 1)); // Adjusted trigger date
+      await scheduleMedicineNotification(
+        id: 2,
+        title: 'Be Careful!',
+        body: 'Your medicine dosage ends tomorrow',
+        scheduledNotificationDateTime: triggerDate,
+        medicineId: '', // Provide the medicine ID if needed
+        isDone: false, // Set the notification status if needed
+      );
+    }
+  }
+
+
 }
+
+  ///reepat sotmet mra
+//
+//   Future<void> scheduleMedicineNotification({
+//     int id = 0,
+//     String? title,
+//     String? body,
+//     required DateTime scheduledNotificationDateTime,
+//     String? medicineId,
+//     bool? isDone,
+//     required int repeatCount, // The number of times the notification should repeat per day
+//   }) async {
+//     // Initialize the time zones (you may need to add this initialization in your app setup)
+//     tz.initializeTimeZones();
+//
+//     // Calculate the interval between each notification based on repeat count
+//     Duration interval = Duration(hours: 24 ~/ repeatCount);
+//
+//     // Define notification details for Android
+//     final androidNotificationDetails = AndroidNotificationDetails(
+//       'channelId',
+//       'channelName',
+//       importance: Importance.max,
+//       priority: Priority.max,
+//       // Add other notification settings here as needed
+//     );
+//     final notificationDetails = NotificationDetails(
+//       android: androidNotificationDetails,
+//     );
+//
+//     // Loop to schedule the notifications based on the repeat count
+//     for (int i = 0; i < repeatCount; i++) {
+//       // Calculate the scheduled time for each notification
+//       final scheduledTime = tz.TZDateTime.from(
+//         scheduledNotificationDateTime.add(interval * i),
+//         tz.local,
+//       );
+//
+//       // Log the scheduled time for debugging purposes
+//       print('Scheduling notification ID ${id + i} at time: $scheduledTime');
+//
+//       // Schedule the notification
+//       await notificationsPlugin.zonedSchedule(
+//         id + i,
+//         title,
+//         body,
+//         scheduledTime,
+//         notificationDetails,
+//         payload: medicineId, // Use the medicine ID as payload
+//         androidAllowWhileIdle: true,
+//         uiLocalNotificationDateInterpretation: UILocalNotificationDateInterpretation.absoluteTime,
+//       );
+//     }
+//   }
+// }
+///commeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeent
+
 ////////////////////////////////////
 // class NotificationService {
 //   final FlutterLocalNotificationsPlugin notificationsPlugin =

@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+
 class DateRangePickerControllerExample extends StatefulWidget {
+  final Function(DateTime?, DateTime?) onDateRangeChanged; // Callback function
+
+  DateRangePickerControllerExample({required this.onDateRangeChanged});
+
   @override
   _DateRangePickerControllerExampleState createState() =>
       _DateRangePickerControllerExampleState();
@@ -9,87 +16,48 @@ class DateRangePickerControllerExample extends StatefulWidget {
 
 class _DateRangePickerControllerExampleState
     extends State<DateRangePickerControllerExample> {
-  late String _startDateTab1;
-  late String _endDateTab1;
-  late DateTime _selectedStartDateTab1;
-  late DateTime _selectedEndDateTab1;
-
-  late String _startDateTab2;
-  late String _endDateTab2;
-  late DateTime _selectedStartDateTab2;
-  late DateTime _selectedEndDateTab2;
+  DateTime? _selectedStartDate = DateTime.now();
+  DateTime? _selectedEndDate = DateTime.now()?.add(Duration(days: 3));
+  late String _startDateFormatted = DateFormat('dd, MMMM yyyy').format(_selectedStartDate!);
+  late String _endDateFormatted = DateFormat('dd, MMMM yyyy').format(_selectedEndDate!);
 
   @override
   void initState() {
-    final DateTime today = DateTime.now();
-    _selectedStartDateTab1 = today;
-    _selectedEndDateTab1 = today.add(Duration(days: 3));
-    _startDateTab1 =
-        DateFormat('dd, MMMM yyyy').format(_selectedStartDateTab1).toString();
-    _endDateTab1 =
-        DateFormat('dd, MMMM yyyy').format(_selectedEndDateTab1).toString();
-
-    _selectedStartDateTab2 = today;
-    _selectedEndDateTab2 = today.add(Duration(days: 3));
-    _startDateTab2 =
-        DateFormat('dd, MMMM yyyy').format(_selectedStartDateTab2).toString();
-    _endDateTab2 =
-        DateFormat('dd, MMMM yyyy').format(_selectedEndDateTab2).toString();
-
     super.initState();
   }
 
-  void selectionChangedTab1(DateTime? startDate, DateTime? endDate) {
+  void _onDateRangeChanged(DateTime? startDate, DateTime? endDate) {
     setState(() {
-      _selectedStartDateTab1 = startDate ?? DateTime.now();
-      _selectedEndDateTab1 = endDate ?? _selectedStartDateTab1;
-      _startDateTab1 =
-          DateFormat('dd, MMMM yyyy').format(_selectedStartDateTab1).toString();
-      _endDateTab1 =
-          DateFormat('dd, MMMM yyyy').format(_selectedEndDateTab1).toString();
+      _selectedStartDate = startDate;
+      _selectedEndDate = endDate;
+
+      _startDateFormatted = DateFormat('dd, MMMM yyyy').format(_selectedStartDate!);
+      _endDateFormatted = DateFormat('dd, MMMM yyyy').format(_selectedEndDate!);
+
+      // Call the callback function to pass selected dates
+      widget.onDateRangeChanged(_selectedStartDate, _selectedEndDate);
     });
   }
 
-  void selectionChangedTab2(DateTime? startDate, DateTime? endDate) {
-    setState(() {
-      _selectedStartDateTab2 = startDate ?? DateTime.now();
-      _selectedEndDateTab2 = endDate ?? _selectedStartDateTab2;
-      _startDateTab2 =
-          DateFormat('dd, MMMM yyyy').format(_selectedStartDateTab2).toString();
-      _endDateTab2 =
-          DateFormat('dd, MMMM yyyy').format(_selectedEndDateTab2).toString();
-    });
-  }
-
-  Future<void> _openDatePicker(BuildContext context,
-      Function(DateTime?, DateTime?)
-      selectionChanged) async {
-    final DateTime? picked = await showDatePicker(
+  Future<void> _openDatePicker(BuildContext context) async {
+    final DateTime? pickedStartDate = await showDatePicker(
       context: context,
-      initialDate: selectionChanged == selectionChangedTab1
-          ? _selectedStartDateTab1
-          : _selectedStartDateTab2,
+      initialDate: _selectedStartDate!,
       firstDate: DateTime.now(),
       lastDate: DateTime(2100),
     );
 
-    if (picked != null) {
-      final DateTime? endDate = await showDatePicker(
+    if (pickedStartDate != null) {
+      final DateTime? pickedEndDate = await showDatePicker(
         context: context,
-        initialDate: picked,
-        firstDate: picked,
+        initialDate: pickedStartDate,
+        firstDate: pickedStartDate,
         lastDate: DateTime(2100),
       );
 
-      setState(() {
-        if (endDate != null) {
-          if (selectionChanged == selectionChangedTab1) {
-            selectionChanged(picked, endDate);
-          } else {
-            selectionChangedTab2(picked, endDate);
-          }
-        }
-      });
+      if (pickedEndDate != null) {
+        _onDateRangeChanged(pickedStartDate, pickedEndDate);
+      }
     }
   }
 
@@ -97,56 +65,42 @@ class _DateRangePickerControllerExampleState
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-      child: Row(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+          // Start date picker
+          Text(
+            'Start Date',
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+          ),
+          GestureDetector(
+            onTap: () {
+              _openDatePicker(context);
+            },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  'Start Date',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
-                ),
-                SizedBox(height: 12),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(_startDateTab1),
-                    GestureDetector(
-                      child: Icon(
-                          Icons.calendar_today, color: Color(0xff5D65B0)),
-                      onTap: () {
-                        _openDatePicker(context, selectionChangedTab1);
-                      },
-                    ),
-                  ],
-                ),
+                Text(_startDateFormatted),
+                Icon(Icons.calendar_today, color: Color(0xff5D65B0)),
               ],
             ),
           ),
-          SizedBox(width: 12),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+
+          // End date picker
+          SizedBox(height: 12),
+          Text(
+            'End Date',
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+          ),
+          GestureDetector(
+            onTap: () {
+              _openDatePicker(context);
+            },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  'End date',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
-                ),
-                SizedBox(height: 12),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(_endDateTab2),
-                    GestureDetector(
-                      child: Icon(
-                          Icons.calendar_today, color: Color(0xff5D65B0)),
-                      onTap: () {
-                        _openDatePicker(context, selectionChangedTab2);
-                      },
-                    ),
-                  ],
-                ),
+                Text(_endDateFormatted),
+                Icon(Icons.calendar_today, color: Color(0xff5D65B0)),
               ],
             ),
           ),

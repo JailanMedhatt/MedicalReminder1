@@ -80,9 +80,16 @@ class _TaskListTabState extends State<TaskListTab> {
                   ),
                   //SizedBox(height: 20),
                   // Doctor Appointments
-
+                  MyProvider.appointmentList.isEmpty ?
+                  Container(child: Column(
+                    children: [
+                      Image.asset("assets/images/noapp2.jpg"),
+                      Center(child: Text("There is no appointmnet added for today",
+                        style: TextStyle(fontWeight: FontWeight.bold,fontSize: 17),)),
+                    ],
+                  ),) :
                   Expanded(child:
-                  ListView.builder(itemBuilder: (context, index) {
+                    ListView.builder(itemBuilder: (context, index) {
                     return
                       DoctorWidget(appointment: MyProvider
                           .appointmentList[index]);

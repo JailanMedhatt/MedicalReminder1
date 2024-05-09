@@ -1,14 +1,17 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Time extends StatefulWidget {
+  // final ValueChanged<TimeOfDay> onTimeChanged;
+  //
+  // Time({required this.onTimeChanged});
+
   @override
   _TimeState createState() => _TimeState();
 }
 
 class _TimeState extends State<Time> {
-  TimeOfDay _time = TimeOfDay(hour: 0, minute: 00);
+  TimeOfDay _time = TimeOfDay(hour: 0, minute: 0);
 
   void _selectTime() async {
     final TimeOfDay? newTime = await showTimePicker(
@@ -16,10 +19,17 @@ class _TimeState extends State<Time> {
       initialTime: _time,
     );
     if (newTime != null) {
-      setState(() {_time = newTime;
+      setState(() {
+        _time = newTime;
       });
+
+      // Pass the selected time back to the parent widget
+      //widget.onTimeChanged(_time);
     }
-  }Widget build(BuildContext context) {
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
       child: Column(
@@ -42,7 +52,7 @@ class _TimeState extends State<Time> {
                 color: Color(0xffEDF2F3),
                 borderRadius: BorderRadius.all(Radius.circular(12)),
               ),
-              child:   Row(
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
@@ -54,16 +64,14 @@ class _TimeState extends State<Time> {
                   ),
                   GestureDetector(
                     child: Icon(Icons.timelapse, color: Color(0xff5D65B0)),
-                    onTap: () {
-                      _selectTime();
-                    },
-                  )
+                    onTap: _selectTime,
+                  ),
                 ],
-              ), ), ),
-        ], ),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
-
-
-
   }
 }
