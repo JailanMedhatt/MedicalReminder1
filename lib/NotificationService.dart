@@ -242,7 +242,7 @@ class NotificationService {
 
 }
 
-  ///reepat sotmet mra
+  /// sotmet mra
 //
 //   Future<void> scheduleMedicineNotification({
 //     int id = 0,
