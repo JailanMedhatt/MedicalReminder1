@@ -326,7 +326,7 @@ class _SchadualePageState extends State<SchadualePage> {
           listProvider.getAllMedicinesFromFireStore();
           NotificationService().scheduleMedicineNotification(
 
-            repeatCount: 5,
+           // repeatCount: 5,
             id: 1,
             title: 'Medicine Reminder',
             body: '${medicine.MedicineName} - ${medicine.NoOfPills} pills',
