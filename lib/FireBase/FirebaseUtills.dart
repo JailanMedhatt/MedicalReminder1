@@ -60,17 +60,21 @@ class FireBaseUtills {
         toFirestore: (medicine, option) => medicine.toFireSstore());
   }
 
-
-
-
   static Future<void> addmedicineToFireStore(Medicine medicine) {
     var medicineCollection = getMedicineCollection();
     DocumentReference<Medicine> docRef = medicineCollection.doc();
     medicine.id = docRef.id;
     return docRef.set(medicine);
   }
-  static  editUAppointmentDetails(bool isDone,String Id,String Appointmentid){
-     getAppointmentCollection(Id).doc(Appointmentid).update({"isDone":isDone});
+
+  static editMedicineReminder(Medicine medicine) {
+    return getMedicineCollection()
+        .doc(medicine.id)
+        .update(medicine.toFireSstore());
+  }
+
+  static editUAppointmentDetails(bool isDone, String Id, String Appointmentid) {
+    getAppointmentCollection(Id).doc(Appointmentid).update({"isDone": isDone});
   }
   // static  editAppointmentDetails(Appointment appointment, String Id){
   //   getUserCollectionRef().doc(id).update();

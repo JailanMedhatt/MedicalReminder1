@@ -2,10 +2,12 @@ import 'package:finalproject1/FireBase/Models/Medicine.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class CustomList extends StatefulWidget {
+import '../../UI/Edit Medicine.dart';
 
-  Medicine  medicine;
- CustomList({required this.medicine});
+class CustomList extends StatefulWidget {
+  Medicine medicine;
+
+  CustomList({required this.medicine});
 
   @override
   _CustomListState createState() => _CustomListState();
@@ -17,114 +19,117 @@ class _CustomListState extends State<CustomList> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(right: 20, top: 8, bottom: 8, left: 20),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-        color: Colors.grey[350],
-      ),
-      child: Row(
-        children: [
-          Column(
-            children: [
-              Row(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.all(16.0),
-                    child: FaIcon(
-                      FontAwesomeIcons.pills,
-                      size: 30,
-                      color: Color(0xff5D65B0),
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                width: 12.0,
-              ),
-              Text(
-
-              "${widget.medicine?.time?.hour.toString().padLeft(
-    2, '0')}:${widget.medicine.time?.minute.toString()
-        .padLeft(2, '0')}",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.grey,
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(
-                  left: 7.0,
-                  top: 7,
-                  bottom: 7,
-                  right: 7,
-                ),
-                child: Text(
-                  "",
-                  style: TextStyle(color: Colors.deepPurple),
-                ),
-              ),
-            ],
-          ),
-          SizedBox(
-            width: 40,
-          ),
-          Expanded(
-            child: Row(
+    return InkWell(
+      onTap: () {
+        Navigator.of(context)
+            .pushNamed(EditMedicine.routeName, arguments: widget.medicine);
+      },
+      child: Container(
+        margin: EdgeInsets.only(right: 20, top: 8, bottom: 8, left: 20),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          color: Colors.grey[350],
+        ),
+        child: Row(
+          children: [
+            Column(
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                Row(
                   children: [
-                    SizedBox(
-                      height: 8.0,
-                    ),
-                    Text(
-                      widget.medicine.MedicineName ?? 'oo'  ,
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Text(
-                      '${widget.medicine.NoOfPills.toString()} Pills',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
+                    Padding(
+                      padding: EdgeInsets.all(16.0),
+                      child: FaIcon(
+                        FontAwesomeIcons.pills,
+                        size: 30,
+                        color: Color(0xff5D65B0),
                       ),
                     ),
                   ],
                 ),
-                Spacer(),
+                SizedBox(
+                  width: 12.0,
+                ),
+                Text(
+                  "${widget.medicine?.time?.hour.toString().padLeft(2, '0')}:${widget.medicine.time?.minute.toString().padLeft(2, '0')}",
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.grey,
+                  ),
+                ),
                 Padding(
-                  padding: const EdgeInsets.only(right: 5.0),
-                  child: Row(
-                    children: [
-                      Radio<bool?>(
-                        value: true,
-                        groupValue: radioValue,
-                        activeColor: Color(0xff5D65B0),
-                        onChanged: (bool? value) {
-                          setState(() {
-                            radioValue = value;
-                          });
-                        },
-                      ),
-                      Text(
-                        "Taken",
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xff5D65B0),
-                        ),
-                      ),
-                    ],
+                  padding: EdgeInsets.only(
+                    left: 7.0,
+                    top: 7,
+                    bottom: 7,
+                    right: 7,
+                  ),
+                  child: Text(
+                    "",
+                    style: TextStyle(color: Colors.deepPurple),
                   ),
                 ),
               ],
             ),
-          ),
-        ],
+            SizedBox(
+              width: 40,
+            ),
+            Expanded(
+              child: Row(
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        height: 8.0,
+                      ),
+                      Text(
+                        widget.medicine.MedicineName ?? 'oo',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        '${widget.medicine.NoOfPills.toString()} Pills',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Spacer(),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 5.0),
+                    child: Row(
+                      children: [
+                        Radio<bool?>(
+                          value: true,
+                          groupValue: radioValue,
+                          activeColor: Color(0xff5D65B0),
+                          onChanged: (bool? value) {
+                            setState(() {
+                              radioValue = value;
+                            });
+                          },
+                        ),
+                        Text(
+                          "Taken",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xff5D65B0),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

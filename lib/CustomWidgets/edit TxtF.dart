@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 class EditTxtF extends StatelessWidget {
   String title;
-  String hintTxt;
+  var controller = TextEditingController();
   IconData? iconTitle;
   TextInputType? keyBoard;
   double? width;
 
   EditTxtF(
       {required this.title,
-      required this.hintTxt,
+      required this.controller,
       this.iconTitle,
       this.keyBoard,
       this.width});
@@ -51,16 +51,20 @@ class EditTxtF extends StatelessWidget {
           //Type TextField
           width: width ?? 340,
           height: 42,
-          child: TextField(
-            controller: TextEditingController(),
+          child: TextFormField(
+            validator: (text) {
+              if (text == null || text.isEmpty) {
+                return 'please enter text';
+              }
+              return null;
+            },
+            controller: controller,
             keyboardType: keyBoard,
             maxLines: 1,
             textAlign: TextAlign.center,
             decoration: InputDecoration(
               enabledBorder: InputBorder.none,
-              hintText: hintTxt, // pass the hint text parameter here
-              hintStyle: TextStyle(
-                  color: Color(0x887E7E).withOpacity(0.99), fontSize: 21),
+              // pass the hint text parameter here
             ),
             style: TextStyle(
               color: Colors.black,

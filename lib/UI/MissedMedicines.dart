@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'Edit Medicine.dart';
-
 class MissedMedicines extends StatelessWidget {
   static final String routeName = "missed-meds";
 
@@ -57,17 +55,11 @@ class MissedMedicines extends StatelessWidget {
                                 Icon(
                                   Icons.error_outline,
                                 ),
-                                InkWell(
-                                  onTap: () {
-                                    Navigator.pushNamed(
-                                        context, EditMedicine.routeName);
-                                  },
-                                  child: Text(
-                                    " Calcitas-D       2 pills",
-                                    style: TextStyle(
-                                        fontSize: 23,
-                                        fontWeight: FontWeight.bold),
-                                  ),
+                                Text(
+                                  " Calcitas-D       2 pills",
+                                  style: TextStyle(
+                                      fontSize: 23,
+                                      fontWeight: FontWeight.bold),
                                 ),
                               ],
                             ),
