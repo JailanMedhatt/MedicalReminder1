@@ -2,7 +2,6 @@ import 'package:finalproject1/CustomWidgets/check%20MedType.dart';
 import 'package:finalproject1/CustomWidgets/edit%20TxtF.dart';
 import 'package:finalproject1/providers/ReminderProvider.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import '../CustomWidgets/DateEditRow.dart';
@@ -10,13 +9,16 @@ import '../FireBase/Models/Medicine.dart';
 
 class EditMedicine extends StatefulWidget {
   static final String routeName = "edit med";
+  DateTime selectedDate = DateTime.now();
 
   @override
   State<EditMedicine> createState() => _EditMedicineState();
 }
 
 class _EditMedicineState extends State<EditMedicine> {
-  String selectedDate = DateFormat("dd-MM-yyyy").format(DateTime.now());
+  // String selectedDate = DateFormat("dd-MM-yyyy").format(DateTime.now());
+  DateTime selectedDate1 = DateTime.now();
+  DateTime selectedDate2 = DateTime.now();
   var formKey = GlobalKey<FormState>();
   late ReminderListProvider listProvider;
   var mednamecontroller = TextEditingController();
@@ -31,6 +33,8 @@ class _EditMedicineState extends State<EditMedicine> {
       mednamecontroller.text = medicine.MedicineName ?? "";
       timecontroller.text = medicine.time!.hour.toString() ?? "";
       dosagecontroller.text = medicine.NoOfPills.toString() ?? "";
+      selectedDate1 = medicine!.StartDate!;
+      selectedDate2 = medicine!.EndDate!;
     }
     listProvider = Provider.of<ReminderListProvider>(context);
     return Stack(children: [
@@ -80,14 +84,7 @@ class _EditMedicineState extends State<EditMedicine> {
               ),
               Row(
                 children: [
-                  DateEditRow(
-                    title: 'Start Date',
-                    date: '${selectedDate}',
-                  ),
-                  DateEditRow(
-                    title: 'End Date',
-                    date: '${selectedDate}',
-                  ),
+                  DateEditRow(),
                 ],
               ),
               SizedBox(
@@ -101,7 +98,7 @@ class _EditMedicineState extends State<EditMedicine> {
                     fontWeight: FontWeight.w600),
               ),
               CheckMedType(
-                type: ' ',
+                type: "",
                 IMG: "",
               ),
               Padding(
