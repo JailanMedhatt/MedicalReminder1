@@ -1,15 +1,18 @@
 import 'package:finalproject1/CustomWidgets/check%20MedType.dart';
 import 'package:finalproject1/CustomWidgets/edit%20TxtF.dart';
+import 'package:finalproject1/FireBase/FirebaseUtills.dart';
 import 'package:finalproject1/providers/ReminderProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../CustomWidgets/DateEditRow.dart';
+import '../DialogUtills.dart';
 import '../FireBase/Models/Medicine.dart';
 
 class EditMedicine extends StatefulWidget {
   static final String routeName = "edit med";
-  DateTime selectedDate = DateTime.now();
+
+  // DateTime selectedDate = DateTime.now();
 
   @override
   State<EditMedicine> createState() => _EditMedicineState();
@@ -29,13 +32,15 @@ class _EditMedicineState extends State<EditMedicine> {
   @override
   Widget build(BuildContext context) {
     if (medicine == null) {
-      var medicine = ModalRoute.of(context)?.settings.arguments as Medicine;
-      mednamecontroller.text = medicine.MedicineName ?? "";
-      timecontroller.text = medicine.time!.hour.toString() ?? "";
-      dosagecontroller.text = medicine.NoOfPills.toString() ?? "";
+      // Remove 'var' to refer to the class-level 'medicine' variable
+      medicine = ModalRoute.of(context)?.settings.arguments as Medicine;
+      mednamecontroller.text = medicine!.MedicineName ?? "";
+      timecontroller.text = medicine!.time!.hour.toString() ?? "";
+      dosagecontroller.text = medicine!.NoOfPills.toString() ?? "";
       selectedDate1 = medicine!.StartDate!;
       selectedDate2 = medicine!.EndDate!;
     }
+
     listProvider = Provider.of<ReminderListProvider>(context);
     return Stack(children: [
       Container(
@@ -105,7 +110,7 @@ class _EditMedicineState extends State<EditMedicine> {
                 padding: const EdgeInsets.only(left: 29, right: 29, bottom: 12),
                 child: ElevatedButton(
                   onPressed: () {
-                    // editMedicine();
+                    editMedicine();
                   },
                   style: ButtonStyle(
                       backgroundColor:
@@ -130,22 +135,41 @@ class _EditMedicineState extends State<EditMedicine> {
       ),
     ]);
   }
-// void editMedicine() {
-//   if (formKey.currentState?.validate() == true) {
-//     medicine?.MedicineName = mednamecontroller.text;
-//     medicine.time!.hour.toString()??"" = timecontroller.text;
-//     task?.dateTime = selectedDate;
-//     var authProvider = Provider.of<AuthProvider>(context, listen: false);
-//     DialogUtills.showLoading(context, 'loading...');
-//
-//     FirebaseUtils.editTask(task!, authProvider.currentUser!.id!)
-//         .then((value) {
-//       DialogUtills.hideLoading(context);
-//     }).timeout(Duration(milliseconds: 500), onTimeout: () {
-//       print('success');
-//       listProvider.getTasksFromFs(authProvider.currentUser!.id!);
-//       Navigator.pop(context);
-//     });
-//   }
-// }
+
+  void editMedicine() {
+    if (formKey.currentState?.validate() == true) {
+      if (medicine != null) {
+        // Check if medicine is not null
+        // Accessing properties and methods of medicine, ensuring it's not null
+        medicine!.MedicineName = mednamecontroller.text;
+        medicine!.StartDate = selectedDate1;
+        medicine!.EndDate = selectedDate2;
+        // Parsing string to integer
+        int? dosage;
+        try {
+          dosage = int.parse(dosagecontroller.text);
+        } catch (e) {
+          print('Error parsing dosage: $e');
+          // Handle the case where dosage is not a valid integer
+          return; // Exit the function early to prevent further execution
+        }
+
+        medicine!.NoOfPills = dosage!;
+
+        DialogUtills.showLoading(context);
+
+        FireBaseUtills.editMedicineReminder(medicine!).then((value) {
+          DialogUtills.hideLoading(context);
+        }).timeout(Duration(milliseconds: 500), onTimeout: () {
+          print('success');
+          listProvider.getAllMedicinesFromFireStore();
+          Navigator.pop(context);
+        });
+      } else {
+        // Handle the case when medicine is null
+        print('Medicine is null!');
+        // Optionally, you can show a message to the user or perform other actions
+      }
+    }
+  }
 }
