@@ -35,8 +35,9 @@ class _EditMedicineState extends State<EditMedicine> {
       // Remove 'var' to refer to the class-level 'medicine' variable
       medicine = ModalRoute.of(context)?.settings.arguments as Medicine;
       mednamecontroller.text = medicine!.MedicineName ?? "";
-      timecontroller.text = medicine!.time!.hour.toString() ?? "";
-      dosagecontroller.text = medicine!.NoOfPills.toString() ?? "";
+      timecontroller.text =
+          "${medicine!.time!.hour.toString()}:${medicine!.time!.minute.toString()}";
+      dosagecontroller.text = medicine!.NoOfPills.toString();
       selectedDate1 = medicine!.StartDate!;
       selectedDate2 = medicine!.EndDate!;
     }
