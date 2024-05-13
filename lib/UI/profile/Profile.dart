@@ -2,11 +2,14 @@ import 'package:finalproject1/CustomWidgets/InfoContainer.dart';
 import 'package:finalproject1/UI/profile/PhoneModalSheet.dart';
 import 'package:finalproject1/ViewModels/Profile/ProfileStates.dart';
 import 'package:finalproject1/ViewModels/Profile/ProfileViewModel.dart';
+import 'package:finalproject1/myTheme.dart';
+import 'package:finalproject1/providers/list_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 class Profile extends StatelessWidget {
   static final String routeName = "profile";
@@ -15,13 +18,11 @@ class Profile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var listProvider = Provider.of<ListProvider>(context);
     return Stack(
-      children:[ Container(   decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("assets/images/Opening.png"),
-          fit: BoxFit.cover,
-        ),
-      )),
+      children:[ Container(  decoration: BoxDecoration(
+    image:listProvider.getBackgroundImage(),),
+      ),
         SafeArea(
         child: Scaffold(
           backgroundColor: Colors.transparent,
@@ -44,7 +45,10 @@ class Profile extends StatelessWidget {
                 children: [
                   Container( margin: EdgeInsets.only(top: 10.h, bottom: 15.h),
                     decoration: BoxDecoration(
-                      color: Color(0xd45d65b0),
+                      color: listProvider.isDarkMode()?
+                          MyTheme.n.withOpacity(0.80)
+                      :
+                      Color(0xd45d65b0),
                       borderRadius: BorderRadius.circular(20),
                     ),
                     height: 310.h,
