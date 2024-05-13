@@ -135,16 +135,42 @@ class _EditMedicineState extends State<EditMedicine> {
       ),
     ]);
   }
-
   void editMedicine() {
     if (formKey.currentState?.validate() == true) {
       if (medicine != null) {
-        // Check if medicine is not null
         // Accessing properties and methods of medicine, ensuring it's not null
         medicine!.MedicineName = mednamecontroller.text;
+
+        // Parsing time from string to DateTime
+        DateTime? newTime;
+        try {
+          final List<String> timeComponents = timecontroller.text.split(':');
+          if (timeComponents.length == 2) {
+            final int hours = int.parse(timeComponents[0]);
+            final int minutes = int.parse(timeComponents[1]);
+            newTime = DateTime(medicine!.time!.year, medicine!.time!.month,
+                medicine!.time!.day, hours, minutes);
+          } else {
+            throw FormatException('Invalid time format');
+          }
+        } catch (e) {
+          print('Error parsing time: $e');
+          // Handle the case where time format is invalid
+          return; // Exit the function early to prevent further execution
+        }
+
+        // Assigning new time to medicine
+        if (newTime != null) {
+          medicine!.time = newTime;
+        } else {
+          print('New time is null!');
+          return; // Exit the function early if newTime is null
+        }
+
         medicine!.StartDate = selectedDate1;
         medicine!.EndDate = selectedDate2;
-        // Parsing string to integer
+
+        // Parsing dosage from string to integer
         int? dosage;
         try {
           dosage = int.parse(dosagecontroller.text);
@@ -154,6 +180,7 @@ class _EditMedicineState extends State<EditMedicine> {
           return; // Exit the function early to prevent further execution
         }
 
+        // Assigning parsed dosage to medicine
         medicine!.NoOfPills = dosage!;
 
         DialogUtills.showLoading(context);
