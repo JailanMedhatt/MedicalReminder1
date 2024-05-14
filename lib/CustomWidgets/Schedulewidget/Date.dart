@@ -50,7 +50,7 @@ class _DateRangePickerControllerExampleState
     if (pickedStartDate != null) {
       final DateTime? pickedEndDate = await showDatePicker(
         context: context,
-        initialDate: pickedStartDate,
+        initialDate: _selectedEndDate!,
         firstDate: pickedStartDate,
         lastDate: DateTime(2100),
       );
@@ -60,7 +60,6 @@ class _DateRangePickerControllerExampleState
       }
     }
   }
-
   @override
   Widget build(BuildContext context) {
     return Container(

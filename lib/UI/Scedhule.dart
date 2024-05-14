@@ -31,7 +31,7 @@ class _SchadualePageState extends State<SchadualePage> {
   String description = '';
   int n = 0;
   DateTime? startDate = DateTime.now();
-  DateTime? endDate = DateTime.now();
+  DateTime? endDate = DateTime.now().add(Duration(days: 3));
 
   DateTime? selectedTime = DateTime.now();
   var formKey = GlobalKey<FormState>();
@@ -325,8 +325,9 @@ class _SchadualePageState extends State<SchadualePage> {
           print('added done');
           listProvider.getAllMedicinesFromFireStore();
           NotificationService().scheduleMedicineNotification(
-
-           // repeatCount: 5,
+           // startDate: medicine.StartDate!,
+           // endDate: medicine.EndDate!,
+           //  repeatCount: 4,
             id: 1,
             title: 'Medicine Reminder',
             body: '${medicine.MedicineName} - ${medicine.NoOfPills} pills',

@@ -243,12 +243,15 @@ class NotificationService {
 }
 
   /// sotmet mra
-//
+
+
 //   Future<void> scheduleMedicineNotification({
 //     int id = 0,
 //     String? title,
 //     String? body,
 //     required DateTime scheduledNotificationDateTime,
+//     required DateTime startDate,
+//     required DateTime endDate,
 //     String? medicineId,
 //     bool? isDone,
 //     required int repeatCount, // Number of times the notification should repeat per day
@@ -258,7 +261,9 @@ class NotificationService {
 //
 //     // Convert scheduledNotificationDateTime to the local time zone
 //     final localTime = tz.TZDateTime.from(
-//         scheduledNotificationDateTime, tz.local);
+//       scheduledNotificationDateTime,
+//       tz.local,
+//     );
 //
 //     // Determine the interval based on the repeatCount
 //     int x;
@@ -287,6 +292,9 @@ class NotificationService {
 //     // Calculate interval between each notification based on repeat count
 //     Duration interval = Duration(hours: x);
 //
+//     // Calculate the number of days between startDate and endDate
+//     int numberOfDays = endDate.difference(startDate).inDays;
+//
 //     // Notification details
 //     final androidNotificationDetails = AndroidNotificationDetails(
 //       'channelId',
@@ -300,36 +308,43 @@ class NotificationService {
 //       android: androidNotificationDetails,
 //     );
 //
-//     // Loop to schedule notifications
-//     for (int i = 0; i < repeatCount; i++) {
-//       // Calculate the scheduled time for each notification
-//       final scheduledTime = localTime.add(interval * i);
-//       final tzScheduledTime = tz.TZDateTime.from(scheduledTime, tz.local);
-//
-//       // Log the scheduled time for debugging
-//       print('Scheduling notification ID ${id +
-//           i} at local time: $tzScheduledTime');
-//
-//       try {
-//         // Schedule the notification
-//         await notificationsPlugin.zonedSchedule(
-//           id + i,
-//           title,
-//           body,
-//           tzScheduledTime,
-//           notificationDetails,
-//           payload: medicineId, // Use the medicine ID as payload
-//           androidAllowWhileIdle: true,
-//           uiLocalNotificationDateInterpretation: UILocalNotificationDateInterpretation
-//               .absoluteTime,
-//           matchDateTimeComponents: DateTimeComponents.time,
+//     // Loop to schedule notifications for each day within the range
+//     for (int day = 0; day <= numberOfDays; day++) {
+//       // Calculate the scheduled time for each notification on this day
+//       for (int i = 0; i < repeatCount; i++) {
+//         final scheduledTime = localTime.add(interval * i);
+//         final tzScheduledTime = tz.TZDateTime.from(
+//           scheduledTime.add(Duration(days: day)),
+//           tz.local,
 //         );
-//         print('Successfully scheduled notification ID ${id + i}');
-//       } catch (e) {
-//         print('Failed to schedule notification ID ${id + i}: $e');
+//
+//         // Check if the scheduled time falls within the specified date range
+//         if (tzScheduledTime.isAfter(startDate) && tzScheduledTime.isBefore(endDate)) {
+//           // Log the scheduled time for debugging
+//           print('Scheduling notification ID ${id + i} at local time: $tzScheduledTime, on ${tzScheduledTime.weekday}');
+//
+//           try {
+//             // Schedule the notification
+//             await notificationsPlugin.zonedSchedule(
+//               id + i,
+//               title,
+//               body,
+//               tzScheduledTime,
+//               notificationDetails,
+//               payload: medicineId, // Use the medicine ID as payload
+//               androidAllowWhileIdle: true,
+//               uiLocalNotificationDateInterpretation: UILocalNotificationDateInterpretation.absoluteTime,
+//               matchDateTimeComponents: DateTimeComponents.time,
+//             );
+//             print('Successfully scheduled notification ID ${id + i}');
+//           } catch (e) {
+//             print('Failed to schedule notification ID ${id + i}: $e');
+//           }
+//         }
 //       }
 //     }
 //   }
+//
 // }
 
 ///commeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeent
