@@ -90,7 +90,27 @@ class _EditMedicineState extends State<EditMedicine> {
               ),
               Row(
                 children: [
-                  DateEditRow(),
+                  InkWell(
+                      onTap: () {
+                        showCalendar();
+                      },
+                      child: DateEditRow(
+                        title: 'Start Date',
+                        date:
+                            '${selectedDate1.day}/${selectedDate1.month}/${selectedDate1.year}',
+                      )),
+                  SizedBox(
+                    width: 40,
+                  ),
+                  InkWell(
+                      onTap: () {
+                        showCalendar2();
+                      },
+                      child: DateEditRow(
+                        title: 'End Date',
+                        date:
+                            '${selectedDate2.day}/${selectedDate2.month}/${selectedDate2.year}',
+                      ))
                 ],
               ),
               SizedBox(
@@ -133,6 +153,33 @@ class _EditMedicineState extends State<EditMedicine> {
       ),
     ]);
   }
+
+  void showCalendar() async {
+    var chosenDate = await showDatePicker(
+      context: context,
+      initialDate: selectedDate1,
+      firstDate: selectedDate1,
+      lastDate: DateTime.now().add(Duration(days: 365)),
+    );
+    if (chosenDate != null) {
+      selectedDate1 = chosenDate;
+      setState(() {});
+    }
+  }
+
+  void showCalendar2() async {
+    var chosenDate = await showDatePicker(
+      context: context,
+      firstDate: selectedDate2,
+      initialDate: selectedDate2,
+      lastDate: DateTime.now().add(Duration(days: 365)),
+    );
+    if (chosenDate != null) {
+      selectedDate2 = chosenDate;
+      setState(() {});
+    }
+  }
+
   void editMedicine() {
     if (formKey.currentState?.validate() == true) {
       if (medicine != null) {
