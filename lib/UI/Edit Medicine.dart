@@ -170,7 +170,7 @@ class _EditMedicineState extends State<EditMedicine> {
   void showCalendar2() async {
     var chosenDate = await showDatePicker(
       context: context,
-      firstDate: selectedDate2,
+      firstDate: DateTime.now(),
       initialDate: selectedDate2,
       lastDate: DateTime.now().add(Duration(days: 365)),
     );
