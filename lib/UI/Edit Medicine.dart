@@ -103,10 +103,7 @@ class _EditMedicineState extends State<EditMedicine> {
                     color: Color(0xff5D65B0),
                     fontWeight: FontWeight.w600),
               ),
-              CheckMedType(
-                type: "",
-                IMG: "",
-              ),
+              CheckMedType(),
               Padding(
                 padding: const EdgeInsets.only(left: 29, right: 29, bottom: 12),
                 child: ElevatedButton(
