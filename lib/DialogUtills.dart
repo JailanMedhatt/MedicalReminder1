@@ -62,6 +62,7 @@ class DialogUtills {
           title: Text(mytitle,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 23),),
             //backgroundColor: Color(0xff535a9e),
             shadowColor: Colors.purple,
+            //Colors.purple,
               elevation: 50,
               clipBehavior: Clip.antiAlias,
               //surfaceTintColor: Colors.grey,

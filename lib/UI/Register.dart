@@ -7,6 +7,9 @@ import 'package:finalproject1/ViewModels/Register/RegisterViewModel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/list_provider.dart';
 
 class Register extends StatelessWidget {
   static const String routeName = "register";
@@ -15,6 +18,7 @@ class Register extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var listProvider = Provider.of<ListProvider>(context);
     return BlocListener<RegisterViewModel, RegisterStates>(
       bloc: viewModel,
       listener: (context, state) {
@@ -37,15 +41,12 @@ class Register extends StatelessWidget {
         body: SingleChildScrollView(
           child: Container(
             decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage("assets/images/Opening.png", ),
-                    fit: BoxFit.cover,
-                )),
+                image: listProvider.getBackgroundImage(),),
             child: Column(
               children: [
                 Padding(
                     padding: EdgeInsets.only(top: 116.h, bottom: 20.h),
-                    child: Image.asset("assets/images/logoTry.png")),
+                    child: Image.asset("assets/images/logoo.png")),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 25.w),
                   child: Form(

@@ -32,6 +32,7 @@ import 'package:finalproject1/UI/MissedMedicines.dart';
 import 'package:finalproject1/UI/PatientHistory.dart';
 import 'package:finalproject1/UI/Reminder.dart';
 import 'package:finalproject1/UI/profile/Profile.dart';
+import 'package:finalproject1/myTheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:provider/provider.dart';
@@ -166,7 +167,11 @@ class _SlideMenuState extends State<SlideMenu> {
                       Icon(
                         Icons.calendar_month_outlined,
                         size: 50,
-                        color: Color(0xff5D65B0),
+                        color: listProvider.isDarkMode()?
+                            MyTheme.icondark
+                        :
+                        MyTheme.iconlight,
+                        //Color(0xff5D65B0),
                       ),
                       SizedBox.square(
                         dimension: 25,
@@ -176,14 +181,14 @@ class _SlideMenuState extends State<SlideMenu> {
                         children: [
                       Text(
                         "Schedule",
-                        style: Theme.of(context).textTheme.titleMedium,
+                        style: Theme.of(context).textTheme.titleMedium?.copyWith(fontSize: 22),
                       ),
                       Text(
                         "Schedule to your reminders ",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 16),
+                        style: listProvider.isDarkMode()?
+                        Theme.of(context).textTheme.titleSmall?.copyWith(color: MyTheme.whiteColor)
+                            :
+                        Theme.of(context).textTheme.titleSmall
                       ),
                     ],
                       )
@@ -201,7 +206,10 @@ class _SlideMenuState extends State<SlideMenu> {
                     Icon(
                       Icons.notifications_active,
                       size: 50,
-                      color: Color(0xff5D65B0),
+                      color: listProvider.isDarkMode()?
+                      MyTheme.icondark
+                          :
+                      MyTheme.iconlight,
                     ),
                     SizedBox.square(
                       dimension: 25,
@@ -215,14 +223,15 @@ class _SlideMenuState extends State<SlideMenu> {
                         children: [
                       Text(
                         "Reminder",
-                        style: Theme.of(context).textTheme.titleMedium,
+                        style: Theme.of(context).textTheme.titleMedium?.copyWith(fontSize: 22),
                       ),
                       Text(
                         "Schedule to your reminders",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 16),
+                        style:listProvider.isDarkMode()?
+                        Theme.of(context).textTheme.titleSmall?.copyWith(color: MyTheme.whiteColor)
+                            :
+                        Theme.of(context).textTheme.titleSmall
+                        //TextStyle(color: Colors.black,fontWeight: FontWeight.w400,fontSize: 16),
                       ),
                                         ],
                       ),
@@ -240,7 +249,10 @@ class _SlideMenuState extends State<SlideMenu> {
                     Icon(
                       Icons.live_help,
                       size: 50,
-                      color: Color(0xff5D65B0),
+                      color: listProvider.isDarkMode()?
+                      MyTheme.icondark
+                          :
+                      MyTheme.iconlight,
                     ),
                     SizedBox.square(
                       dimension: 25,
@@ -255,14 +267,16 @@ class _SlideMenuState extends State<SlideMenu> {
                         children: [
                       Text(
                         "Help",
-                        style: Theme.of(context).textTheme.titleMedium,
+                        style: Theme.of(context).textTheme.titleMedium?.copyWith(fontSize: 22),
                       ),
                       Text(
                         "Schedule to your reminders",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 16),
+                        style:listProvider.isDarkMode()?
+                        Theme.of(context).textTheme.titleSmall?.copyWith(color: MyTheme.whiteColor)
+                        :
+                        Theme.of(context).textTheme.titleSmall
+                        ,
+                        //TextStyle(fontWeight: FontWeight.w400,fontSize: 16),
                       ),
                     ],
                       ),
@@ -284,7 +298,10 @@ class _SlideMenuState extends State<SlideMenu> {
                       Icon(
                         Icons.health_and_safety,
                         size: 50,
-                        color: Color(0xff5D65B0),
+                          color:listProvider.isDarkMode()?
+                          MyTheme.icondark
+                              :
+                          MyTheme.iconlight,
                       ),
                       SizedBox.square(
                         dimension: 25,
@@ -294,14 +311,14 @@ class _SlideMenuState extends State<SlideMenu> {
                         children: [
                       Text(
                         "Health Tips",
-                        style: Theme.of(context).textTheme.titleMedium,
+                        style: Theme.of(context).textTheme.titleMedium?.copyWith(fontSize: 22),
                       ),
                       Text(
                         "Schedule to your reminders",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 16),
+                        style: listProvider.isDarkMode()?
+                        Theme.of(context).textTheme.titleSmall?.copyWith(color: MyTheme.whiteColor)
+                            :
+                        Theme.of(context).textTheme.titleSmall?.copyWith(fontSize: 16),
                       ),
                     ],
                       )

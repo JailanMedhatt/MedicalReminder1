@@ -1,8 +1,11 @@
+import 'package:finalproject1/myTheme.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
 import 'dart:convert';
 
 import '../ViewModels/ApiOfHealth.dart';
+import '../providers/list_provider.dart';
 
 class ApiManager {
   final String apiUrl;
@@ -42,20 +45,23 @@ class _TipsPageState extends State<TipsPage> {
 
   @override
   Widget build(BuildContext context) {
+    var listProvider = Provider.of<ListProvider>(context);
     return Stack(
       children: [
         Container(
           decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage("assets/images/tipsBG.png"),
-                  fit: BoxFit.cover)),
+              image: listProvider.getBackgroundImage(),),
         ),
         Scaffold(
           backgroundColor: Colors.transparent,
           appBar: AppBar(
             backgroundColor: Colors.transparent,
             title: Text("Health Tips",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 23)),
+                style: //TextStyle(fontWeight: FontWeight.bold, fontSize: 23)
+                listProvider.isDarkMode()?
+            Theme.of(context).textTheme.titleLarge
+            :
+                Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 23)),
           ),
           body: FutureBuilder<List<Glossary>>(
             future: resources,
@@ -78,7 +84,12 @@ class _TipsPageState extends State<TipsPage> {
                         elevation: 20.0,
                         child: Container(
                           decoration: BoxDecoration(
-                              color: Colors.white.withOpacity(0.85),
+                              color: //Colors.white.withOpacity(0.85),
+                              listProvider.isDarkMode()?
+                              MyTheme.n.withOpacity(0.80)
+                              :
+                              MyTheme.whiteColor.withOpacity(0.80)
+                              ,
                               borderRadius: BorderRadius.circular(15)),
                           child: Padding(
                             padding: const EdgeInsets.all(10.0),
@@ -87,14 +98,21 @@ class _TipsPageState extends State<TipsPage> {
                               children: [
                                 Text(
                                   resources[index].title ?? "",
-                                  style: TextStyle(
-                                      fontSize: 22, fontWeight: FontWeight.w600),
+                                  style: //TextStyle(
+                                      //fontSize: 22, fontWeight: FontWeight.w600),
+                                  Theme.of(context).textTheme.titleLarge,
                                 ),
                                 SizedBox(height: 10),
                                 Text(
                                   resources[index].content ?? "",
-                                  style: TextStyle(
-                                      fontSize: 16, fontWeight: FontWeight.normal),
+                                  style: //TextStyle(
+                                     // fontSize: 16, fontWeight: FontWeight.normal),
+                                  listProvider.isDarkMode()?
+                                  Theme.of(context).textTheme.titleSmall?.copyWith(color: MyTheme.whiteColor)
+                                      :
+                                  Theme.of(context).textTheme.titleSmall
+
+
                                 ),
                                 SizedBox(height: 10),
                                 // Add more information as needed

@@ -6,6 +6,9 @@ import 'package:finalproject1/ViewModels/LoginViewModel/LoginViewModel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/list_provider.dart';
 
 class LoginPage extends StatelessWidget {
   static const String routeName = "login";
@@ -14,6 +17,7 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var listProvider = Provider.of<ListProvider>(context);
     return BlocListener<LoginViewModel,LoginStates>(
       bloc: viewModel,
       listener: (context, state){
@@ -37,9 +41,8 @@ class LoginPage extends StatelessWidget {
         resizeToAvoidBottomInset: false,
         body: Container(
           decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage("assets/images/Opening.png"),
-                  fit: BoxFit.cover)),
+              image:listProvider.getBackgroundImage()
+          ,),
           child: Column(
             children: [
               Padding(
