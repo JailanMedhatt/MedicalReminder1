@@ -1,6 +1,7 @@
 import 'package:finalproject1/CustomWidgets/check%20MedType.dart';
 import 'package:finalproject1/CustomWidgets/edit%20TxtF.dart';
 import 'package:finalproject1/FireBase/FirebaseUtills.dart';
+import 'package:finalproject1/UI/dosageTxtField.dart';
 import 'package:finalproject1/providers/ReminderProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -82,12 +83,7 @@ class _EditMedicineState extends State<EditMedicine> {
                 iconTitle: Icons.timer_outlined,
                 keyBoard: TextInputType.numberWithOptions(),
               ),
-              EditTxtF(
-                title: 'Dosage Of Medicine ',
-                controller: dosagecontroller,
-                iconTitle: Icons.medication_liquid_sharp,
-                keyBoard: TextInputType.number,
-              ),
+              DoseTxtF(controller: dosagecontroller),
               Row(
                 children: [
                   InkWell(
