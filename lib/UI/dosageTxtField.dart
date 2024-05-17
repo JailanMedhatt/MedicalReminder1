@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../myTheme.dart';
+import '../providers/list_provider.dart';
 
 class DoseTxtF extends StatelessWidget {
   final TextEditingController controller;
@@ -15,6 +19,7 @@ class DoseTxtF extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var listProvider =  Provider.of<ListProvider>(context);
     return Column(
       children: [
         Container(
@@ -25,24 +30,36 @@ class DoseTxtF extends StatelessWidget {
                 'Dosage Of Medicine ',
                 style: TextStyle(
                   fontSize: 22,
-                  color: Color(0xff5D65B0),
+                  color: listProvider.isDarkMode()?
+                  MyTheme.whiteColor
+                      :
+                  Color(0xff5D65B0),
                   fontWeight: FontWeight.w600,
                 ),
               ),
               Icon(
                 Icons.medication_liquid_sharp,
-                color: Color(0xff5D65B0),
+                color: listProvider.isDarkMode()?
+                MyTheme.whiteColor
+                    :
+                Color(0xff5D65B0),
               ),
             ],
           ),
         ),
         Container(
           decoration: BoxDecoration(
-            color: Color(0xEDF2F3).withOpacity(0.99),
+            color:listProvider.isDarkMode()?
+            MyTheme.n.withOpacity(0.80)
+                :
+            Color(0xEDF2F3).withOpacity(0.99),
             borderRadius: BorderRadius.circular(12),
             boxShadow: [
               BoxShadow(
-                color: Colors.grey,
+                color: listProvider.isDarkMode()?
+                Colors.transparent
+                    :
+                Colors.grey,
                 blurRadius: 4,
                 offset: Offset(4, 4), // Shadow position
               ),
@@ -53,7 +70,10 @@ class DoseTxtF extends StatelessWidget {
           child: Row(
             children: [
               IconButton(
-                icon: Icon(Icons.add, color: Color(0xff5D65B0)),
+                icon: Icon(Icons.add, color: listProvider.isDarkMode()?
+                MyTheme.whiteColor
+                    :
+                Color(0xff5D65B0)),
                 onPressed: () {
                   final value = int.tryParse(controller.text) ?? 0;
                   controller.text = (value + 1).toString();
@@ -78,7 +98,10 @@ class DoseTxtF extends StatelessWidget {
                     enabledBorder: InputBorder.none,
                   ),
                   style: TextStyle(
-                    color: Colors.black,
+                    color: listProvider.isDarkMode()?
+                    MyTheme.whiteColor
+                        :
+                    Colors.black,
                     fontSize: 20,
                   ),
                 ),
@@ -86,7 +109,10 @@ class DoseTxtF extends StatelessWidget {
               IconButton(
                 icon: Icon(
                   Icons.remove,
-                  color: Color(0xff5D65B0),
+                  color: listProvider.isDarkMode()?
+                  MyTheme.whiteColor
+                      :
+                  Color(0xff5D65B0),
                 ),
                 onPressed: () {
                   final value = int.tryParse(controller.text) ?? 0;

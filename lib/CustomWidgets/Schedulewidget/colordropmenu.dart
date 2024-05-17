@@ -1,4 +1,8 @@
+import 'package:finalproject1/myTheme.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../providers/list_provider.dart';
 
 class ColorItem {
   final Color color;
@@ -30,6 +34,7 @@ class _PillDropMenuState extends State<PillDropMenu> {
 
   @override
   Widget build(BuildContext context) {
+    var listProvider = Provider.of<ListProvider>(context);
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
       child: Column(
@@ -43,7 +48,10 @@ class _PillDropMenuState extends State<PillDropMenu> {
           DropdownButtonHideUnderline(
             child: Container(
               decoration: BoxDecoration(
-                color: Color(0xffEDF2F3),
+                color: listProvider.isDarkMode()?
+                    MyTheme.n.withOpacity(0.80)
+                    :
+                Color(0xffEDF2F3),
                 borderRadius: BorderRadius.circular(12),
               ),
               // width: MediaQuery.of(context).size.width - 24.0,

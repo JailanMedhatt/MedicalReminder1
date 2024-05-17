@@ -2,8 +2,11 @@
 import 'package:finalproject1/CustomWidgets/ReminderWidget/Calender.dart';
 import 'package:finalproject1/CustomWidgets/ReminderWidget/list.dart';
 import 'package:finalproject1/providers/ReminderProvider.dart';
+import 'package:finalproject1/providers/list_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../myTheme.dart';
 
 class Reminder extends StatefulWidget {
   static final String routeName = "reminder-page";
@@ -15,6 +18,7 @@ class Reminder extends StatefulWidget {
 class _ReminderState extends State<Reminder> {
   @override
   Widget build(BuildContext context) {
+    var myProvider = Provider.of<ListProvider>(context);
     var listProvider = Provider.of<ReminderListProvider>(context);
     //3lshan mdkholsh fe infinity loop
     if(listProvider.MedicineList.isEmpty){
@@ -23,11 +27,8 @@ class _ReminderState extends State<Reminder> {
     return Stack(
       children: [
         Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage("assets/images/Opening.png"),
-              fit: BoxFit.cover,
-            ),
+          decoration: BoxDecoration(
+            image:  myProvider.getBackgroundImage(),
           ),
         ),
         Scaffold(
@@ -51,7 +52,10 @@ class _ReminderState extends State<Reminder> {
                 },
                 icon: Icon(
                   Icons.search_sharp,
-                  color: Color(0xff5D65B0),
+                  color: myProvider.isDarkMode()?
+                      MyTheme.icondark
+                      :
+                  Color(0xff5D65B0),
                   size:40 ,
                 ),
               ),
@@ -68,7 +72,10 @@ class _ReminderState extends State<Reminder> {
                 SizedBox(width: 8),
                 Icon(
                   Icons.notifications,
-                  color: Color(0xff5D65B0),
+                  color: myProvider.isDarkMode()?
+                  MyTheme.icondark
+                      :
+                  Color(0xff5D65B0),
                   size: 32,
                 ),
 

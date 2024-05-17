@@ -1,5 +1,8 @@
+import 'package:finalproject1/myTheme.dart';
+import 'package:finalproject1/providers/list_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class Time extends StatefulWidget {
   // final ValueChanged<TimeOfDay> onTimeChanged;
@@ -30,6 +33,7 @@ class _TimeState extends State<Time> {
 
   @override
   Widget build(BuildContext context) {
+    var listProvider = Provider.of<ListProvider>(context);
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
       child: Column(
@@ -63,7 +67,9 @@ class _TimeState extends State<Time> {
                     width: 10,
                   ),
                   GestureDetector(
-                    child: Icon(Icons.timelapse, color: Color(0xff5D65B0)),
+                    child: Icon(Icons.timelapse,
+                        color:
+                    Color(0xff5D65B0)),
                     onTap: _selectTime,
                   ),
                 ],

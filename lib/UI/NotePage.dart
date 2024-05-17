@@ -1,4 +1,12 @@
+import 'package:finalproject1/myTheme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/list_provider.dart';
 
 class NotePage extends StatefulWidget {
   @override
@@ -12,11 +20,15 @@ class _NotePageState extends State<NotePage> {
 
   @override
   Widget build(BuildContext context) {
+    var listProvider = Provider.of<ListProvider>(context);
     return Container(
       decoration: BoxDecoration(gradient:LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [Color(0xffafc2e6), Color(0xffc8caf0).withOpacity(0.89)])),
+          colors: listProvider.isDarkMode()?
+         [Color(0xff101835), Color(0xff5a5e7e).withOpacity(0.89)]
+          :
+          [Color(0xffafc2e6), Color(0xffc8caf0).withOpacity(0.89)])),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(title: Text('Notes App'),backgroundColor: Colors.transparent,),
@@ -53,21 +65,28 @@ class _NotePageState extends State<NotePage> {
               ),
             ),
             Material(
-              color: Colors.transparent,
+              color:
+              Colors.transparent,
               elevation: 20,
-              child: ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    notesList.add(Note(
-                      title: titleController.text,
-                      content: contentController.text,
-                    ));
-                    // titleController.clear();
-                    // contentController.clear();
-                  });
-                },
-                child: Text('Add Note',style: TextStyle(fontSize: 19,color: Colors.black),),
-              ),
+                child: ElevatedButton(
+
+                  onPressed: () {
+                    setState(() {
+                      notesList.add(Note(
+                        title: titleController.text,
+                        content: contentController.text,
+                      ));
+                      // titleController.clear();
+                      // contentController.clear();
+                    });
+                  },
+                  child: Text('Add Note',style: TextStyle(fontSize: 19,color:
+                      listProvider.isDarkMode()?
+                          MyTheme.whiteColor
+                          :
+                  Colors.black),),
+                ),
+
             ),
             Expanded(
               child: ListView.builder(

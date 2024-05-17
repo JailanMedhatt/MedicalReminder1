@@ -66,11 +66,15 @@ class _BottomSheetAppointmentState extends State<BottomSheetAppointment> {
 
   @override
   Widget build(BuildContext context) {
-    listProvider = Provider.of<AppointmentProvider>(context);
+    var myProvider = Provider.of<ListProvider>(context);
+     listProvider = Provider.of<AppointmentProvider>(context);
     return Container(
       padding: EdgeInsets.all(16.0),
       decoration: BoxDecoration(
-        color: Colors.deepPurple.withOpacity(0.8),
+        color:  myProvider.isDarkMode()?
+        MyTheme.backgroundDark.withOpacity(0.8)
+            :
+        Colors.deepPurple.withOpacity(0.8),
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(27.0),
           topRight: Radius.circular(27.0),
@@ -97,7 +101,10 @@ class _BottomSheetAppointmentState extends State<BottomSheetAppointment> {
                 },
                 decoration: InputDecoration(
                   labelText: 'Doctor\'s Name',
-                  fillColor: Colors.white,
+                  fillColor: myProvider.isDarkMode()?
+                      MyTheme.p2.withOpacity(0.8)
+                      :
+                  Colors.white,
                   filled: true,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0),
@@ -132,7 +139,11 @@ class _BottomSheetAppointmentState extends State<BottomSheetAppointment> {
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: 8),
                           decoration: BoxDecoration(
-                            color: Colors.white,
+                            color:
+                            myProvider.isDarkMode()?
+                            MyTheme.p2.withOpacity(0.8)
+                                :
+                            Colors.white,
                             borderRadius: BorderRadius.circular(10.0),
                           ),
                           child: DateTimeField(
@@ -200,7 +211,10 @@ class _BottomSheetAppointmentState extends State<BottomSheetAppointment> {
                           child: Container(
                             padding: EdgeInsets.all(10),
                             decoration: BoxDecoration(
-                              color: Colors.white,
+                              color: myProvider.isDarkMode()?
+                              MyTheme.p2.withOpacity(0.8)
+                                  :
+                              Colors.white,
                               borderRadius: BorderRadius.circular(8.0),
                             ),
                             child: Icon(Icons.calendar_today, size: 29),
@@ -218,7 +232,10 @@ class _BottomSheetAppointmentState extends State<BottomSheetAppointment> {
                 },
                 decoration: InputDecoration(
                   labelText: 'Doctor\'s Speciality',
-                  fillColor: Colors.white,
+                  fillColor:myProvider.isDarkMode()?
+                  MyTheme.p2.withOpacity(0.8)
+                      :
+                  Colors.white,
                   filled: true,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0),
@@ -237,7 +254,10 @@ class _BottomSheetAppointmentState extends State<BottomSheetAppointment> {
               SizedBox(height: 30),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.deepPurple,
+                  backgroundColor:myProvider.isDarkMode()?
+                  MyTheme.p2.withOpacity(0.8)
+                      :
+                  Colors.deepPurple,
                   elevation: 4,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),

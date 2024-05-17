@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../myTheme.dart';
+import '../providers/list_provider.dart';
 
 class EditTxtF extends StatelessWidget {
   String title;
@@ -16,6 +20,7 @@ class EditTxtF extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var listProvider =  Provider.of<ListProvider>(context);
     return Column(
       children: [
         Container(
@@ -26,23 +31,35 @@ class EditTxtF extends StatelessWidget {
                 title,
                 style: TextStyle(
                     fontSize: 22,
-                    color: Color(0xff5D65B0),
+                    color: listProvider.isDarkMode()?
+                        MyTheme.whiteColor
+                        :
+                    Color(0xff5D65B0),
                     fontWeight: FontWeight.w600),
               ),
               Icon(
                 iconTitle,
-                color: Color(0xff5D65B0),
+                color: listProvider.isDarkMode() ?
+                MyTheme.whiteColor
+                    :
+                Color(0xff5D65B0),
               )
             ],
           ),
         ),
         Container(
           decoration: BoxDecoration(
-            color: Color(0xEDF2F3).withOpacity(0.99),
+            color:listProvider.isDarkMode()?
+            MyTheme.n.withOpacity(0.80)
+                :
+            Color(0xEDF2F3).withOpacity(0.99),
             borderRadius: BorderRadius.circular(12),
             boxShadow: [
               BoxShadow(
-                color: Colors.grey,
+                color:listProvider.isDarkMode()?
+                Colors.transparent
+                    :
+                Colors.grey,
                 blurRadius: 4,
                 offset: Offset(4, 4), // Shadow position
               ),
@@ -67,7 +84,10 @@ class EditTxtF extends StatelessWidget {
               // pass the hint text parameter here
             ),
             style: TextStyle(
-              color: Colors.black,
+              color: listProvider.isDarkMode()?
+              MyTheme.whiteColor
+                  :
+              Colors.black,
               fontSize: 20,
             ),
           ),

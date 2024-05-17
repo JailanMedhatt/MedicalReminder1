@@ -1,5 +1,8 @@
+import 'package:finalproject1/myTheme.dart';
+import 'package:finalproject1/providers/list_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class Counter extends StatefulWidget {
   final int n;
@@ -28,6 +31,7 @@ class _CounterState extends State<Counter> {
 
   @override
   Widget build(BuildContext context) {
+    var listProvider = Provider.of<ListProvider>(context);
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
       child: Column(
@@ -45,7 +49,10 @@ class _CounterState extends State<Counter> {
               width: 40.0,
               height: 40.0,
               decoration: BoxDecoration(
-                color: Color(0xffEDF2F3),
+                color: listProvider.isDarkMode()?
+                    MyTheme.n.withOpacity(0.8)
+                    :
+                Color(0xffEDF2F3),
                 borderRadius: BorderRadius.all(Radius.circular(12)),
               ),
               child: Row(
@@ -58,7 +65,9 @@ class _CounterState extends State<Counter> {
                       child: RawMaterialButton(
                         onPressed: add,
                         elevation: 2.0,
-                        fillColor: Color(0xff5D65B0),
+                        fillColor:
+
+                        Color(0xff5D65B0),
                         shape: CircleBorder(),
                         child: Icon(
                           Icons.add,

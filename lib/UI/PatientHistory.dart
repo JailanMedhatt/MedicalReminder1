@@ -1,11 +1,15 @@
 import 'package:finalproject1/CustomWidgets/PdfGridView.dart';
 import 'package:finalproject1/ViewModels/patientHistory/PatientHistoryStates.dart';
 import 'package:finalproject1/ViewModels/patientHistory/PatientHistoryViewModel.dart';
+import 'package:finalproject1/myTheme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/list_provider.dart';
 class PatientHistory extends StatelessWidget {
   static final String routeName = "PatientHistory";
   String query="";
@@ -14,15 +18,13 @@ class PatientHistory extends StatelessWidget {
   // @override
   @override
   Widget build(BuildContext context) {
+    var listProvider = Provider.of<ListProvider>(context);
 
           return Stack(
             children: [
               Container(
-                  decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage("assets/images/Opening.png"),
-                  fit: BoxFit.cover,
-                ),
+                  decoration:  BoxDecoration(
+                image: listProvider.getBackgroundImage(),
               )),
               Scaffold(
                 extendBodyBehindAppBar: true,
@@ -51,8 +53,14 @@ class PatientHistory extends StatelessWidget {
                               prefixIcon: Icon(Icons.search), hintText: 'Search...',
                             focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(25),
-                              borderSide: BorderSide(color: Colors.white)
-                            ),fillColor: Colors.white,
+                              borderSide: BorderSide(color: listProvider.isDarkMode()?
+                              MyTheme.whiteColor
+                                  :
+                              Colors.white)
+                            ),fillColor: listProvider.isDarkMode()?
+                              MyTheme.backgroundDark
+                              :
+                          Colors.white,
                             filled: true,
                               enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(25),
@@ -77,7 +85,11 @@ class PatientHistory extends StatelessWidget {
                         child: Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
-                            color: Color(0xffEDF2F3),
+                            color: listProvider.isDarkMode()?
+                                MyTheme.n
+                            :
+
+                            Color(0xffEDF2F3),
                           ),
                           child: InkWell(
                             onTap: () {
@@ -147,7 +159,10 @@ class PatientHistory extends StatelessWidget {
                 child: FloatingActionButton(
                   elevation: 25.0,
                   onPressed: viewModel.pickFile,
-                  backgroundColor: Color(0xffEDF2F3),
+                  backgroundColor: listProvider.isDarkMode()?
+                      MyTheme.icondark
+                      :
+                  Color(0xffEDF2F3),
                   child: Padding(
                     padding: EdgeInsets.only(top: 5.0),
                     child: Icon(

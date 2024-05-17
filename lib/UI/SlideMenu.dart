@@ -188,7 +188,7 @@ class _SlideMenuState extends State<SlideMenu> {
                         style: listProvider.isDarkMode()?
                         Theme.of(context).textTheme.titleSmall?.copyWith(color: MyTheme.whiteColor)
                             :
-                        Theme.of(context).textTheme.titleSmall
+                        Theme.of(context).textTheme.titleSmall?.copyWith(fontSize: 16)
                       ),
                     ],
                       )
@@ -230,7 +230,7 @@ class _SlideMenuState extends State<SlideMenu> {
                         style:listProvider.isDarkMode()?
                         Theme.of(context).textTheme.titleSmall?.copyWith(color: MyTheme.whiteColor)
                             :
-                        Theme.of(context).textTheme.titleSmall
+                        Theme.of(context).textTheme.titleSmall?.copyWith(fontSize: 16)
                         //TextStyle(color: Colors.black,fontWeight: FontWeight.w400,fontSize: 16),
                       ),
                                         ],
@@ -274,7 +274,7 @@ class _SlideMenuState extends State<SlideMenu> {
                         style:listProvider.isDarkMode()?
                         Theme.of(context).textTheme.titleSmall?.copyWith(color: MyTheme.whiteColor)
                         :
-                        Theme.of(context).textTheme.titleSmall
+                        Theme.of(context).textTheme.titleSmall?.copyWith(fontSize: 16)
                         ,
                         //TextStyle(fontWeight: FontWeight.w400,fontSize: 16),
                       ),

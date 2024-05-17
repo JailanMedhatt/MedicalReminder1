@@ -9,6 +9,8 @@ import 'package:provider/provider.dart';
 import '../CustomWidgets/DateEditRow.dart';
 import '../DialogUtills.dart';
 import '../FireBase/Models/Medicine.dart';
+import '../myTheme.dart';
+import '../providers/list_provider.dart';
 
 class EditMedicine extends StatefulWidget {
   static final String routeName = "edit med";
@@ -42,15 +44,12 @@ class _EditMedicineState extends State<EditMedicine> {
       selectedDate1 = medicine!.StartDate!;
       selectedDate2 = medicine!.EndDate!;
     }
-
+    var myProvider =  Provider.of<ListProvider>(context);
     listProvider = Provider.of<ReminderListProvider>(context);
     return Stack(children: [
       Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/images/bk.png"),
-            fit: BoxFit.cover,
-          ),
+        decoration:  BoxDecoration(
+          image:myProvider.getBackgroundImage() ,
         ),
       ),
       Scaffold(
@@ -116,7 +115,11 @@ class _EditMedicineState extends State<EditMedicine> {
                 ' Medicine Type',
                 style: TextStyle(
                     fontSize: 22,
-                    color: Color(0xff5D65B0),
+                    color:
+                    myProvider.isDarkMode()?
+                    MyTheme.whiteColor
+                        :
+                    Color(0xff5D65B0),
                     fontWeight: FontWeight.w600),
               ),
               CheckMedType(),

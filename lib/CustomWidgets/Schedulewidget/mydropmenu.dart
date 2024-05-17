@@ -1,4 +1,8 @@
+  import 'package:finalproject1/providers/list_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../myTheme.dart';
 
 const List<String> list = <String>['Everyday', 'Twice a day', 'Third a day'];
 
@@ -14,6 +18,7 @@ class _DropdownMenuBottomState extends State<DropdownMenuBottom> {
 
   @override
   Widget build(BuildContext context) {
+    var listProvider = Provider.of<ListProvider>(context);
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
       child: Column(
@@ -27,7 +32,10 @@ class _DropdownMenuBottomState extends State<DropdownMenuBottom> {
           DropdownButtonHideUnderline(
             child: Container(
               decoration: BoxDecoration(
-                color: Color(0xffEDF2F3),
+                color: listProvider.isDarkMode()?
+                MyTheme.n.withOpacity(0.8)
+                    :
+                Color(0xffEDF2F3),
                 borderRadius: BorderRadius.circular(12),
               ),
               padding: EdgeInsets.symmetric(horizontal: 8),

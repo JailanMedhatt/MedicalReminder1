@@ -1,19 +1,20 @@
+import 'package:finalproject1/myTheme.dart';
+import 'package:finalproject1/providers/list_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 class MissedMedicines extends StatelessWidget {
   static final String routeName = "missed-meds";
 
   @override
   Widget build(BuildContext context) {
+    var listProvider = Provider.of<ListProvider>(context);
     return Stack(children: [
       Container(
-          decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("assets/images/Opening.png"),
-          fit: BoxFit.cover,
-        ),
-      )),
+    decoration:  BoxDecoration(
+      image:listProvider.getBackgroundImage(),),
+    ),
       Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
@@ -42,7 +43,10 @@ class MissedMedicines extends StatelessWidget {
                       borderRadius: BorderRadius.circular(15),
                       child: Container(
                         padding: EdgeInsets.only(bottom: 10),
-                          color: Color(0xffEDF2F3),
+                          color: listProvider.isDarkMode()?
+                              MyTheme.n.withOpacity(0.80)
+                              :
+                          Color(0xffEDF2F3),
                           width: 310,
                           height: 130,
                           child: ListView.builder(
@@ -70,11 +74,18 @@ class MissedMedicines extends StatelessWidget {
                   Positioned(
                     top: -45.h,
                     child: CircleAvatar(
-                      backgroundColor: Color(0xff5D65B0).withOpacity(0.54),
+                      backgroundColor: listProvider.isDarkMode()?
+                      MyTheme.p.withOpacity(0.80)
+                          :
+                      Color(0xff5D65B0).withOpacity(0.54),
                       maxRadius: 33,
                       child: Text(
                         'mon',
-                        style: TextStyle(color: Colors.black),
+                        style: listProvider.isDarkMode()?
+                        Theme.of(context).textTheme.titleMedium
+                        :
+                        Theme.of(context).textTheme.titleMedium
+                        ,
                       ),
                     ),
                   ),

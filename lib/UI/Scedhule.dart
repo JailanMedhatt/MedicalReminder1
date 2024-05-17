@@ -10,12 +10,14 @@ import 'package:finalproject1/CustomWidgets/Schedulewidget/mydropmenu.dart';
 import 'package:finalproject1/FireBase/FirebaseUtills.dart';
 import 'package:finalproject1/FireBase/Models/Medicine.dart';
 import 'package:finalproject1/providers/ReminderProvider.dart';
+import 'package:finalproject1/providers/list_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../NotificationService.dart';
+import '../myTheme.dart';
 
 
 
@@ -71,6 +73,7 @@ class _SchadualePageState extends State<SchadualePage> {
 
   @override
   Widget build(BuildContext context) {
+    var myProvider = Provider.of<ListProvider>(context);
     listProvider= Provider.of<ReminderListProvider>(context);
     if(listProvider.MedicineList.isEmpty){
       listProvider.getAllMedicinesFromFireStore();
@@ -78,12 +81,8 @@ class _SchadualePageState extends State<SchadualePage> {
     return Stack(
       children: [
         Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage("assets/images/Opening.png"),
-              fit: BoxFit.cover,
-            ),
-          ),
+          decoration:  BoxDecoration(
+            image:myProvider.getBackgroundImage(),),
         ),
         Scaffold(
           backgroundColor: Colors.transparent,
@@ -145,7 +144,10 @@ class _SchadualePageState extends State<SchadualePage> {
                                         return null;
                                       },
                                       decoration: InputDecoration(
-                                        fillColor: Color(0xffEDF2F3),
+                                        fillColor: myProvider.isDarkMode()?
+                                        MyTheme.n.withOpacity(0.80)
+                                            :
+                                        Color(0xffEDF2F3),
                                         filled: true,
                                         hintStyle: TextStyle(
                                           fontSize: 16.0,
@@ -156,7 +158,10 @@ class _SchadualePageState extends State<SchadualePage> {
                                           borderRadius: BorderRadius.all(Radius.circular(12)),
                                           borderSide: BorderSide(
                                             width: 1,
-                                            color: Color(0xffEDF2F3),
+                                            color: myProvider.isDarkMode()?
+                                            MyTheme.n.withOpacity(0.80)
+                                                :
+                                            Color(0xffEDF2F3),
                                           ),
                                         ),
                                       ),
@@ -186,7 +191,10 @@ class _SchadualePageState extends State<SchadualePage> {
                                     return null;
                                   },
                                   decoration: InputDecoration(
-                                    fillColor: Color(0xffEDF2F3),
+                                    fillColor:myProvider.isDarkMode()?
+                                    MyTheme.n.withOpacity(0.80)
+                                        :
+                                    Color(0xffEDF2F3),
                                     filled: true,
                                     hintStyle: TextStyle(
                                       fontSize: 16.0,
@@ -197,7 +205,10 @@ class _SchadualePageState extends State<SchadualePage> {
                                       borderRadius: BorderRadius.all(Radius.circular(12)),
                                       borderSide: BorderSide(
                                         width: 1,
-                                        color: Color(0xffEDF2F3),
+                                        color: myProvider.isDarkMode()?
+                                        MyTheme.n.withOpacity(0.80)
+                                            :
+                                        Color(0xffEDF2F3),
                                       ),
                                     ),
                                   ),
@@ -243,7 +254,10 @@ class _SchadualePageState extends State<SchadualePage> {
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: 8),
                           decoration: BoxDecoration(
-                            color: Colors.white,
+                            color:myProvider.isDarkMode()?
+                            MyTheme.n.withOpacity(0.80)
+                                :
+                            Colors.white,
                             borderRadius: BorderRadius.circular(10.0),
                           ),
                           child: DateTimeField(

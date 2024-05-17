@@ -1,8 +1,11 @@
 import 'package:finalproject1/FireBase/Models/Medicine.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 
 import '../../UI/Edit Medicine.dart';
+import '../../myTheme.dart';
+import '../../providers/list_provider.dart';
 
 class CustomList extends StatefulWidget {
   Medicine medicine;
@@ -19,6 +22,7 @@ class _CustomListState extends State<CustomList> {
 
   @override
   Widget build(BuildContext context) {
+    var listProvider = Provider.of<ListProvider>(context);
     return InkWell(
       onTap: () {
         Navigator.of(context)
@@ -28,7 +32,10 @@ class _CustomListState extends State<CustomList> {
         margin: EdgeInsets.only(right: 20, top: 8, bottom: 8, left: 20),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
-          color: Colors.grey[350],
+          color: listProvider.isDarkMode()?
+              MyTheme.p.withOpacity(0.80)
+              :
+          Colors.grey[350],
         ),
         child: Row(
           children: [
@@ -41,7 +48,10 @@ class _CustomListState extends State<CustomList> {
                       child: FaIcon(
                         FontAwesomeIcons.pills,
                         size: 30,
-                        color: Color(0xff5D65B0),
+                        color:listProvider.isDarkMode()?
+                            MyTheme.icondark
+                        :
+                        Color(0xff5D65B0),
                       ),
                     ),
                   ],
@@ -54,7 +64,10 @@ class _CustomListState extends State<CustomList> {
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
-                    color: Colors.grey,
+                    color: listProvider.isDarkMode()?
+                    MyTheme.whiteColor
+                        :
+                    Colors.grey,
                   ),
                 ),
                 Padding(
@@ -107,7 +120,10 @@ class _CustomListState extends State<CustomList> {
                         Radio<bool?>(
                           value: true,
                           groupValue: radioValue,
-                          activeColor: Color(0xff5D65B0),
+                          activeColor: listProvider.isDarkMode()?
+                          MyTheme.icondark
+                              :
+                          Color(0xff5D65B0),
                           onChanged: (bool? value) {
                             setState(() {
                               radioValue = value;
@@ -119,7 +135,10 @@ class _CustomListState extends State<CustomList> {
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
-                            color: Color(0xff5D65B0),
+                            color: listProvider.isDarkMode()?
+                            MyTheme.icondark
+                                :
+                            Color(0xff5D65B0),
                           ),
                         ),
                       ],

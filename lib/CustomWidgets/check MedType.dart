@@ -1,8 +1,10 @@
+import 'package:finalproject1/myTheme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../FireBase/Models/Medicine.dart';
 import '../providers/ReminderProvider.dart';
+import '../providers/list_provider.dart';
 
 class CheckMedType extends StatefulWidget {
   @override
@@ -49,6 +51,7 @@ class _CheckMedTypeState extends State<CheckMedType> {
 
   @override
   Widget build(BuildContext context) {
+    var myProvider = Provider.of<ListProvider>(context);
     listProvider = Provider.of<ReminderListProvider>(context);
     return Flexible(
       fit: FlexFit.tight,
@@ -59,7 +62,10 @@ class _CheckMedTypeState extends State<CheckMedType> {
               child: Row(
                 children: [
                   Radio(
-                    activeColor: Color(0xff5D65B0),
+                    activeColor: myProvider.isDarkMode()?
+                        MyTheme.icondark
+                        :
+                    Color(0xff5D65B0),
                     value: item['value'],
                     groupValue: _oneValue,
                     onChanged: (value) {
@@ -73,7 +79,10 @@ class _CheckMedTypeState extends State<CheckMedType> {
                     item['label'],
                     style: TextStyle(
                       fontSize: 22,
-                      color: Color(0xff5D65B0),
+                      color:  myProvider.isDarkMode()?
+                      MyTheme.whiteColor
+                          :
+                      Color(0xff5D65B0),
                       fontWeight: FontWeight.w600,
                     ),
                   ),
