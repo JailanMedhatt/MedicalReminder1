@@ -36,7 +36,7 @@ import 'package:finalproject1/myTheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:provider/provider.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../providers/list_provider.dart';
 
 class SlideMenu extends StatefulWidget {
@@ -505,9 +505,13 @@ class _SlideMenuState extends State<SlideMenu> {
                   color: Colors.white12,
 
                   child: ListTile(
-                    onTap: () {},
+                    onTap: () {
+                      listProvider.changeLanguage('ar');
+                    },
                     leading: Icon(Icons.language,size: 37),
-                    title: Text('Language'),
+                    title: Text(AppLocalizations.of(context)!.language,
+                      //'Language'
+                    ),
                   ),
                 ),
                 Spacer(),

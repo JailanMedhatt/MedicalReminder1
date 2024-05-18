@@ -1,61 +1,60 @@
 {
-"Login" : "Login",
-"Don't have an account" : "Don't have an account",
-"Sign up" : "Sign up",
-"Already have an account" : "Already have an account",
-"sign in" : "sign in",
-"Log out" : "Log out",
-"Profile" : "Profile",
-"Light" : "Light",
-"Dark" : "Dark"
-"Patient History" : "Patient History",
-"Appointment" : "Appointment",
-"Nearby Hospitals" : "Nearby Hospitals",
-"Missed Medicines" : "Dark"
-"Language" : "Language"
-"Schedule" : "Schedule"
-"Schedule to your reminders" : "Schedule to your reminders"
-"Reminder" : "Reminder"
-"Help" : "Help"
-"Health Tips" : "Health Tips"
-"Elder Care Made Simple with care zone" : "Elder Care Made Simple with care zone"
-"Search" : "Search"
-"Personal Notes" : "Personal Notes"
-"Type what you want to remember" : "Type what you want to remembe"
-"Notes App" : "Notes App"
-"Title" : "Title"
-"Content" : "Content"
-"Add Note" : "Add Note"
-"Add Appointment" : "Add Appointment"
-"Time" : "Time"
-"Date" : "Date"
-"Doctor's Name : "Doctor's Name"
-"Doctor's speciality" : "Doctor's speciality"
-"Save" : "Save"
-"Map" : "Map"
-"Schedule the Dose" : "Schedule the Dose"
-"what is the medicine name" : "what is the medicine name"
-"About medicine" : "About medicine"
-"How Often is this dose taken" : "How Often is this dose taken"
-"Everyday" : "Everyday"
-"Twice a day" : "Twice a day"
-"Third a day" : "Third a day"
-"How many pills are taken in each dose" : "How many pills are taken in each dose"
-"Start Date" : "Start Date"
-"End Date" : "End Date"
-"Medicine Type" : "Medicine Type"
-"Capsule" : "Capsule"
-"Injection" : "Injection"
-"Syrup" : "Syrup"
-"Pill's Color" : "Pill's Color"
-"Medicines" : "Medicines"
-"Taken" : "Taken"
-"Help & Support" : "Help & Support"
-"FAQS" : "FAQS"
-"Contact" : "Contact"
-"Edit Medicine" : "Edit Medicine"
-"Medicine Name" : "Medicine Name"
-"Time" : "Time"
-"Dosage of Medicine" : "Dosage of Medicine"
-
+"login" : "Login" ,
+"not_have_account" : "Don't have an account",
+"sign_up" : "Sign up",
+"already_have_account" : "Already have an account",
+"sign_in" : "sign in",
+"log_out" : "Log out",
+"profile" : "Profile",
+"light" : "Light",
+"dark" : "Dark" ,
+"patient_History" : "Patient History",
+"appointment" : "Appointment",
+"nearby_Hospitals" : "Nearby Hospitals",
+"missed_Medicines" : "Missed Medicines",
+"language" : "Language",
+"schedule" : "Schedule",
+"schedule_reminders" : "Schedule to your reminders",
+"reminder" : "Reminder" ,
+"help" : "Help" ,
+"health_Tips" : "Health Tips" ,
+"word" : "Elder Care Made Simple with care zone" ,
+"search" : "Search" ,
+"personal_Notes" : "Personal Notes" ,
+"word_in_personal_note" : "Type what you want to remember" ,
+"notes_App" : "Notes App" ,
+"title" : "Title" ,
+"content" : "Content" ,
+"add_Note" : "Add Note" ,
+"add_Appointment" : "Add Appointment" ,
+"time" : "Time" ,
+"date" : "Date" ,
+"doctor_is_Name": " Doctor is Name" ,
+"doctor_s_speciality" : "Doctor's speciality" ,
+"save" : "Save" ,
+"map" : "Map" ,
+"schedule_Dose" : "Schedule the Dose" ,
+"medicine_name" : "what is the medicine name" ,
+"about_medicine" : "About medicine" ,
+"dose_taken" : "How Often is this dose taken" ,
+"everyday" : "Everyday" ,
+"twice_day" : "Twice a day" ,
+"third_day" : "Third a day" ,
+"pills_taken" : "How many pills are taken in each dose" ,
+"start_Date" : "Start Date" ,
+"end_Date" : "End Date" ,
+"medicine_Type" : "Medicine Type" ,
+"capsule" : "Capsule" ,
+"injection" : "Injection" ,
+"syrup" : "Syrup" ,
+"pill_Color" : "Pill's Color" ,
+"medicines" : "Medicines" ,
+"taken" : "Taken",
+"help_Support" : "Help & Support",
+"fAQS" : "FAQS",
+"contact" : "Contact",
+"edit_Medicine" : "Edit Medicine",
+"medicine_Name" : "Medicine Name",
+"time" : "Time",
+"dosage_Medicine" : "Dosage of Medicine"
 }

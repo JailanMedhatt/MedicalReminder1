@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../FireBase/FirebaseUtills.dart';
 import '../FireBase/Models/UserAppointment.dart';
 class ListProvider extends ChangeNotifier{
@@ -29,11 +29,14 @@ class ListProvider extends ChangeNotifier{
   }
 
   void changeLanguage(String newLanguage) {
-    if ( appLanguage == newLanguage) {
-      return;
+    if ( appLanguage == 'en') {
+      appLanguage = 'ar';
     }
-    appLanguage = newLanguage;
-    notifyListeners();
+    else {
+      appLanguage = 'en';
+    }
+      notifyListeners();
+
   }
 
 
