@@ -26,6 +26,7 @@ import 'NotificationService.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 import 'myTheme.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -93,6 +94,12 @@ class MyApp extends StatelessWidget {
         darkTheme: MyTheme.darkTheme,
 
         home: EditMedicine(),
+
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        locale: Locale(listProvider.appLanguage),
+        supportedLocales: AppLocalizations.supportedLocales,
+
+
 
       ),
     );

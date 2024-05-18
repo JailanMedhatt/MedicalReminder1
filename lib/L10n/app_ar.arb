@@ -1,0 +1,60 @@
+{
+"Login" : "تسجيل الدخول",
+"Don't have an account" : "ليس لديك حساب",
+"Sign up" : "اشتراك",
+"Already have an account" : "هل لديك حساب",
+"sign in" : "تسجيل الدخول",
+"Log out" : "تسجيل خروج",
+"Profile" : "حساب تعريفي",
+"Light" : "الضوء",
+"Dark" : "ليلى"
+"Patient History" : "تاريخ المريض",
+"Appointment" : "الميعاد",
+"Nearby Hospitals" : "المستشفيات القريبة",
+"Missed Medicines" : "الأدوية المفقودة"
+"Language" : "اللغة"
+"Schedule" : "الجدول"
+"Schedule to your reminders" : "جدولة التذكيرات الخاصة بك"
+"Reminder" : "تذكير"
+"Help" : "المساعدة"
+"Health Tips" : "نصائح الصحية"
+"Elder Care Made Simple with care zone" : "رعاية كبار السن أصبحت بسيطة مع منطقة الرعاية"
+"Search" : "البحث"
+"Personal Notes" : "مذكرات شخصية"
+"Type what you want to remember" : "اكتب ما تريد أن تتذكره"
+"Notes App" : "تطبيق الملاحظات"
+"Title" : "عنوان"
+"Content" : "محتوى"
+"Add Note" : "اضف ملاحظة"
+"اإضافة الموعد" : "Add Appointment"
+"Time" : "الوقت"
+"Date" : "التاريخ"
+"اسم الطبيب" : "Doctor's Name"
+"Doctor's speciality" : "تخصص الطبيب"
+"Save" : "حفظ"
+"Map" : "الخريطة"
+"Schedule the Dose" : "جداول الجرعة"
+"what is the medicine name" : "ما هو اسم الدواء"
+"About medicine" : "عن الطب"
+"How Often is this dose taken" : "كم مرة يتم تناول هذه الجرعة"
+"Everyday" : "كل يوم"
+"Twice a day" : "مرتين فى اليوم"
+"Third a day" : "ثلاث مرات في اليوم"
+"How many pills are taken in each dose" : "كم حبة تؤخذ في كل جرعة"
+"Start Date" : "تاريخ البدء"
+"End Date" : "تاريخ النهاية"
+"Medicine Type" : "نوع الدواء"
+"Capsule" : "كبسولة"
+"Injection" : "حقنة"
+"Syrup" : "شراب مركز"
+"Pill's Color" : "لون الحبوب "
+"Medicines" : "الأدوية"
+"Taken" : "اخذ"
+"Help & Support" : "المساعدة و الدعم"
+"FAQS" : "الأسئلة الشائعة"
+"Contact" : "الاتصال"
+"Edit Medicine" : "تجديد الدواء"
+"Medicine Name" : "اسم الدواء"
+"Dosage of Medicine" : "جرعة الدواء"
+
+}

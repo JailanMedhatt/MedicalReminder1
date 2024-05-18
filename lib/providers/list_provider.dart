@@ -6,7 +6,7 @@ import '../FireBase/FirebaseUtills.dart';
 import '../FireBase/Models/UserAppointment.dart';
 class ListProvider extends ChangeNotifier{
 
-
+  String appLanguage = 'en';
   ThemeMode appTheme = ThemeMode.light;
 
   void changeTheme (ThemeMode newMode){
@@ -27,6 +27,16 @@ class ListProvider extends ChangeNotifier{
     return appTheme == ThemeMode.dark;
 
   }
+
+  void changeLanguage(String newLanguage) {
+    if ( appLanguage == newLanguage) {
+      return;
+    }
+    appLanguage = newLanguage;
+    notifyListeners();
+  }
+
+
   DecorationImage getBackgroundImage() {
     if (appTheme == ThemeMode.dark) {
       return DecorationImage(
@@ -68,4 +78,5 @@ class AppointmentProvider extends ChangeNotifier{
     selectDate = newSelectDate;
     getAppointmentsFromFireStore(Id);
   }
+
 }
