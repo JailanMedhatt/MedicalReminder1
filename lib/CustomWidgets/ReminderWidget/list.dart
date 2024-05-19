@@ -2,7 +2,7 @@ import 'package:finalproject1/FireBase/Models/Medicine.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../UI/Edit Medicine.dart';
 import '../../myTheme.dart';
 import '../../providers/list_provider.dart';
@@ -131,7 +131,7 @@ class _CustomListState extends State<CustomList> {
                           },
                         ),
                         Text(
-                          "Taken",
+                          AppLocalizations.of(context)!.taken,
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,

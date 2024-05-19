@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -69,7 +69,7 @@ class _DateRangePickerControllerExampleState
         children: [
           // Start date picker
           Text(
-            'Start Date',
+            AppLocalizations.of(context)!.start_Date,
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
           ),
           GestureDetector(
@@ -88,7 +88,7 @@ class _DateRangePickerControllerExampleState
           // End date picker
           SizedBox(height: 12),
           Text(
-            'End Date',
+            AppLocalizations.of(context)!.end_Date,
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
           ),
           GestureDetector(

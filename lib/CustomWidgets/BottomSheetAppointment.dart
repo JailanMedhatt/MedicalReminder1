@@ -6,7 +6,7 @@ import 'package:finalproject1/SharedPref.dart';
 import 'package:finalproject1/myTheme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../NotificationService.dart';
 import '../providers/list_provider.dart';
 
@@ -87,7 +87,7 @@ class _BottomSheetAppointmentState extends State<BottomSheetAppointment> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                'Add Appointment',
+                AppLocalizations.of(context)!.add_Appointment,
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -100,7 +100,7 @@ class _BottomSheetAppointmentState extends State<BottomSheetAppointment> {
                   doctorName = text;
                 },
                 decoration: InputDecoration(
-                  labelText: 'Doctor\'s Name',
+                  labelText: AppLocalizations.of(context)!.doctor_is_Name,
                   fillColor: myProvider.isDarkMode()?
                       MyTheme.p2.withOpacity(0.8)
                       :
@@ -129,7 +129,7 @@ class _BottomSheetAppointmentState extends State<BottomSheetAppointment> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Time',
+                          AppLocalizations.of(context)!.time,
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 18,
@@ -199,7 +199,7 @@ class _BottomSheetAppointmentState extends State<BottomSheetAppointment> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Date',
+                          AppLocalizations.of(context)!.date,
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 18,
@@ -231,7 +231,7 @@ class _BottomSheetAppointmentState extends State<BottomSheetAppointment> {
                   speciality = text;
                 },
                 decoration: InputDecoration(
-                  labelText: 'Doctor\'s Speciality',
+                  labelText: AppLocalizations.of(context)!.doctor_s_speciality,
                   fillColor:myProvider.isDarkMode()?
                   MyTheme.p2.withOpacity(0.8)
                       :
@@ -266,7 +266,7 @@ class _BottomSheetAppointmentState extends State<BottomSheetAppointment> {
                 ),
                 onPressed: saveFormAppoint,
                 child: Text(
-                  'Save',
+                  AppLocalizations.of(context)!.save,
                   style: TextStyle(fontSize: 20,color: Colors.white),
                 ),
               ),

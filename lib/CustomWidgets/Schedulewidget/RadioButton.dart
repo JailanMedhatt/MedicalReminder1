@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class Check extends StatefulWidget {
   @override
   State<Check> createState() => _CheckState();
@@ -28,7 +28,7 @@ class _CheckState extends State<Check> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
-            'Medicine type',
+            AppLocalizations.of(context)!.medicine_Type,
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
           ),
           SizedBox(height: 12),
@@ -47,7 +47,7 @@ class _CheckState extends State<Check> {
                       },
                     ),
                     Text(
-                      'Capsule',
+                      AppLocalizations.of(context)!.capsule,
                       style:
                       TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
                     ),
@@ -67,7 +67,7 @@ class _CheckState extends State<Check> {
                       },
                     ),
                     Text(
-                      'Injection',
+                      AppLocalizations.of(context)!.injection,
                       style:
                       TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
                     ),
@@ -87,7 +87,7 @@ class _CheckState extends State<Check> {
                       },
                     ),
                     Text(
-                      'Syrup',
+                      AppLocalizations.of(context)!.syrup,
                       style:
                       TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
                     ),

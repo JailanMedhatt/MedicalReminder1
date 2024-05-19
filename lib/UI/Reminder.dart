@@ -5,7 +5,7 @@ import 'package:finalproject1/providers/ReminderProvider.dart';
 import 'package:finalproject1/providers/list_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../myTheme.dart';
 
 class Reminder extends StatefulWidget {
@@ -63,7 +63,7 @@ class _ReminderState extends State<Reminder> {
             title: Row(
               children: [
                 Text(
-                  'Reminder',
+                  AppLocalizations.of(context)!.reminder,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 27,
@@ -91,7 +91,7 @@ class _ReminderState extends State<Reminder> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Text('Medicines',style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                          Text(AppLocalizations.of(context)!.medicines,style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                           ),
 
                         ],

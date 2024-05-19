@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'dart:convert';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../ViewModels/ApiOfHealth.dart';
 import '../providers/list_provider.dart';
 
@@ -56,7 +56,7 @@ class _TipsPageState extends State<TipsPage> {
           backgroundColor: Colors.transparent,
           appBar: AppBar(
             backgroundColor: Colors.transparent,
-            title: Text("Health Tips",
+            title: Text(AppLocalizations.of(context)!.health_Tips,
                 style: //TextStyle(fontWeight: FontWeight.bold, fontSize: 23)
                 listProvider.isDarkMode()?
             Theme.of(context).textTheme.titleLarge

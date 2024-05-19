@@ -146,7 +146,7 @@ class _SlideMenuState extends State<SlideMenu> {
                                 Icons.logout_outlined,
                                 size: 25,
                               )),
-                          Text("LOG OUT")
+                          Text(AppLocalizations.of(context)!.log_out)
                         ],
                       )
                     ],
@@ -180,11 +180,11 @@ class _SlideMenuState extends State<SlideMenu> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                       Text(
-                        "Schedule",
+                        AppLocalizations.of(context)!.schedule,
                         style: Theme.of(context).textTheme.titleMedium?.copyWith(fontSize: 22),
                       ),
                       Text(
-                        "Schedule to your reminders ",
+                          AppLocalizations.of(context)!.schedule_reminders,
                         style: listProvider.isDarkMode()?
                         Theme.of(context).textTheme.titleSmall?.copyWith(color: MyTheme.whiteColor)
                             :
@@ -222,11 +222,11 @@ class _SlideMenuState extends State<SlideMenu> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                       Text(
-                        "Reminder",
+                        AppLocalizations.of(context)!.reminder,
                         style: Theme.of(context).textTheme.titleMedium?.copyWith(fontSize: 22),
                       ),
                       Text(
-                        "Schedule to your reminders",
+                          AppLocalizations.of(context)!.schedule_reminders,
                         style:listProvider.isDarkMode()?
                         Theme.of(context).textTheme.titleSmall?.copyWith(color: MyTheme.whiteColor)
                             :
@@ -266,11 +266,11 @@ class _SlideMenuState extends State<SlideMenu> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                       Text(
-                        "Help",
+                        AppLocalizations.of(context)!.help,
                         style: Theme.of(context).textTheme.titleMedium?.copyWith(fontSize: 22),
                       ),
                       Text(
-                        "Schedule to your reminders",
+                        AppLocalizations.of(context)!.schedule_reminders,
                         style:listProvider.isDarkMode()?
                         Theme.of(context).textTheme.titleSmall?.copyWith(color: MyTheme.whiteColor)
                         :
@@ -310,11 +310,11 @@ class _SlideMenuState extends State<SlideMenu> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                       Text(
-                        "Health Tips",
+                        AppLocalizations.of(context)!.health_Tips,
                         style: Theme.of(context).textTheme.titleMedium?.copyWith(fontSize: 22),
                       ),
                       Text(
-                        "Schedule to your reminders",
+                        AppLocalizations.of(context)!.schedule_reminders,
                         style: listProvider.isDarkMode()?
                         Theme.of(context).textTheme.titleSmall?.copyWith(color: MyTheme.whiteColor)
                             :
@@ -435,7 +435,7 @@ class _SlideMenuState extends State<SlideMenu> {
                       Navigator.pushNamed(context, Profile.routeName);
                     },
                     leading: Icon(Icons.person,size: 37),
-                    title: Text('Profile'),
+                    title: Text(AppLocalizations.of(context)!.profile),
                   ),
                 ),
                 SizedBox(height: 10),
@@ -448,7 +448,9 @@ class _SlideMenuState extends State<SlideMenu> {
                     },
                     leading: Icon(Icons.brightness_6,size: 37),
                     title: Text(listProvider.isDarkMode() ?
-                    'Dark' : 'Light',),
+                    AppLocalizations.of(context)!.dark
+                        :
+                    AppLocalizations.of(context)!.light,),
                   ),
                 ),
                 SizedBox(height: 10),
@@ -461,7 +463,7 @@ class _SlideMenuState extends State<SlideMenu> {
 
                     },
                     leading: Icon(Icons.history,size: 37),
-                    title: Text('Patient History'),
+                    title: Text(AppLocalizations.of(context)!.patient_History),
                   ),
                 ),
                 SizedBox(height: 10),
@@ -473,7 +475,7 @@ class _SlideMenuState extends State<SlideMenu> {
                       Navigator.pushNamed(context, TaskListTab.routeName);
                     },
                     leading: Icon(Icons.timelapse,size: 37),
-                    title: Text('Appointment'),
+                    title: Text(AppLocalizations.of(context)!.appointment),
                   ),
                 ),
                 SizedBox(height: 10),
@@ -485,7 +487,7 @@ class _SlideMenuState extends State<SlideMenu> {
                       Navigator.pushNamed(context, MapPage.routeName);
                     },
                     leading: Icon(Icons.local_hospital,size: 37),
-                    title: Text('Nearby Hospitals'),
+                    title: Text(AppLocalizations.of(context)!.nearby_Hospitals),
                   ),
                 ),
                 SizedBox(height: 10),
@@ -497,7 +499,7 @@ class _SlideMenuState extends State<SlideMenu> {
                       Navigator.pushNamed(context, MissedMedicines.routeName);
                     },
                     leading: Icon(Icons.medical_information,size: 37),
-                    title: Text('Missed Medicines'),
+                    title: Text(AppLocalizations.of(context)!.missed_Medicines),
                   ),
                 ),
                 SizedBox(height: 10),

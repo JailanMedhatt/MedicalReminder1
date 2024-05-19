@@ -10,6 +10,7 @@ import '../ViewModels/Profile/ProfileViewModel.dart';
 import '../myTheme.dart';
 import '../providers/list_provider.dart';
 import 'DoctorWidget.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TaskListTab extends StatefulWidget {
   static const String routeName = 'task_list_tab';
@@ -49,7 +50,7 @@ class _TaskListTabState extends State<TaskListTab> {
                       }, icon: Icon(Icons.arrow_back, size: 32)),
                       SizedBox(width: 10),
                       Text(
-                        'Appointments',
+                        AppLocalizations.of(context)!.appointment,
                         style: Theme.of(context).textTheme.titleLarge,
                         //TextStyle(color: Colors.black, fontSize: 30, fontWeight: FontWeight.w900,),
                       ),

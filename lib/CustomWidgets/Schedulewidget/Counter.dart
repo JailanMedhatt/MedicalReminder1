@@ -3,6 +3,7 @@ import 'package:finalproject1/providers/list_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Counter extends StatefulWidget {
   final int n;
@@ -38,7 +39,7 @@ class _CounterState extends State<Counter> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
-            'How many pills are taken in each dose?',
+            AppLocalizations.of(context)!.pills_taken,
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
           ),
           SizedBox(height: 12),

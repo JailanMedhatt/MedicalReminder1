@@ -1,7 +1,7 @@
   import 'package:finalproject1/providers/list_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../myTheme.dart';
 
 const List<String> list = <String>['Everyday', 'Twice a day', 'Third a day'];
@@ -25,7 +25,7 @@ class _DropdownMenuBottomState extends State<DropdownMenuBottom> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
-            'How Often is this dose taken?',
+            AppLocalizations.of(context)!.dose_taken,
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
           ),
           SizedBox(height: 12),

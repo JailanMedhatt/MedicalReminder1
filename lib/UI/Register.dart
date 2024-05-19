@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../providers/list_provider.dart';
 
 class Register extends StatelessWidget {
@@ -106,7 +106,7 @@ class Register extends StatelessWidget {
                                 viewModel.register();
                               },
                               child: Text(
-                                "SignUp",
+                                AppLocalizations.of(context)!.sign_up,
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 30),
                               ),
@@ -131,10 +131,10 @@ class Register extends StatelessWidget {
                             child: Row(
                               children: [
                                 Text(
-                                  "Alraedy have an account ?",
+                                  AppLocalizations.of(context)!.already_have_account,
                                   style: TextStyle(fontSize: 17),
                                 ),
-                                Text("  Sign In",
+                                Text(AppLocalizations.of(context)!.sign_in,
                                     style: TextStyle(
                                         color: Color(0xff5D65B0), fontSize: 17))
                               ],

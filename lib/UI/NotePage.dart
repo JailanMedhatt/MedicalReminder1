@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../providers/list_provider.dart';
 
@@ -31,14 +32,14 @@ class _NotePageState extends State<NotePage> {
           [Color(0xffafc2e6), Color(0xffc8caf0).withOpacity(0.89)])),
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        appBar: AppBar(title: Text('Notes App'),backgroundColor: Colors.transparent,),
+        appBar: AppBar(title: Text(AppLocalizations.of(context)!.notes_App),backgroundColor: Colors.transparent,),
         body: Column(
           children: [
             Padding(
               padding: EdgeInsets.all(16),
               child: TextField(
                 controller: titleController,
-                decoration: InputDecoration(labelText: 'Title',labelStyle: TextStyle(color: Colors.white),
+                decoration: InputDecoration(labelText: AppLocalizations.of(context)!.title,labelStyle: TextStyle(color: Colors.white),
                     border: OutlineInputBorder(borderRadius:BorderRadius.circular(27),
                         borderSide: BorderSide(color: Colors.white)),
                     focusedBorder: OutlineInputBorder(borderSide: BorderSide(color:Colors.white )),
@@ -53,7 +54,7 @@ class _NotePageState extends State<NotePage> {
               child: TextField(
 
                 controller: contentController,
-                decoration: InputDecoration(labelText: 'Content',labelStyle: TextStyle(color: Colors.white),
+                decoration: InputDecoration(labelText: AppLocalizations.of(context)!.content,labelStyle: TextStyle(color: Colors.white),
                     border: OutlineInputBorder(borderRadius:BorderRadius.circular(27),
                         borderSide: BorderSide(color: Colors.white)),
                     focusedBorder: OutlineInputBorder(borderSide: BorderSide(color:Colors.white )),
@@ -80,7 +81,7 @@ class _NotePageState extends State<NotePage> {
                       // contentController.clear();
                     });
                   },
-                  child: Text('Add Note',style: TextStyle(fontSize: 19,color:
+                  child: Text(AppLocalizations.of(context)!.add_Note,style: TextStyle(fontSize: 19,color:
                       listProvider.isDarkMode()?
                           MyTheme.whiteColor
                           :

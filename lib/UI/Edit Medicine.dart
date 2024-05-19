@@ -5,7 +5,7 @@ import 'package:finalproject1/UI/dosageTxtField.dart';
 import 'package:finalproject1/providers/ReminderProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../CustomWidgets/DateEditRow.dart';
 import '../DialogUtills.dart';
 import '../FireBase/Models/Medicine.dart';
@@ -64,7 +64,7 @@ class _EditMedicineState extends State<EditMedicine> {
                 },
                 child: Icon(Icons.arrow_back, size: 32)),
             title: Text(
-              'Edit Medicine',
+              AppLocalizations.of(context)!.edit_Medicine,
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 27),
             )),
         body: Form(
@@ -73,11 +73,11 @@ class _EditMedicineState extends State<EditMedicine> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               EditTxtF(
-                title: 'Medicine Name',
+                title: AppLocalizations.of(context)!.medicine_Name,
                 controller: mednamecontroller,
               ),
               EditTxtF(
-                title: 'Time',
+                title: AppLocalizations.of(context)!.time,
                 controller: timecontroller,
                 iconTitle: Icons.timer_outlined,
                 keyBoard: TextInputType.numberWithOptions(),
@@ -90,7 +90,7 @@ class _EditMedicineState extends State<EditMedicine> {
                         showCalendar();
                       },
                       child: DateEditRow(
-                        title: 'Start Date',
+                        title: AppLocalizations.of(context)!.start_Date,
                         date:
                             '${selectedDate1.day}/${selectedDate1.month}/${selectedDate1.year}',
                       )),
@@ -102,7 +102,7 @@ class _EditMedicineState extends State<EditMedicine> {
                         showCalendar2();
                       },
                       child: DateEditRow(
-                        title: 'End Date',
+                        title: AppLocalizations.of(context)!.end_Date,
                         date:
                             '${selectedDate2.day}/${selectedDate2.month}/${selectedDate2.year}',
                       ))
@@ -112,7 +112,7 @@ class _EditMedicineState extends State<EditMedicine> {
                 height: 10,
               ),
               Text(
-                ' Medicine Type',
+                AppLocalizations.of(context)!.medicine_Type,
                 style: TextStyle(
                     fontSize: 22,
                     color:
@@ -141,7 +141,7 @@ class _EditMedicineState extends State<EditMedicine> {
                         borderRadius: BorderRadius.circular(12.0),
                       ))),
                   child: Text(
-                    'SAVE',
+                    AppLocalizations.of(context)!.save,
                     style: TextStyle(fontSize: 22),
                   ),
                 ),

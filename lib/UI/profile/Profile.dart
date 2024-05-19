@@ -10,6 +10,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Profile extends StatelessWidget {
   static final String routeName = "profile";
@@ -79,7 +80,7 @@ class Profile extends StatelessWidget {
                           SizedBox(
                             height: 20.h,
                           ),
-                          Text("Elder Care Made Simple with care zone",
+                          Text(AppLocalizations.of(context)!.word,
                               style: TextStyle(color: Colors.white, fontSize: 17))
                         ],
                       ),

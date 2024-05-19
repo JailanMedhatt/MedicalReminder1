@@ -15,7 +15,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../NotificationService.dart';
 import '../myTheme.dart';
 
@@ -100,7 +100,7 @@ class _SchadualePageState extends State<SchadualePage> {
               ),
             ),
             title: Text(
-              'Schedule the Dose',
+              AppLocalizations.of(context)!.schedule_Dose,
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 27),
             ),
           ),
@@ -120,7 +120,7 @@ class _SchadualePageState extends State<SchadualePage> {
                               Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 16),
                                 child: Text(
-                                  'What is the medicine name?',
+                                  AppLocalizations.of(context)!.medicine_name,
                                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
                                 ),
                               ),
@@ -172,7 +172,7 @@ class _SchadualePageState extends State<SchadualePage> {
                               Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 16),
                                 child: Text(
-                                  'About medicine',
+                                  AppLocalizations.of(context)!.about_medicine,
                                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
                                 ),
                               ),
@@ -244,7 +244,7 @@ class _SchadualePageState extends State<SchadualePage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Time',
+                          AppLocalizations.of(context)!.time,
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 18,
@@ -302,7 +302,7 @@ class _SchadualePageState extends State<SchadualePage> {
                         onPressed: addMedicine,
 
                         child: Text(
-                          'Save',
+                          AppLocalizations.of(context)!.save,
                           textAlign: TextAlign.center,
                           style: TextStyle(color: Colors.white, fontSize: 20),
                         ),

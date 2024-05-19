@@ -3,6 +3,7 @@ import 'package:finalproject1/providers/list_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MissedMedicines extends StatelessWidget {
   static final String routeName = "missed-meds";
@@ -24,7 +25,7 @@ class MissedMedicines extends StatelessWidget {
             leading: IconButton(onPressed: (){Navigator.pop(context);
              }, icon:Icon(Icons.arrow_back, size: 32)),
             title: Text(
-              'Missed Medicines',
+              AppLocalizations.of(context)!.missed_Medicines,
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 27),
             )),
         body: ListView.builder(

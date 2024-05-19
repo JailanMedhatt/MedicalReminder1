@@ -8,6 +8,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../providers/list_provider.dart';
 class PatientHistory extends StatelessWidget {
@@ -39,8 +40,7 @@ class PatientHistory extends StatelessWidget {
                         Navigator.pop(context);
                       },
                       icon: Icon(Icons.arrow_back, size: 32)),
-                  title: Text(
-                    'Patient History',
+                  title: Text(AppLocalizations.of(context)!.patient_History,
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 27),
                   ),
                 ),
@@ -50,7 +50,7 @@ class PatientHistory extends StatelessWidget {
                       padding: EdgeInsets.only(left: 18.w, top: 100.h,right: 18.w),
                       child: TextField(
                           decoration: InputDecoration(
-                              prefixIcon: Icon(Icons.search), hintText: 'Search...',
+                              prefixIcon: Icon(Icons.search), hintText: AppLocalizations.of(context)!.search,
                             focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(25),
                               borderSide: BorderSide(color: listProvider.isDarkMode()?
@@ -111,13 +111,13 @@ class PatientHistory extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      "Personal notes",
+                                      AppLocalizations.of(context)!.personal_Notes,
                                       style: TextStyle(
                                           fontSize: 20,
                                           fontWeight: FontWeight.bold),
                                     ),
                                     Text(
-                                      'Type what you want to remember',
+                                      AppLocalizations.of(context)!.word_in_personal_note,
                                       style: TextStyle(fontSize: 15),
                                     ),
                                   ],

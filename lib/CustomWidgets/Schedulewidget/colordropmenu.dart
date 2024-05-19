@@ -1,7 +1,7 @@
 import 'package:finalproject1/myTheme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../providers/list_provider.dart';
 
 class ColorItem {
@@ -41,7 +41,7 @@ class _PillDropMenuState extends State<PillDropMenu> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
-            "Pill's Color",
+            AppLocalizations.of(context)!.pill_Color,
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
           ),
           SizedBox(height: 12),
