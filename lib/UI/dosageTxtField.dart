@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../myTheme.dart';
 import '../providers/list_provider.dart';
 
@@ -27,7 +27,7 @@ class DoseTxtF extends StatelessWidget {
           child: Row(
             children: [
               Text(
-                'Dosage Of Medicine ',
+                AppLocalizations.of(context)!.dosage_Medicine,
                 style: TextStyle(
                   fontSize: 22,
                   color: listProvider.isDarkMode()?

@@ -231,7 +231,7 @@ class _BottomSheetAppointmentState extends State<BottomSheetAppointment> {
                   speciality = text;
                 },
                 decoration: InputDecoration(
-                  labelText: AppLocalizations.of(context)!.doctor_s_speciality,
+                  labelText: AppLocalizations.of(context)!.doctor_is_speciality,
                   fillColor:myProvider.isDarkMode()?
                   MyTheme.p2.withOpacity(0.8)
                       :
