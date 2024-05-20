@@ -53,6 +53,7 @@ class FireBaseUtills {
   }
 
   //////////////////////////////////
+  ///dh shu8l medicine farah
   static CollectionReference<Medicine> getMedicineCollection() {
     return FirebaseFirestore.instance.collection("medicines").withConverter<Medicine>(
         fromFirestore: (snapchot, option) =>
@@ -72,6 +73,7 @@ class FireBaseUtills {
         .doc(medicine.id)
         .update(medicine.toFireSstore());
   }
+  ///l7d hna
 
   static editUAppointmentDetails(bool isDone, String Id, String Appointmentid) {
     getAppointmentCollection(Id).doc(Appointmentid).update({"isDone": isDone});
@@ -79,6 +81,8 @@ class FireBaseUtills {
   // static  editAppointmentDetails(Appointment appointment, String Id){
   //   getUserCollectionRef().doc(id).update();
   // }
+
+
 }
 ///Appointment
 // class FireBaseUtillsAppointment {

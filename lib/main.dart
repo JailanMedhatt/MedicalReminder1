@@ -10,11 +10,13 @@ import 'package:finalproject1/UI/MissedMedicines.dart';
 import 'package:finalproject1/UI/NotePage.dart';
 import 'package:finalproject1/UI/PatientHistory.dart';
 import 'package:finalproject1/UI/Reminder.dart';
+import 'package:finalproject1/UI/firstHelpScreen.dart';
 import 'package:finalproject1/UI/profile/Profile.dart';
 import 'package:finalproject1/UI/Register.dart';
 import 'package:finalproject1/UI/Scedhule.dart';
 import 'package:finalproject1/UI/SlideMenu.dart';
 import 'package:finalproject1/UI/TipsPage.dart';
+import 'package:finalproject1/UI/secondHelpScreen.dart';
 import 'package:finalproject1/providers/ReminderProvider.dart';
 import 'package:finalproject1/providers/list_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -78,6 +80,8 @@ class MyApp extends StatelessWidget {
           TaskListTab.routeName: (context) => TaskListTab(),
           MapPage.routeName: (context) => MapPage(),
           Reminder.routeName:(context)=> Reminder(),
+          FirstScreenHelpAndSupport.routeName:(context) => FirstScreenHelpAndSupport(),
+          SecondScreenHelpAndSupport.routeName:(context) => SecondScreenHelpAndSupport()
 
 
 

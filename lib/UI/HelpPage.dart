@@ -1,3 +1,5 @@
+import 'package:finalproject1/UI/firstHelpScreen.dart';
+import 'package:finalproject1/UI/secondHelpScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -28,7 +30,9 @@ class HelpScreen extends StatelessWidget {
             children: [
               SizedBox(height: 40),
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, FirstScreenHelpAndSupport.routeName);
+                },
                 child: Container(
                   padding: EdgeInsets.all(16),
                   margin: EdgeInsets.all(16),
@@ -61,7 +65,9 @@ class HelpScreen extends StatelessWidget {
               ),
               SizedBox(height: 30),
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, SecondScreenHelpAndSupport.routeName);
+                },
                 child: Container(
                   padding: EdgeInsets.all(16),
                   margin: EdgeInsets.only(right: 16,left: 16),
