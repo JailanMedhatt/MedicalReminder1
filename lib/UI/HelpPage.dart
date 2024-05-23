@@ -2,7 +2,7 @@ import 'package:finalproject1/UI/firstHelpScreen.dart';
 import 'package:finalproject1/UI/secondHelpScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../myTheme.dart';
 import '../providers/list_provider.dart';
 
@@ -22,7 +22,7 @@ class HelpScreen extends StatelessWidget {
           appBar: AppBar(
             backgroundColor: Colors.transparent,
               title: Text(
-                'Help & Support',
+                AppLocalizations.of(context)!.help_Support,
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 27),
               )),
           body: Column(
@@ -50,7 +50,7 @@ class HelpScreen extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('FAQs', style:
+                      Text(AppLocalizations.of(context)!.fAQS, style:
                     TextStyle(color: listProvider.isDarkMode()?
                           MyTheme.whiteColor
                     :
@@ -86,7 +86,7 @@ class HelpScreen extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('Contact', style: TextStyle(color: listProvider.isDarkMode()?
+                      Text(AppLocalizations.of(context)!.contact, style: TextStyle(color: listProvider.isDarkMode()?
                       MyTheme.whiteColor
                           :
                       Colors.grey, fontSize: 19)),

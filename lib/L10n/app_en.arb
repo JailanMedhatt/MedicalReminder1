@@ -56,5 +56,8 @@
 "edit_Medicine" : "Edit Medicine",
 "medicine_Name" : "Medicine Name",
 "time" : "Time",
-"dosage_Medicine" : "Dosage of Medicine"
+"dosage_Medicine" : "Dosage of Medicine",
+"zone_app" : "What is the CareZone app?",
+"save_data" : "How to save your data?",
+"included_zone" : "What is included in CareZone Premium?"
 }

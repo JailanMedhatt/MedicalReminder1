@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/list_provider.dart';
 
 class SecondScreenHelpAndSupport extends StatefulWidget {
   static const String routeName = 'Second_HelpScreen';
@@ -16,15 +19,12 @@ class _SecondScreenHelpAndSupportState
 
   @override
   Widget build(BuildContext context) {
+    var listProvider = Provider.of<ListProvider>(context);
     return Stack(
       children: [
         Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(
-                  "assets/images/Opening.png"), // Make sure this path is correct
-              fit: BoxFit.cover,
-            ),
+          decoration:  BoxDecoration(
+            image: listProvider.getBackgroundImage(),
           ),
           child: Scaffold(
             extendBodyBehindAppBar: true,
