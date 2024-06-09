@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import '../myTheme.dart';
+import '../providers/list_provider.dart';
 
 class FirstScreenHelpAndSupport extends StatefulWidget {
   static const String routeName = 'First_HelpScreen';
@@ -11,20 +15,17 @@ class FirstScreenHelpAndSupport extends StatefulWidget {
 }
 
 class _FirstScreenHelpAndSupportState extends State<FirstScreenHelpAndSupport> {
-  final Color color = const Color(0xff5D65B0);
+  //final Color color = const Color(0xff5D65B0);
 
 
   @override
   Widget build(BuildContext context) {
+    var listProvider = Provider.of<ListProvider>(context);
     return Stack(
       children: [
         Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(
-                  "assets/images/Opening.png"), // Make sure this path is correct
-              fit: BoxFit.cover,
-            ),
+          decoration:  BoxDecoration(
+            image: listProvider.getBackgroundImage(),
           ),
           child: Scaffold(
             extendBodyBehindAppBar: true,
@@ -43,7 +44,7 @@ class _FirstScreenHelpAndSupportState extends State<FirstScreenHelpAndSupport> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Help & Support',
+                    AppLocalizations.of(context)!.help_Support,
                     style:
                     TextStyle(fontWeight: FontWeight.bold, fontSize: 27.sp),
                   ),
@@ -65,11 +66,15 @@ class _FirstScreenHelpAndSupportState extends State<FirstScreenHelpAndSupport> {
                         top: 100.h,
                       ),
                       child: Text(
-                        "What is the CareZone app ?",
+                        AppLocalizations.of(context)!.zone_app,
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 22.sp,
-                            color: color),
+                            color: listProvider.isDarkMode()?
+                        MyTheme.i
+                        :
+                            Color(0xff5D65B0)
+                      ,  ),
                       ),
                     ),
                   ],
@@ -80,7 +85,9 @@ class _FirstScreenHelpAndSupportState extends State<FirstScreenHelpAndSupport> {
                 Padding(
                   padding: EdgeInsets.only(left: 12.w, right: 8.w),
                   child: Text(
-                    "CareZone helps you manage and take your medication on time with our first-of-its-kind cloud-synced mobile medication management platform. CareZone allows your family, friends & caregivers to aid (if you so choose) by  being alerted as to whether or not you took your medication.",
+                    "CareZone helps you manage and take your medication on time with our first-of-its-kind cloud-synced mobile medication management platform. "
+                        "CareZone allows your family, "
+                        "friends & caregivers to aid (if you so choose) by  being alerted as to whether or not you took your medication.",
                     style: TextStyle(fontSize: 14.sp),
                   ),
                 ),
@@ -93,11 +100,14 @@ class _FirstScreenHelpAndSupportState extends State<FirstScreenHelpAndSupport> {
                     Padding(
                       padding: const EdgeInsets.only(left: 12.0),
                       child: Text(
-                        "How to save your data ?",
+                        AppLocalizations.of(context)!.save_data,
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 22,
-                            color: color),
+                            color:  listProvider.isDarkMode()?
+                            MyTheme.i
+                                :
+                            Color(0xff5D65B0)),
                       ),
                     ),
                   ],
@@ -121,11 +131,14 @@ class _FirstScreenHelpAndSupportState extends State<FirstScreenHelpAndSupport> {
                     Padding(
                       padding: const EdgeInsets.only(left: 12.0),
                       child: Text(
-                        "What is included in CareZone\nPremium?",
+                        AppLocalizations.of(context)!.included_zone,
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 22.sp,
-                            color: color),
+                            color:  listProvider.isDarkMode()?
+                            MyTheme.i
+                                :
+                            Color(0xff5D65B0)),
                       ),
                     ),
                   ],
@@ -137,7 +150,9 @@ class _FirstScreenHelpAndSupportState extends State<FirstScreenHelpAndSupport> {
                   padding: EdgeInsets.only(left: 12.w, right: 8.w),
                   child: Text(
                     "CareZone Premium allows you to add unlimited Carefriends, dependents and health trackers to your account. It will also unlock our Caretone options and let you change the color of the app.",
-                    style: TextStyle(fontSize: 14.sp),
+                    style: TextStyle(
+                      fontSize: 14
+                    ),
                   ),
                 ),
               ],
