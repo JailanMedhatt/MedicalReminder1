@@ -24,26 +24,29 @@ class EditTxtF extends StatelessWidget {
     return Column(
       children: [
         Container(
-          width: 330,
+          //width: 330,
           child: Row(
             children: [
-              Text(
-                title,
-                style: TextStyle(
-                    fontSize: 22,
-                    color: listProvider.isDarkMode()?
-                        MyTheme.whiteColor
-                        :
-                    Color(0xff5D65B0),
-                    fontWeight: FontWeight.w600),
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Text(
+                  title,
+                  style: TextStyle(
+                      fontSize: 22,
+                      color: listProvider.isDarkMode()?
+                          MyTheme.whiteColor
+                          :
+                      Color(0xff5D65B0),
+                      fontWeight: FontWeight.w600),
+                ),
               ),
-              Icon(
-                iconTitle,
-                color: listProvider.isDarkMode() ?
-                MyTheme.whiteColor
-                    :
-                Color(0xff5D65B0),
-              )
+              // Icon(
+              //   iconTitle,
+              //   color: listProvider.isDarkMode() ?
+              //   MyTheme.whiteColor
+              //       :
+              //   Color(0xff5D65B0),
+              // )
             ],
           ),
         ),
@@ -66,8 +69,8 @@ class EditTxtF extends StatelessWidget {
             ],
           ),
           //Type TextField
-          width: width ?? 340,
-          height: 42,
+          //width: width ?? 340,
+          //height: 42,
           child: TextFormField(
             validator: (text) {
               if (text == null || text.isEmpty) {

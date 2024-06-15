@@ -46,7 +46,7 @@ class _TipsPageState extends State<TipsPage> {
   }
   ValueNotifier<int> diameter = ValueNotifier(150);
   ValueNotifier<double> distortion = ValueNotifier(2.0);
-  ValueNotifier<double> magnification = ValueNotifier(1.2);
+  ValueNotifier<double> magnification = ValueNotifier(1.5);
   ValueNotifier<GlassPosition> glassPosition =
   ValueNotifier(GlassPosition.touchPosition);
   @override

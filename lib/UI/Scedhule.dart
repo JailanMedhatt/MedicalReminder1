@@ -127,7 +127,7 @@ class _SchadualePageState extends State<SchadualePage> {
                                 padding: EdgeInsets.symmetric(horizontal: 11, vertical: 2),
                                 child: Material(
                                   color: Colors.transparent,
-                                  elevation: 18,
+                                  elevation: 0,
                                   child: SizedBox(
                                     height: 45.0,
                                     child: TextFormField(

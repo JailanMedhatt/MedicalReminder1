@@ -19,11 +19,11 @@ class _CheckMedTypeState extends State<CheckMedType> {
   List medTYPE = [
     {
       'label': 'Syrup',
-      'IMG': 'assets/images/Syrup.png',
+
       'value': 1,
     },
-    {'label': 'Capsule', 'IMG': 'assets/images/Pills.png', 'value': 2},
-    {'label': 'Injection', 'IMG': 'assets/images/Syringe.png', 'value': 3}
+    {'label': 'Capsule',  'value': 2},
+    {'label': 'Injection',  'value': 3}
   ];
 
   @override
@@ -54,47 +54,47 @@ class _CheckMedTypeState extends State<CheckMedType> {
     var myProvider = Provider.of<ListProvider>(context);
     listProvider = Provider.of<ReminderListProvider>(context);
     return Flexible(
-      fit: FlexFit.tight,
-      child: Column(
-        children: <Widget>[
-          for (var item in medTYPE)
-            Expanded(
-              child: Row(
-                children: [
-                  Radio(
-                    activeColor: myProvider.isDarkMode()?
-                        MyTheme.icondark
-                        :
-                    Color(0xff5D65B0),
-                    value: item['value'],
-                    groupValue: _oneValue,
-                    onChanged: (value) {
-                      setState(() {
-                        _oneValue = value;
-                        print(_oneValue);
-                      });
-                    },
-                  ),
-                  Text(
-                    item['label'],
-                    style: TextStyle(
-                      fontSize: 22,
-                      color:  myProvider.isDarkMode()?
-                      MyTheme.whiteColor
+      //fit: FlexFit.tight,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12),
+        child: Row(
+          children: <Widget>[
+            for (var item in medTYPE)
+              Expanded(
+                child: Row(
+
+                  children: [
+                    Radio(
+                      activeColor: myProvider.isDarkMode()?
+                          MyTheme.icondark
                           :
                       Color(0xff5D65B0),
-                      fontWeight: FontWeight.w600,
+                      value: item['value'],
+                      groupValue: _oneValue,
+                      onChanged: (value) {
+                        setState(() {
+                          _oneValue = value;
+                          print(_oneValue);
+                        });
+                      },
                     ),
-                  ),
-                  Image.asset(
-                    item['IMG'],
-                    width: 38,
-                    height: 28,
-                  ),
-                ],
+                    Text(
+                      item['label'],
+                      style: TextStyle(
+                        fontSize: 19,
+                        color:  myProvider.isDarkMode()?
+                        MyTheme.whiteColor
+                            :
+                        Color(0xff5D65B0),
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+
+                  ],
+                ),
               ),
-            ),
-        ],
+          ],
+        ),
       ),
     );
   }

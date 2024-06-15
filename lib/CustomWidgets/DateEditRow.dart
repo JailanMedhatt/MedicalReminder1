@@ -16,30 +16,24 @@ class DateEditRow extends StatelessWidget {
     var listProvider = Provider.of<ListProvider>(context);
     return Row(
       children: [
-        SizedBox(
-          width: 30,
-        ),
+
         Column(
           children: [
             Row(
               children: [
-                Text(
-                  title,
-                  // 'Start Date',
-                  style: TextStyle(
-                      fontSize: 22,
-                      color:listProvider.isDarkMode()?
-                      MyTheme.whiteColor
-                          :
-                      Color(0xff5D65B0),
-                      fontWeight: FontWeight.w600),
-                ),
-                Icon(
-                  Icons.date_range_outlined,
-                  color:listProvider.isDarkMode()?
-                  MyTheme.whiteColor
-                      :
-                  Color(0xff5D65B0),
+                Padding(
+                  padding: const EdgeInsets.only(left: 8.0,bottom: 12),
+                  child: Text(
+                    title,
+                    // 'Start Date',
+                    style: TextStyle(
+                        fontSize: 22,
+                        color:listProvider.isDarkMode()?
+                        MyTheme.whiteColor
+                            :
+                        Color(0xff5D65B0),
+                        fontWeight: FontWeight.w600),
+                  ),
                 ),
               ],
             ),
@@ -61,17 +55,20 @@ class DateEditRow extends StatelessWidget {
                   ),
                 ],
               ),
-              width: 130,
-              height: 33,
+              //width: 130,
+              //height: 33,
               child: Center(
-                child: Text(
-                  date,
-                  // '${selectedDate1.day}/${selectedDate1.month}/${selectedDate1.year}',
-                  style: TextStyle(
-                      color: listProvider.isDarkMode()?
-                      MyTheme.whiteColor
-                          :
-                      Color(0x887E7E).withOpacity(0.99), fontSize: 21),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 30.0,vertical: 8),
+                  child: Text(
+                    date,
+                    // '${selectedDate1.day}/${selectedDate1.month}/${selectedDate1.year}',
+                    style: TextStyle(
+                        color: listProvider.isDarkMode()?
+                        MyTheme.whiteColor
+                            :
+                        Color(0x887E7E).withOpacity(0.99), fontSize: 21),
+                  ),
                 ),
               ),
             ),

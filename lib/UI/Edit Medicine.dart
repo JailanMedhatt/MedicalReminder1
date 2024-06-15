@@ -72,55 +72,66 @@ class _EditMedicineState extends State<EditMedicine> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              EditTxtF(
-                title: AppLocalizations.of(context)!.medicine_Name,
-                controller: mednamecontroller,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0,vertical: 12),
+                child: EditTxtF(
+                  title: AppLocalizations.of(context)!.medicine_Name,
+                  controller: mednamecontroller,
+                ),
               ),
-              EditTxtF(
-                title: AppLocalizations.of(context)!.time,
-                controller: timecontroller,
-                iconTitle: Icons.timer_outlined,
-                keyBoard: TextInputType.numberWithOptions(),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0,vertical: 12),
+                child: EditTxtF(
+                  title: AppLocalizations.of(context)!.time,
+                  controller: timecontroller,
+                  iconTitle: Icons.timer_outlined,
+                  keyBoard: TextInputType.numberWithOptions(),
+                ),
               ),
               DoseTxtF(controller: dosagecontroller),
-              Row(
-                children: [
-                  InkWell(
-                      onTap: () {
-                        showCalendar();
-                      },
-                      child: DateEditRow(
-                        title: AppLocalizations.of(context)!.start_Date,
-                        date:
-                            '${selectedDate1.day}/${selectedDate1.month}/${selectedDate1.year}',
-                      )),
-                  SizedBox(
-                    width: 40,
-                  ),
-                  InkWell(
-                      onTap: () {
-                        showCalendar2();
-                      },
-                      child: DateEditRow(
-                        title: AppLocalizations.of(context)!.end_Date,
-                        date:
-                            '${selectedDate2.day}/${selectedDate2.month}/${selectedDate2.year}',
-                      ))
-                ],
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0,vertical: 12),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    InkWell(
+                        onTap: () {
+                          showCalendar();
+                        },
+                        child: DateEditRow(
+                          title: AppLocalizations.of(context)!.start_Date,
+                          date:
+                              '${selectedDate1.day}/${selectedDate1.month}/${selectedDate1.year}',
+                        )),
+
+                    InkWell(
+                        onTap: () {
+                          showCalendar2();
+                        },
+                        child: DateEditRow(
+                          title: AppLocalizations.of(context)!.end_Date,
+                          date:
+                              '${selectedDate2.day}/${selectedDate2.month}/${selectedDate2.year}',
+                        ))
+                  ],
+                ),
               ),
               SizedBox(
                 height: 10,
               ),
-              Text(
-                AppLocalizations.of(context)!.medicine_Type,
-                style: TextStyle(
-                    fontSize: 22,
-                    color:
-                    myProvider.isDarkMode()?
-                    MyTheme.whiteColor
-                        :
-                    Color(0xff5D65B0),
-                    fontWeight: FontWeight.w600),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0,vertical: 8),
+                child: Text(
+                  AppLocalizations.of(context)!.medicine_Type,
+                  style: TextStyle(
+                      fontSize: 22,
+                      color:
+                      myProvider.isDarkMode()?
+                      MyTheme.whiteColor
+                          :
+                      Color(0xff5D65B0),
+                      fontWeight: FontWeight.w600),
+                ),
               ),
               CheckMedType(),
               Padding(
@@ -140,9 +151,12 @@ class _EditMedicineState extends State<EditMedicine> {
                           RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12.0),
                       ))),
-                  child: Text(
-                    AppLocalizations.of(context)!.save,
-                    style: TextStyle(fontSize: 22),
+                  child: Padding(
+                    padding: const EdgeInsets.all(6.0),
+                    child: Text(
+                      AppLocalizations.of(context)!.save,
+                      style: TextStyle(fontSize: 22),
+                    ),
                   ),
                 ),
               )
