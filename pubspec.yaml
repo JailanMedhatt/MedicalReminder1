@@ -67,6 +67,7 @@ dependencies:
   path_provider: ^2.0.2
   intro_views_flutter: ^3.2.0
   awesome_notifications: ^0.8.2
+  magnifying_glass: ^2.1.0
   localization: ^2.1.1
   flutter_localizations:
     sdk: flutter

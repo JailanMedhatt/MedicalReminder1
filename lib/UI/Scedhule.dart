@@ -169,7 +169,7 @@ class _SchadualePageState extends State<SchadualePage> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                                padding: EdgeInsets.symmetric(horizontal: 11, vertical: 16),
                                 child: Text(
                                   AppLocalizations.of(context)!.about_medicine,
                                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
@@ -234,19 +234,22 @@ class _SchadualePageState extends State<SchadualePage> {
                     },),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 8),
+                    padding: EdgeInsets.only(top: 16),
                     child: DateRangePickerControllerExample(onDateRangeChanged: handleDateRangeChanged,),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 8),
+                    padding: EdgeInsets.only(top: 16,left: 11,right: 11),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          AppLocalizations.of(context)!.time,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 11,vertical: 2),
+                          child: Text(
+                            AppLocalizations.of(context)!.time,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                            ),
                           ),
                         ),
                         SizedBox(height: 8),
@@ -260,6 +263,7 @@ class _SchadualePageState extends State<SchadualePage> {
                             borderRadius: BorderRadius.circular(10.0),
                           ),
                           child: DateTimeField(
+                            //decoration: InputDecoration(),
                             //onTap: ()=> _selectTime(context),
                             value: selectedTime ?? DateTime.now(),
                             initialPickerDateTime: DateTime.now(),
@@ -285,11 +289,11 @@ class _SchadualePageState extends State<SchadualePage> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 8),
+                    padding: EdgeInsets.only(top: 16),
                     child: Check(),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 8),
+                    padding: EdgeInsets.only(top: 16),
                     child: PillDropMenu(),
                   ),
                   Padding(
