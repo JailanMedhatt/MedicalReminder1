@@ -9,6 +9,7 @@ class ListProvider extends ChangeNotifier{
   String appLanguage = 'en';
   ThemeMode appTheme = ThemeMode.light;
 
+
   void changeTheme (ThemeMode newMode){
   //   if(appTheme == newMode){
   //     return;
@@ -83,3 +84,4 @@ class AppointmentProvider extends ChangeNotifier{
   }
 
 }
+

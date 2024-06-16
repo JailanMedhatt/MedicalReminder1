@@ -33,8 +33,10 @@ import 'package:finalproject1/UI/PatientHistory.dart';
 import 'package:finalproject1/UI/Reminder.dart';
 import 'package:finalproject1/UI/profile/Profile.dart';
 import 'package:finalproject1/myTheme.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../providers/list_provider.dart';
@@ -155,176 +157,254 @@ class _SlideMenuState extends State<SlideMenu> {
                 SizedBox.square(
                   dimension: 50,
                 ),
-                InkWell(
-                  onTap: () {
-                    Navigator.pushNamed(context, "Schedule");
-                  },
-                  child: Row(
-                    children: [
-                      SizedBox.square(
-                        dimension: 10,
-                      ),
-                      Icon(
-                        Icons.calendar_month_outlined,
-                        size: 50,
-                        color: listProvider.isDarkMode()?
-                            MyTheme.icondark
-                        :
-                        MyTheme.iconlight,
-                        //Color(0xff5D65B0),
-                      ),
-                      SizedBox.square(
-                        dimension: 25,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                      Text(
-                        AppLocalizations.of(context)!.schedule,
-                        style: Theme.of(context).textTheme.titleMedium?.copyWith(fontSize: 22),
-                      ),
-                      Text(
-                          AppLocalizations.of(context)!.schedule_reminders,
-                        style: listProvider.isDarkMode()?
-                        Theme.of(context).textTheme.titleSmall?.copyWith(color: MyTheme.whiteColor)
-                            :
-                        Theme.of(context).textTheme.titleSmall?.copyWith(fontSize: 16)
-                      ),
-                    ],
-                      )
-                    ],
-                  ),
-                ),
-                SizedBox.square(
-                  dimension: 20,
-                ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    SizedBox.square(
-                      dimension: 10,
-                    ),
-                    Icon(
-                      Icons.notifications_active,
-                      size: 50,
-                      color: listProvider.isDarkMode()?
-                      MyTheme.icondark
-                          :
-                      MyTheme.iconlight,
-                    ),
-                    SizedBox.square(
-                      dimension: 25,
-                    ),
-                    InkWell(
-                      onTap: (){
-                        Navigator.pushNamed(context, Reminder.routeName);
-                      },
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                      Text(
-                        AppLocalizations.of(context)!.reminder,
-                        style: Theme.of(context).textTheme.titleMedium?.copyWith(fontSize: 22),
-                      ),
-                      Text(
-                          AppLocalizations.of(context)!.schedule_reminders,
-                        style:listProvider.isDarkMode()?
-                        Theme.of(context).textTheme.titleSmall?.copyWith(color: MyTheme.whiteColor)
-                            :
-                        Theme.of(context).textTheme.titleSmall?.copyWith(fontSize: 16)
-                        //TextStyle(color: Colors.black,fontWeight: FontWeight.w400,fontSize: 16),
-                      ),
-                                        ],
-                      ),
-                    )
-                  ],
-                ),
-                SizedBox.square(
-                  dimension: 20,
-                ),
-                Row(
-                  children: [
-                    SizedBox.square(
-                      dimension: 10,
-                    ),
-                    Icon(
-                      Icons.live_help,
-                      size: 50,
-                      color: listProvider.isDarkMode()?
-                      MyTheme.icondark
-                          :
-                      MyTheme.iconlight,
-                    ),
-                    SizedBox.square(
-                      dimension: 25,
-                    ),
-                    InkWell(
-                      onTap: (){
-                        Navigator.pushNamed(context, HelpScreen.routeName);
-
-                      },
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                      Text(
-                        AppLocalizations.of(context)!.help,
-                        style: Theme.of(context).textTheme.titleMedium?.copyWith(fontSize: 22),
-                      ),
-                      Text(
-                        AppLocalizations.of(context)!.schedule_reminders,
-                        style:listProvider.isDarkMode()?
-                        Theme.of(context).textTheme.titleSmall?.copyWith(color: MyTheme.whiteColor)
-                        :
-                        Theme.of(context).textTheme.titleSmall?.copyWith(fontSize: 16)
-                        ,
-                        //TextStyle(fontWeight: FontWeight.w400,fontSize: 16),
-                      ),
-                    ],
-                      ),
-                    )
-                  ],
-                ),
-                SizedBox.square(
-                  dimension: 20,
-                ),
-                InkWell(
-                  onTap: () {
-                    Navigator.pushNamed(context, "Tips");
-                  },
-                  child: Row(
-                    children: [
-                      SizedBox.square(
-                        dimension: 10,
-                      ),
-                      Icon(
-                        Icons.health_and_safety,
-                        size: 50,
+                    Container(
+                      height: 155.w,
+                      width: 160.h,
+                      padding: EdgeInsets.all(20.h),
+                      decoration: BoxDecoration(
                           color:listProvider.isDarkMode()?
-                          MyTheme.icondark
-                              :
-                          MyTheme.iconlight,
+                          Color(0xD3151535):
+                          Colors.white,
+                          borderRadius: BorderRadius.all(Radius.circular(15)),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.5),
+                            spreadRadius: 2,
+                            blurRadius: 2,
+                            offset: Offset(5.0, 5.0), // changes position of shadow
+                          ),
+                        ],
                       ),
-                      SizedBox.square(
-                        dimension: 25,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                      margin: EdgeInsets.all(10),
+                      child: Column(
                         children: [
-                      Text(
-                        AppLocalizations.of(context)!.health_Tips,
-                        style: Theme.of(context).textTheme.titleMedium?.copyWith(fontSize: 22),
+                          SizedBox.square(
+                            dimension: 10,
+                          ),
+                          Icon(
+                            Icons.notifications_active,
+                            size: 50,
+                            color: listProvider.isDarkMode()?
+                            MyTheme.icondark
+                                :
+                            MyTheme.iconlight,
+                          ),
+                          SizedBox.square(
+                            dimension: 25,
+                          ),
+                          InkWell(
+                            onTap: (){
+                              Navigator.pushNamed(context, Reminder.routeName);
+                            },
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  AppLocalizations.of(context)!.reminder,
+                                  style: Theme.of(context).textTheme.titleMedium?.copyWith(fontSize: 22),
+                                ),
+
+                              ],
+                            ),
+                          )
+                        ],
                       ),
-                      Text(
-                        AppLocalizations.of(context)!.schedule_reminders,
-                        style: listProvider.isDarkMode()?
-                        Theme.of(context).textTheme.titleSmall?.copyWith(color: MyTheme.whiteColor)
-                            :
-                        Theme.of(context).textTheme.titleSmall?.copyWith(fontSize: 16),
+                    ),
+                    ///de el zyadaaa
+                    InkWell(
+                      onTap: () {
+                        Navigator.pushNamed(context, "Schedule");
+                      },
+                      child: Container(
+                        height: 155.w,
+                        width: 160.h,
+                        padding: EdgeInsets.all(20.h),
+                        decoration: BoxDecoration(
+                            color:listProvider.isDarkMode()?
+                            Color(0xFFC3D0E6):
+                            Colors.white,
+                            borderRadius: BorderRadius.all(Radius.circular(15)),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.5),
+                              spreadRadius: 2,
+                              blurRadius: 2,
+                              offset: Offset(0, 5.0), // changes position of shadow
+                            ),
+                          ],),
+                        margin: EdgeInsets.all(10),
+                        child: Column(
+                          children: [
+                            SizedBox.square(
+                              dimension: 10,
+                            ),
+                            Icon(
+                              Icons.calendar_month_outlined,
+                              size: 50,
+                              color: listProvider.isDarkMode()?
+                              //MyTheme.icondark
+                              Color(0xFF151535)
+                                  :
+                              MyTheme.iconlight,
+                              //Color(0xff5D65B0),
+                            ),
+                            SizedBox.square(
+                              dimension: 25,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  AppLocalizations.of(context)!.schedule,
+                                  style: Theme.of(context).textTheme.titleMedium?.copyWith(fontSize: 22),
+                                ),
+                                // Text(
+                                //     AppLocalizations.of(context)!.schedule_reminders,
+                                //   style: listProvider.isDarkMode()?
+                                //   Theme.of(context).textTheme.titleSmall?.copyWith(color: MyTheme.whiteColor)
+                                //       :
+                                //   Theme.of(context).textTheme.titleSmall?.copyWith(fontSize: 16)
+                                // ),
+                              ],
+                            )
+                          ],
+                        ),
                       ),
-                    ],
-                      )
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Container(
+                      height: 155.w,
+                      width: 160.h,
+                      padding: EdgeInsets.all(20.h),
+                      decoration: BoxDecoration(
+                          color:listProvider.isDarkMode()?
+                              Color(0xffc3d0e7):
+                          Colors.white,
+                          borderRadius: BorderRadius.all(Radius.circular(15)),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.5),
+                            spreadRadius: 2,
+                            blurRadius: 2,
+                            offset: Offset(0, 5.0), // changes position of shadow
+                          ),
+                        ],
+                      ),
+                      margin: EdgeInsets.all(10),
+                      child: Column(
+                        children: [
+                          SizedBox.square(
+                            dimension: 10,
+                          ),
+                          Icon(
+                            Icons.live_help,
+                            size: 50,
+                            color: listProvider.isDarkMode()?
+                                Color(0xFF151535)
+                           // MyTheme.icondark
+                                :
+                            MyTheme.iconlight,
+                          ),
+                          SizedBox.square(
+                            dimension: 25,
+                          ),
+                          InkWell(
+                            onTap: (){
+                              Navigator.pushNamed(context, HelpScreen.routeName);
+
+                            },
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  AppLocalizations.of(context)!.help,
+                                  style: Theme.of(context).textTheme.titleMedium?.copyWith(fontSize: 22),
+                                ),
+                                // Text(
+                                //   AppLocalizations.of(context)!.schedule_reminders,
+                                //   style:listProvider.isDarkMode()?
+                                //   Theme.of(context).textTheme.titleSmall?.copyWith(color: MyTheme.whiteColor)
+                                //       :
+                                //   Theme.of(context).textTheme.titleSmall?.copyWith(fontSize: 16)
+                                //   ,
+                                //   //TextStyle(fontWeight: FontWeight.w400,fontSize: 16),
+                                // ),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    ///de el zyadaaa
+                    Container(
+                      height: 155.w,
+                      width: 160.h,
+                      padding: EdgeInsets.all(20.h),
+                      decoration: BoxDecoration(
+                          color: listProvider.isDarkMode()?
+                          Color(0xed0f1630) :
+                          Colors.white,
+                          borderRadius: BorderRadius.all(Radius.circular(15)),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.5),
+                            spreadRadius: 2,
+                            blurRadius: 2,
+                            offset: Offset(5.0, 5.0), // changes position of shadow
+                          ),
+                        ],
+                      ),
+                      margin: EdgeInsets.all(10),
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.pushNamed(context, "Tips");
+                        },
+                        child: Column(
+                          children: [
+                            SizedBox.square(
+                              dimension: 10,
+                            ),
+                            Icon(
+                              Icons.health_and_safety,
+                              size: 50,
+                              color:listProvider.isDarkMode()?
+                              MyTheme.icondark
+                                  :
+                              MyTheme.iconlight,
+                            ),
+                            SizedBox.square(
+                              dimension: 25,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  AppLocalizations.of(context)!.health_Tips,
+                                  style: Theme.of(context).textTheme.titleMedium?.copyWith(fontSize: 22),
+                                ),
+                                // Text(
+                                //   AppLocalizations.of(context)!.schedule_reminders,
+                                //   style: listProvider.isDarkMode()?
+                                //   Theme.of(context).textTheme.titleSmall?.copyWith(color: MyTheme.whiteColor)
+                                //       :
+                                //   Theme.of(context).textTheme.titleSmall?.copyWith(fontSize: 16),
+                                // ),
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+
                 Expanded(child:listProvider.isDarkMode()
                  ? Image(image: AssetImage("assets/images/Hdarkpic.png"))
                   :
@@ -337,72 +417,7 @@ class _SlideMenuState extends State<SlideMenu> {
           )
 
 
-        // Stack(
-        //   children: [
-        //      Container(
-        //          width: double.infinity,
-        //          child: Image.asset("assets/images/bk.png",fit: BoxFit.fill)),
-        //     Column(
-        //       children: [
-        //         Row(
-        //            children: [
-        //              Icon(Icons.calendar_month_outlined,color: Colors.purpleAccent,),
-        //              SizedBox.square(dimension: 30,),
-        //              Column(
-        //                children: [
-        //                  Text("Scahduale",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
-        //                  Text("scaduale to your reminders",style: TextStyle(color: Colors.black,fontWeight: FontWeight.w400),),
-        //
-        //                ],
-        //              )
-        //            ],
-        //         ),
-        //         Row(
-        //           children: [
-        //             Icon(Icons.calendar_month_outlined,color: Colors.purpleAccent,),
-        //             SizedBox.square(dimension: 30,),
-        //             Column(
-        //               children: [
-        //                 Text("Scahduale",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
-        //                 Text("scaduale to your reminders",style: TextStyle(color: Colors.black,fontWeight: FontWeight.w400),),
-        //
-        //               ],
-        //             )
-        //           ],
-        //         ),
-        //         Row(
-        //           children: [
-        //             Icon(Icons.calendar_month_outlined,color: Colors.purpleAccent,),
-        //             SizedBox.square(dimension: 30,),
-        //             Column(
-        //               children: [
-        //                 Text("Scahduale",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
-        //                 Text("scaduale to your reminders",style: TextStyle(color: Colors.black,fontWeight: FontWeight.w400),),
-        //
-        //               ],
-        //             )
-        //           ],
-        //         ),
-        //         Row(
-        //           children: [
-        //             Icon(Icons.calendar_month_outlined,color: Colors.purpleAccent,),
-        //             SizedBox.square(dimension: 30,),
-        //             Column(
-        //               children: [
-        //                 Text("Scahduale",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
-        //                 Text("scaduale to your reminders",style: TextStyle(color: Colors.black,fontWeight: FontWeight.w400),),
-        //
-        //               ],
-        //             )
-        //           ],
-        //         )
-        //       ],
-        //     ),
-        //
-        //
-        //
-        //   ],
-        //  ),
+
       ),
       drawer: SafeArea(
         child: Container(
