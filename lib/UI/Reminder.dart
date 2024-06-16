@@ -91,7 +91,8 @@ class _ReminderState extends State<Reminder> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Text(AppLocalizations.of(context)!.medicines,style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                          Text(AppLocalizations.of(context)!.medicines,
+                            style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                           ),
 
                         ],
