@@ -300,6 +300,13 @@ class NotificationService {
       importance: Importance.max,
       priority: Priority.max,
       // Add other notification settings as needed
+      // actions: [
+      //   AndroidNotificationAction(
+      //     'accept',
+      //     'Accept',
+      //     //callbackName: 'notificationAccept',
+      //   ),
+      // ],
     );
 
     final notificationDetails = NotificationDetails(

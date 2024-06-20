@@ -381,7 +381,7 @@ class _SlideMenuState extends State<SlideMenu> {
                               MyTheme.iconlight,
                             ),
                             SizedBox.square(
-                              dimension: 25,
+                              dimension: 30,
                             ),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -395,7 +395,7 @@ class _SlideMenuState extends State<SlideMenu> {
                                 //   style: listProvider.isDarkMode()?
                                 //   Theme.of(context).textTheme.titleSmall?.copyWith(color: MyTheme.whiteColor)
                                 //       :
-                                //   Theme.of(context).textTheme.titleSmall?.copyWith(fontSize: 16),
+                                //   Theme.of(context).textTheme.titleSmall?.copyWith(fontSize: ),
                                 // ),
                               ],
                             )

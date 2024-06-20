@@ -8,6 +8,8 @@ class ListProvider extends ChangeNotifier{
 
   String appLanguage = 'en';
   ThemeMode appTheme = ThemeMode.light;
+  List<MissedMedicine> missedMedicines = [];
+
 
 
   void changeTheme (ThemeMode newMode){
@@ -54,7 +56,37 @@ class ListProvider extends ChangeNotifier{
       );
     }
   }
+  ///mn henaaaaaaaa
+  void addMissedMedicine(String day, String name) {
+    missedMedicines.add(MissedMedicine(day: day, name: name));
+    notifyListeners();
+    //_sendNotification(name);
+  }
+
+  // Future<void> _sendNotification(String medicineName) async {
+  //   FirebaseMessaging messaging = FirebaseMessaging.instance;
+  //   try {
+  //     await messaging.subscribeToTopic('missed_medicines');
+  //     await FirebaseMessaging.instance.sendMessage(
+  //       topic: 'missed_medicines',
+  //       data: {
+  //         'title': 'Missed Medicine',
+  //         'body': 'You missed a dose of $medicineName',
+  //       },
+  //     );
+  //   } catch (e) {
+  //     print('Error sending notification: $e');
+  //   }
+  // }
 }
+
+class MissedMedicine {
+  final String day;
+  final String name;
+
+  MissedMedicine({required this.day, required this.name});
+}
+
 
 class AppointmentProvider extends ChangeNotifier{
   List<Appointment> appointmentList = [];
