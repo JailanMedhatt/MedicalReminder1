@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
+
+import '../myTheme.dart';
+import '../providers/list_provider.dart';
 
 class ProfileTextFF extends StatelessWidget {
 
@@ -9,6 +13,8 @@ class ProfileTextFF extends StatelessWidget {
  ProfileTextFF({required this.iconPath, required this.controller,required this.validator});
   @override
   Widget build(BuildContext context) {
+    var myProvider = Provider.of<ListProvider>(context);
+
     return  Padding(
       padding:  EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
       child: Container(
@@ -28,8 +34,10 @@ class ProfileTextFF extends StatelessWidget {
           decoration: InputDecoration(
 
               filled: true,
-              fillColor: Color(0x905d65b0)
-              ,
+              fillColor:  myProvider.isDarkMode()?
+              Color(0xff3d425d)
+                  :
+              Colors.white,
               focusedBorder: OutlineInputBorder(
                 borderSide: BorderSide(
                     color:  Colors.transparent

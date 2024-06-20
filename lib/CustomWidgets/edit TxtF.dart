@@ -49,6 +49,7 @@ class EditTxtF extends StatelessWidget {
               // )
             ],
           ),
+
         ),
         Container(
           decoration: BoxDecoration(
