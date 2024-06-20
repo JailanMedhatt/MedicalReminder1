@@ -71,7 +71,7 @@ class _BottomSheetAppointmentState extends State<BottomSheetAppointment> {
     var myProvider = Provider.of<ListProvider>(context);
      listProvider = Provider.of<AppointmentProvider>(context);
     return Container(
-      height: 850.h,
+      //height: 600.h,
       padding: EdgeInsets.all(16.0),
       decoration: BoxDecoration(
         color:  myProvider.isDarkMode()?

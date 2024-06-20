@@ -1,6 +1,7 @@
 import 'package:calendar_timeline/calendar_timeline.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import '../CustomWidgets/BottomSheetAppointment.dart';
 import '../NotificationService.dart';
@@ -119,6 +120,13 @@ class _TaskListTabState extends State<TaskListTab> {
 
             onPressed: () {
               showModalBottomSheet(
+                enableDrag: true,
+                isScrollControlled: true,
+                constraints: BoxConstraints.tight(
+                    Size(
+                        MediaQuery.sizeOf(context)
+                            .width,
+                        600.h)),
                 context: context,
                 builder: (context) => BottomSheetAppointment(),
               );
