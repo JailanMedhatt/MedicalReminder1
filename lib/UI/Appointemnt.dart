@@ -57,11 +57,14 @@ class _TaskListTabState extends State<TaskListTab> {
                       ),
                       //SizedBox(width: 90),
                       Spacer(),
-                      Icon(Icons.add_alert, color:
-                      listProvider.isDarkMode()?
-                          MyTheme.icondark
-                          :
-                      Colors.deepPurple, size: 35),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 8.0),
+                        child: Icon(Icons.add_alert, color:
+                        listProvider.isDarkMode()?
+                            MyTheme.icondark
+                            :
+                        Colors.deepPurple, size: 35),
+                      ),
                     ],
                   ),
                   SizedBox(height: 50),

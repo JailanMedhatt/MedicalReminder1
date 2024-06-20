@@ -145,7 +145,7 @@ class _DoctorWidgetState extends State<DoctorWidget> {
                           ),
                           Text(
                             widget.appointment.Speciality ?? "",
-                            style: TextStyle(color: Colors.grey, fontSize: 15),
+                            style: TextStyle(color: Color(0xff444444), fontSize: 15),
                           ),
                         ],
                       ),
