@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../FireBase/Models/Medicine.dart';
-import '../providers/ReminderProvider.dart';
 import '../providers/list_provider.dart';
 
 class CheckMedType extends StatefulWidget {

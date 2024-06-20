@@ -10,7 +10,6 @@ import 'package:finalproject1/CustomWidgets/Schedulewidget/mydropmenu.dart';
 import 'package:finalproject1/FireBase/FirebaseUtills.dart';
 import 'package:finalproject1/FireBase/Models/Medicine.dart';
 import 'package:finalproject1/SharedPref.dart';
-import 'package:finalproject1/providers/ReminderProvider.dart';
 import 'package:finalproject1/providers/list_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';

@@ -4,7 +4,6 @@ import 'package:finalproject1/CustomWidgets/ReminderWidget/list.dart';
 import 'package:finalproject1/CustomWidgets/ReminderWidget/slidable.dart';
 import 'package:finalproject1/FireBase/Models/Medicine.dart';
 import 'package:finalproject1/SharedPref.dart';
-import 'package:finalproject1/providers/ReminderProvider.dart';
 import 'package:finalproject1/providers/list_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -110,21 +109,24 @@ class _ReminderState extends State<Reminder> {
                       ),
                     ),
               Expanded(
-              child: CustomSlidable(medicine:myProvider. ),
+              child: ListView.builder(
+                itemCount: listProvider.MedicineList.length,
+                  itemBuilder: (context,index){
+                    return CustomSlidable(medicine: listProvider.MedicineList[index]);
+                  }
+
+                // CustomSlidable(medicine: listProvider.MedicineList)),
               ),
 
 
-
-
-
-
-            ],
           ),
 
 
-        ),
+
       ],
+                ), ), ]
     );
+
   }
 
 

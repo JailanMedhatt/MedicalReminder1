@@ -3,7 +3,6 @@ import 'package:finalproject1/CustomWidgets/edit%20TxtF.dart';
 import 'package:finalproject1/FireBase/FirebaseUtills.dart';
 import 'package:finalproject1/SharedPref.dart';
 import 'package:finalproject1/UI/dosageTxtField.dart';
-import 'package:finalproject1/providers/ReminderProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';

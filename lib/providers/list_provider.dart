@@ -116,32 +116,37 @@ class AppointmentProvider extends ChangeNotifier{
   }
 
 }
-class MedicineProvider extends ChangeNotifier{
-  List<Medicine> medicineList = [];
+class ReminderListProvider extends ChangeNotifier{
+  List<Medicine> MedicineList =[];
   DateTime selectDate = DateTime.now();
-  bool isDone = false;
-  void getMedicinesFromFireStore(String Id)async{
-    QuerySnapshot<Medicine> querySnapshot= await FireBaseUtills.getMedicineCollection(Id).get();
-   medicineList = querySnapshot.docs.map((doc) {
+
+  void getAllMedicinesFromFireStore(String uId) async {
+    QuerySnapshot<Medicine> querySnapshot =await FireBaseUtills.getMedicineCollection(uId).get();
+    MedicineList = querySnapshot.docs.map((doc){
       return doc.data();
 
     }).toList();
-
-    medicineList = medicineList.where((element) {
-      if(selectDate.day==element.time?.day &&
-          selectDate.month == element.time?.month &&
-          selectDate.year == element.time?.year
-      ){
-        return true;}
+    //// filtering list
+    MedicineList = MedicineList.where((medicine) {
+      if (medicine.time?.day == selectDate.day &&
+          medicine.time?.month == selectDate.month &&
+          medicine.time?.year == selectDate.year) {
+        return true;
+      }
       return false;
     }).toList();
 
+    /// sorting
+    MedicineList.sort((Medicine medicine1, Medicine medicine2) {
+      return medicine1.time!.compareTo(medicine2.time!);
+    });
+
     notifyListeners();
+
   }
-  changeSelectDate(DateTime newSelectDate, String Id){
-    selectDate = newSelectDate;
-    getMedicinesFromFireStore(Id);
+  void changeSelectDate(DateTime newDate, String uId) {
+    selectDate = newDate;
+    getAllMedicinesFromFireStore(uId);
   }
 
 }
-
