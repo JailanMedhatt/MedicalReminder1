@@ -1,14 +1,20 @@
 
 import 'package:finalproject1/CustomWidgets/ReminderWidget/Calender.dart';
 import 'package:finalproject1/CustomWidgets/ReminderWidget/list.dart';
+import 'package:finalproject1/CustomWidgets/ReminderWidget/slidable.dart';
+import 'package:finalproject1/FireBase/Models/Medicine.dart';
+import 'package:finalproject1/SharedPref.dart';
 import 'package:finalproject1/providers/ReminderProvider.dart';
 import 'package:finalproject1/providers/list_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import '../FireBase/FirebaseUtills.dart';
 import '../myTheme.dart';
 
 class Reminder extends StatefulWidget {
+
   static final String routeName = "reminder-page";
 
   @override
@@ -16,13 +22,18 @@ class Reminder extends StatefulWidget {
 }
 
 class _ReminderState extends State<Reminder> {
+
+
+
   @override
   Widget build(BuildContext context) {
     var myProvider = Provider.of<ListProvider>(context);
+    String user = SharedPref.getId();
     var listProvider = Provider.of<ReminderListProvider>(context);
+
     //3lshan mdkholsh fe infinity loop
     if(listProvider.MedicineList.isEmpty){
-     listProvider.getAllMedicinesFromFireStore();
+     listProvider.getAllMedicinesFromFireStore(user);
     }
     return Stack(
       children: [
@@ -98,14 +109,9 @@ class _ReminderState extends State<Reminder> {
                         ],
                       ),
                     ),
-              Expanded(child:
-              ListView.builder(itemBuilder:(context , index){
-                return  CustomList(medicine: listProvider.MedicineList[index]);
-              },
-                itemCount: listProvider.MedicineList.length,
-              )
+              Expanded(
+              child: CustomSlidable(medicine:myProvider. ),
               ),
-
 
 
 

@@ -9,6 +9,7 @@ import 'package:finalproject1/CustomWidgets/Schedulewidget/colordropmenu.dart';
 import 'package:finalproject1/CustomWidgets/Schedulewidget/mydropmenu.dart';
 import 'package:finalproject1/FireBase/FirebaseUtills.dart';
 import 'package:finalproject1/FireBase/Models/Medicine.dart';
+import 'package:finalproject1/SharedPref.dart';
 import 'package:finalproject1/providers/ReminderProvider.dart';
 import 'package:finalproject1/providers/list_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -73,9 +74,10 @@ class _SchadualePageState extends State<SchadualePage> {
   @override
   Widget build(BuildContext context) {
     var myProvider = Provider.of<ListProvider>(context);
+    String user = SharedPref.getId();
     listProvider= Provider.of<ReminderListProvider>(context);
     if(listProvider.MedicineList.isEmpty){
-      listProvider.getAllMedicinesFromFireStore();
+      listProvider.getAllMedicinesFromFireStore(user);
     }
     return Stack(
       children: [
@@ -325,6 +327,7 @@ class _SchadualePageState extends State<SchadualePage> {
   }
 
   void addMedicine() {
+    String user = SharedPref.getId();
     if (formKey.currentState?.validate() == true) {
       Medicine medicine = Medicine(
         NoOfPills: n,
@@ -336,11 +339,11 @@ class _SchadualePageState extends State<SchadualePage> {
       );
 
       // Save medicine details to Firestore
-      FireBaseUtills.addmedicineToFireStore(medicine).timeout(
+      FireBaseUtills.addmedicineToFireStore(medicine,user).timeout(
         Duration(milliseconds: 500),
         onTimeout: () {
           print('added done');
-          listProvider.getAllMedicinesFromFireStore();
+          listProvider.getAllMedicinesFromFireStore(user);
           NotificationService().scheduleMedicineNotification(
            startDate: medicine.StartDate!,
            endDate: medicine.EndDate!,

@@ -1,6 +1,7 @@
 import 'package:finalproject1/CustomWidgets/check%20MedType.dart';
 import 'package:finalproject1/CustomWidgets/edit%20TxtF.dart';
 import 'package:finalproject1/FireBase/FirebaseUtills.dart';
+import 'package:finalproject1/SharedPref.dart';
 import 'package:finalproject1/UI/dosageTxtField.dart';
 import 'package:finalproject1/providers/ReminderProvider.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +14,7 @@ import '../myTheme.dart';
 import '../providers/list_provider.dart';
 
 class EditMedicine extends StatefulWidget {
+ 
   static final String routeName = "edit med";
 
   // DateTime selectedDate = DateTime.now();
@@ -45,6 +47,7 @@ class _EditMedicineState extends State<EditMedicine> {
       selectedDate2 = medicine!.EndDate!;
     }
     var myProvider =  Provider.of<ListProvider>(context);
+    String user = SharedPref.getId();
     listProvider = Provider.of<ReminderListProvider>(context);
     return Stack(children: [
       Container(
@@ -194,6 +197,7 @@ class _EditMedicineState extends State<EditMedicine> {
   }
 
   void editMedicine() {
+    String user = SharedPref.getId();
     if (formKey.currentState?.validate() == true) {
       if (medicine != null) {
         // Accessing properties and methods of medicine, ensuring it's not null
@@ -243,11 +247,11 @@ class _EditMedicineState extends State<EditMedicine> {
 
         DialogUtills.showLoading(context);
 
-        FireBaseUtills.editMedicineReminder(medicine!).then((value) {
+        FireBaseUtills.editMedicineReminder(medicine!,user).then((value) {
           DialogUtills.hideLoading(context);
         }).timeout(Duration(milliseconds: 500), onTimeout: () {
           print('success');
-          listProvider.getAllMedicinesFromFireStore();
+          listProvider.getAllMedicinesFromFireStore(user);
           Navigator.pop(context);
         });
       } else {

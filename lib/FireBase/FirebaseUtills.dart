@@ -54,24 +54,31 @@ class FireBaseUtills {
 
   //////////////////////////////////
   ///dh shu8l medicine farah
-  static CollectionReference<Medicine> getMedicineCollection() {
-    return FirebaseFirestore.instance.collection("medicines").withConverter<Medicine>(
-        fromFirestore: (snapchot, option) =>
-            Medicine.fromFireStore(snapchot.data()!),
-        toFirestore: (medicine, option) => medicine.toFireSstore());
+  static CollectionReference<Medicine> getMedicineCollection(String uId) {
+    return getUserCollectionRef().doc(uId)
+        .collection('Medicine')
+        .withConverter<Medicine>(
+        fromFirestore: (snapshot, option) =>
+            Medicine.fromFireStore(snapshot.data()!),
+        toFirestore: (Medicine, option) => Medicine.toFireSstore());
   }
 
-  static Future<void> addmedicineToFireStore(Medicine medicine) {
-    var medicineCollection = getMedicineCollection();
+  static Future<void> addmedicineToFireStore(Medicine medicine,String uId) {
+    var medicineCollection = getMedicineCollection(uId);
     DocumentReference<Medicine> docRef = medicineCollection.doc();
     medicine.id = docRef.id;
     return docRef.set(medicine);
   }
 
-  static editMedicineReminder(Medicine medicine) {
-    return getMedicineCollection()
+  static editMedicineReminder(Medicine medicine,String uId) {
+    return getMedicineCollection(uId)
         .doc(medicine.id)
         .update(medicine.toFireSstore());
+  }
+
+  static Future<void> deleteMedicine(Medicine medicine,String uId){
+    return getMedicineCollection(uId).doc(medicine.id).delete();
+
   }
   ///l7d hna
 

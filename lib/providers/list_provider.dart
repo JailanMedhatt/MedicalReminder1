@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:finalproject1/FireBase/Models/Medicine.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -112,6 +113,34 @@ class AppointmentProvider extends ChangeNotifier{
   changeSelectDate(DateTime newSelectDate, String Id){
     selectDate = newSelectDate;
     getAppointmentsFromFireStore(Id);
+  }
+
+}
+class MedicineProvider extends ChangeNotifier{
+  List<Medicine> medicineList = [];
+  DateTime selectDate = DateTime.now();
+  bool isDone = false;
+  void getMedicinesFromFireStore(String Id)async{
+    QuerySnapshot<Medicine> querySnapshot= await FireBaseUtills.getMedicineCollection(Id).get();
+   medicineList = querySnapshot.docs.map((doc) {
+      return doc.data();
+
+    }).toList();
+
+    medicineList = medicineList.where((element) {
+      if(selectDate.day==element.time?.day &&
+          selectDate.month == element.time?.month &&
+          selectDate.year == element.time?.year
+      ){
+        return true;}
+      return false;
+    }).toList();
+
+    notifyListeners();
+  }
+  changeSelectDate(DateTime newSelectDate, String Id){
+    selectDate = newSelectDate;
+    getMedicinesFromFireStore(Id);
   }
 
 }
