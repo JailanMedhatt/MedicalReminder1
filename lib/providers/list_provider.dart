@@ -4,21 +4,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../FireBase/FirebaseUtills.dart';
 import '../FireBase/Models/UserAppointment.dart';
-class ListProvider extends ChangeNotifier{
+class ListProvider extends ChangeNotifier {
 
   String appLanguage = 'en';
   ThemeMode appTheme = ThemeMode.light;
-  List<MissedMedicine> missedMedicines = [];
+  //List<MissedMedicine> missedMedicines = [];
 
 
-
-  void changeTheme (ThemeMode newMode){
-  //   if(appTheme == newMode){
-  //     return;
-  //   }
-  //   appTheme=newMode;
-  //   notifyListeners();
-  // }
+  void changeTheme(ThemeMode newMode) {
+    //   if(appTheme == newMode){
+    //     return;
+    //   }
+    //   appTheme=newMode;
+    //   notifyListeners();
+    // }
     if (appTheme == ThemeMode.light) {
       appTheme = ThemeMode.dark;
     } else {
@@ -26,20 +25,19 @@ class ListProvider extends ChangeNotifier{
     }
     notifyListeners();
   }
-  bool isDarkMode(){
-    return appTheme == ThemeMode.dark;
 
+  bool isDarkMode() {
+    return appTheme == ThemeMode.dark;
   }
 
   void changeLanguage(String newLanguage) {
-    if ( appLanguage == 'en') {
+    if (appLanguage == 'en') {
       appLanguage = 'ar';
     }
     else {
       appLanguage = 'en';
     }
-      notifyListeners();
-
+    notifyListeners();
   }
 
 
@@ -56,38 +54,39 @@ class ListProvider extends ChangeNotifier{
       );
     }
   }
-  ///mn henaaaaaaaa
-  void addMissedMedicine(String day, String name) {
-    missedMedicines.add(MissedMedicine(day: day, name: name));
-    notifyListeners();
-    //_sendNotification(name);
-  }
 
-  // Future<void> _sendNotification(String medicineName) async {
-  //   FirebaseMessaging messaging = FirebaseMessaging.instance;
-  //   try {
-  //     await messaging.subscribeToTopic('missed_medicines');
-  //     await FirebaseMessaging.instance.sendMessage(
-  //       topic: 'missed_medicines',
-  //       data: {
-  //         'title': 'Missed Medicine',
-  //         'body': 'You missed a dose of $medicineName',
-  //       },
-  //     );
-  //   } catch (e) {
-  //     print('Error sending notification: $e');
-  //   }
-  // }
+///mn henaaaaaaaa
+//   void addMissedMedicine(String day, String name) {
+//     missedMedicines.add(MissedMedicine(day: day, name: name));
+//     notifyListeners();
+//     //_sendNotification(name);
+//   }
+//
+//   // Future<void> _sendNotification(String medicineName) async {
+//   //   FirebaseMessaging messaging = FirebaseMessaging.instance;
+//   //   try {
+//   //     await messaging.subscribeToTopic('missed_medicines');
+//   //     await FirebaseMessaging.instance.sendMessage(
+//   //       topic: 'missed_medicines',
+//   //       data: {
+//   //         'title': 'Missed Medicine',
+//   //         'body': 'You missed a dose of $medicineName',
+//   //       },
+//   //     );
+//   //   } catch (e) {
+//   //     print('Error sending notification: $e');
+//   //   }
+//   // }
+// }
+//
+// class MissedMedicine {
+//   final String day;
+//   final String name;
+//
+//   MissedMedicine({required this.day, required this.name});
+// }
+
 }
-
-class MissedMedicine {
-  final String day;
-  final String name;
-
-  MissedMedicine({required this.day, required this.name});
-}
-
-
 class AppointmentProvider extends ChangeNotifier{
   List<Appointment> appointmentList = [];
   DateTime selectDate = DateTime.now();
